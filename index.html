@@ -364,7 +364,8 @@ function startGame(){
 function score(){return g.fame+g.rep+g.contacts+g.chem-g.rumors*5}
 function updateTier(){for(let i=tiers.length-1;i>=0;i--)if(score()>=tiers[i].need){g.tier=i;break}}
 function next(){
- updateTier();g.player=tiers[g.tier].players[Math.floor(Math.random()*tiers[g.tier].players.length)];
+ updateTier();
+ if(!g.player)g.player=tiers[g.tier].players[Math.floor(Math.random()*tiers[g.tier].players.length)];
  g.stage=Math.min(4,g.stage);g.event=eventTypes[g.stage];
  document.getElementById("rank").textContent=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
  document.getElementById("age").textContent=`${g.name}, ${g.age} años`;
@@ -386,7 +387,7 @@ function resolve(i){
    if(g.stage===4){upRel("Noviazgo");g.couples++;g.stage=0;g.player=null}
    else g.stage++;
  }else{
-   if(g.chem<5||Math.random()<.25){upRel("Terminó mal");g.stage=0}
+   if(g.chem<5||Math.random()<.25){upRel("Terminó mal");g.stage=0;g.player=null}
  }
  document.getElementById("result").innerHTML=`<div class="result ${ok?'ok':'bad'}"><div class="big">${ok?'✅':'❌'}</div><b>${ok?'¡SALIO VERDE!':'¡SALIO ROJO!'}</b><p>${msg}</p><button onclick="continueGame()">Seguir</button></div>`;
  document.getElementById("choices").innerHTML="";
