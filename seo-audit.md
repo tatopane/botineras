@@ -1,7 +1,7 @@
 # 🔍 Auditoría SEO — Botineras (index.html)
 
 **Fecha:** Agosto 2026  
-**Proyecto:** [botineras.tato.pm](https://botineras.tato.pm)  
+**Proyecto:** [botineras.com.ar](https://botineras.com.ar)  
 **Score general:** 4/10 🟡  
 
 ---

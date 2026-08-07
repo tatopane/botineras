@@ -10,8 +10,8 @@
 | **Co-creador / Producto** | Tato |
 | **Co-creador / Colaborador** | Papu |
 
-- **URL:** https://botineras.tato.pm
-- **Dominio:** botineras.tato.pm (CNAME a GitHub Pages)
+- **URL:** https://botineras.com.ar
+- **Dominio:** botineras.com.ar (CNAME a GitHub Pages)
 - **Repositorio:** github.com/tatopane/botineras (SSH: git@github.com:tatopane/botineras.git)
 
 ---
@@ -23,7 +23,7 @@
 | **Hosting** | GitHub Pages (CDN global, HTTPS automático) |
 | **Frontend** | HTML5 + CSS3 + Vanilla JS (sin frameworks) |
 | **Assets** | Imágenes vía Unsplash (CDN, no locales) |
-| **Dominio** | CNAME → botineras.tato.pm |
+| **Dominio** | CNAME → botineras.com.ar |
 | **Control de versiones** | Git + GitHub (SSH, usuario tatopane-openclaw) |
 
 > **Filosofía:** mantenerlo 100% estático, sin backend, sin build step, sin dependencias. Cada archivo debe poder servirse directo desde GitHub Pages.

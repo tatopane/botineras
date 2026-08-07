@@ -15,16 +15,16 @@
 <!-- Open Graph -->
 <meta property="og:title" content="Botineras — Carrera de Romances">
 <meta property="og:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
-<meta property="og:image" content="https://botineras.tato.pm/images/og-image.webp">
+<meta property="og:image" content="https://botineras.com.ar/images/og-image.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://botineras.tato.pm">
+<meta property="og:url" content="https://botineras.com.ar">
 <meta property="og:type" content="website">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Botineras — Carrera de Romances">
 <meta name="twitter:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
-<meta name="twitter:image" content="https://botineras.tato.pm/images/og-image.webp">
+<meta name="twitter:image" content="https://botineras.com.ar/images/og-image.webp">
 <!-- Schema.org -->
 <script type="application/ld+json">
 {
@@ -32,7 +32,7 @@
   "@type": "WebApplication",
   "name": "Botineras — Carrera de Romances",
   "description": "Novela interactiva de farándula futbolera. Elegí personaje, tomá decisiones, acumulá fama y escalá de Barrio a Champions.",
-  "url": "https://botineras.tato.pm",
+  "url": "https://botineras.com.ar",
   "applicationCategory": "Game",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -446,7 +446,8 @@ function finish(){
 }
 
 function shareWhatsApp(){
- const gameUrl=window.location.href.split('#')[0];
+ const origin=window.location.origin;
+ const shareUrl=`${origin}/desafiame`;
  const finalTitle=document.getElementById("finalTitle").textContent;
  const tierName=tiers[g.tier].name;
 
@@ -460,10 +461,10 @@ function shareWhatsApp(){
   `🔥 Química: ${g.chem}\n`+
   `💬 Rumores: ${g.rumors}\n`+
   `❤️ Noviazgos: ${g.couples}\n\n`+
-  `Probá tu carrera de botinera: ${gameUrl}`;
+  `Probá tu carrera de botinera: ${shareUrl}`;
 
  if(typeof trackEvent==='function'){
-  trackEvent('click_share_whatsapp',{final_title:finalTitle,final_tier:tierName,character_name:g.name,final_age:g.age});
+  trackEvent('click_share_whatsapp',{final_title:finalTitle,final_tier:tierName,character_name:g.name,final_age:g.age,utm_source:'whatsapp'});
  }
 
  const waUrl=`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
