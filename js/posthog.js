@@ -9,8 +9,12 @@ posthog.init('phc_ApttE6Ueghg6pmSVRymFZtTZe5qw3uujnU2FgihKWhBg', {
 });
 
 function trackEvent(name, props) {
+    props = props || {};
     if (window.posthog && typeof window.posthog.capture === 'function') {
-        window.posthog.capture(name, props || {});
+        window.posthog.capture(name, props);
+    }
+    if (typeof window.gtag === 'function') {
+        window.gtag('event', name, props);
     }
 }
 

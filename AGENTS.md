@@ -99,7 +99,7 @@
 - **Carga de fotos local.** El usuario puede subir fotos locales vía FileReader. Quedan en memoria durante la sesión.
 
 ### Analytics y Eventos
-- **Tracking obligatorio:** Para cada nueva funcionalidad, pantalla, botón o cambio que se agregue o modifique, se debe incluir/actualizar su correspondiente rastreo de eventos en PostHog (`trackEvent`).
+- **Tracking obligatorio:** Para cada nueva funcionalidad, pantalla, botón o cambio que se agregue o modifique, se debe incluir/actualizar su correspondiente rastreo de eventos tanto en PostHog como en Google Analytics (`trackEvent` / `gtag`).
 
 ### Git
 - Commits en **español**, descriptivos, en presente del indicativo.
@@ -128,7 +128,7 @@
 
 - **Git:** `gh repo clone tatopane/botineras`, `gh pr create`, commits via `git add/commit/push`. **Nunca hacer push a main sin aprobación previa de Tato.**
 - **Frontend:** Siempre que toque el HTML, mantengo la estructura de game state (objeto `g`), personajes (`chars`), eventos (`eventTypes`), tiers (`tiers`).
-- **Tracking:** Cada cambio o agregado en la app exige actualizar/añadir la instrumentación de eventos en PostHog (`trackEvent`).
+- **Tracking:** Cada cambio o agregado en la app exige actualizar/añadir la instrumentación de eventos en PostHog y Google Analytics (`trackEvent`).
 - **Decisiones de producto:** Consulto con Tato antes de cambios mayores.
 - **Aprobación de cambios:** Muestro los cambios o resumo la implementación y espero a que Tato apruebe antes de subir a `main`.
 - **Estilo:** Directo, pragmático, sin vueltas. Si algo no escala o es overengineering, lo digo.
