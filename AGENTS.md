@@ -22,7 +22,7 @@
 | :--- | :--- |
 | **Hosting** | GitHub Pages (CDN global, HTTPS automático) |
 | **Frontend** | HTML5 + CSS3 + Vanilla JS (sin frameworks) |
-| **Assets** | Imágenes vía Unsplash (CDN, no locales) |
+| **Assets** | Imágenes WebP locales optimizadas |
 | **Dominio** | CNAME → botineras.com.ar |
 | **Control de versiones** | Git + GitHub (SSH, usuario tatopane-openclaw) |
 
