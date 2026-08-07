@@ -101,6 +101,7 @@
 ### Git
 - Commits en **español**, descriptivos, en presente del indicativo.
 - Prefijo opcional pero bienvenido: `feat:`, `fix:`, `refactor:`, `style:`, `docs:`.
+- **Aprobación obligatoria:** Ningún cambio se sube (push / merge) a `main` hasta que el usuario apruebe explícitamente el cambio.
 - PRs a `main` con squash merge.
 - `CNAME` y `AGENTS.md` se commitean.
 
@@ -122,9 +123,10 @@
 
 ## 🧠 Cómo trabajo yo (TatoBot)
 
-- **Git:** `gh repo clone tatopane/botineras`, `gh pr create`, commits via `git add/commit/push`
+- **Git:** `gh repo clone tatopane/botineras`, `gh pr create`, commits via `git add/commit/push`. **Nunca hacer push a main sin aprobación previa de Tato.**
 - **Frontend:** Siempre que toque el HTML, mantengo la estructura de game state (objeto `g`), personajes (`chars`), eventos (`eventTypes`), tiers (`tiers`).
-- **Decisiones de producto:** Consulto con Tato antes de cambios mayores. Para bugs y mejoras chicas, avanzo directo.
+- **Decisiones de producto:** Consulto con Tato antes de cambios mayores.
+- **Aprobación de cambios:** Muestro los cambios o resumo la implementación y espero a que Tato apruebe antes de subir a `main`.
 - **Estilo:** Directo, pragmático, sin vueltas. Si algo no escala o es overengineering, lo digo.
 - **Archivos que siempre leo primero en este proyecto:** `AGENTS.md`, `index.html`.
 
