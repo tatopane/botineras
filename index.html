@@ -25,6 +25,28 @@
 <meta name="twitter:title" content="Botineras — Carrera de Romances">
 <meta name="twitter:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
 <meta name="twitter:image" content="https://botineras.tato.pm/images/og-image.webp">
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Botineras — Carrera de Romances",
+  "description": "Novela interactiva de farándula futbolera. Elegí personaje, tomá decisiones, acumulá fama y escalá de Barrio a Champions.",
+  "url": "https://botineras.tato.pm",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "author": {
+    "@type": "Person",
+    "name": "Tato"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 <style>
 :root{--pink:#ff3f9f;--gold:#ffd166;--green:#23c97c;--red:#ef4c5d;--card:#171925}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#31102d,#0a0b11 30%);color:#fff;font-family:Arial,sans-serif}
@@ -77,7 +99,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 </div>
 
 <div class="card">
-<div class="scene"><img id="scene" alt="Escena del evento"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
+<div class="scene"><img id="scene" alt="Escena del evento" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><rect fill=%22%23171925%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22200%22 text-anchor=%22middle%22 fill=%22%23ff3f9f%22 font-size=%2260%22 font-family=%22sans-serif%22>👠</text><text x=%22400%22 y=%22250%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2220%22 font-family=%22sans-serif%22>Escena no disponible</text></svg>'"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
 <div id="mentor"></div><div id="choices" class="choices"></div><div id="result"></div>
 </div>
 
@@ -150,7 +172,7 @@ let selected=0,g={};
 
 function build(){
  document.getElementById("people").innerHTML=chars.map((c,i)=>`<div class="person ${i===0?'sel':''}" onclick="pick(${i},this)">
- <img id="img${i}" src="${c.img}" alt="${c.name}"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
+ <img id="img${i}" src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22230%22><rect fill=%22%232d2f3b%22 width=%22400%22 height=%22230%22/><text x=%22200%22 y=%22130%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2230%22 font-family=%22sans-serif%22>Sin foto</text></svg>'"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
  <label class="upload">Elegir foto real<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
 }
 function loadPhoto(ev,i){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)}
