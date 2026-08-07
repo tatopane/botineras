@@ -102,6 +102,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 @media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr)}.scene{height:420px}.person img{height:190px}.sticky-wrap{padding:6px 10px}.c-stat{padding:4px 6px;gap:3px;font-size:13px}.c-stat b{font-size:14px}}
 </style>
 <body>
+<script src="js/posthog.js"></script>
 <div id="stickyHeader" class="sticky-header">
   <div class="wrap sticky-wrap">
     <div class="compact-stats">
@@ -305,6 +306,7 @@ const statInfo = {
 function showStatInfo(key){
  const info = statInfo[key];
  if(!info) return;
+ if(typeof trackEvent==='function')trackEvent('click_stat_info',{stat_key:key});
  document.getElementById("statTooltipTitle").textContent = info.title;
  document.getElementById("statTooltipText").textContent = info.desc;
  document.getElementById("statTooltip").classList.remove("hidden");
@@ -319,8 +321,16 @@ function build(){
  <img id="img${i}" src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22230%22><rect fill=%22%232d2f3b%22 width=%22400%22 height=%22230%22/><text x=%22200%22 y=%22130%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2230%22 font-family=%22sans-serif%22>Sin foto</text></svg>'"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
  <label class="upload" onclick="event.stopPropagation()">Sube tu foto<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
 }
-function loadPhoto(ev,i){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)}
-function pick(i,e){selected=i;document.querySelectorAll(".person").forEach(x=>x.classList.remove("sel"));if(e)e.classList.add("sel");startGame()}
+function loadPhoto(ev,i){
+ const f=ev.target.files[0];if(!f)return;
+ if(typeof trackEvent==='function')trackEvent('click_upload_photo',{character_name:chars[i].name});
+ const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)
+}
+function pick(i,e){
+ selected=i;
+ if(typeof trackEvent==='function')trackEvent('click_select_character',{character_name:chars[i].name,trait:chars[i].trait});
+ document.querySelectorAll(".person").forEach(x=>x.classList.remove("sel"));if(e)e.classList.add("sel");startGame()
+}
 
 function showScreen(screenId){
  ["setup","game","final","guide"].forEach(id=>{
@@ -330,11 +340,14 @@ function showScreen(screenId){
  document.getElementById(screenId).classList.remove("hidden");
  if(screenId!=="guide")activeScreen=screenId;
  if(screenId!=="game")document.getElementById("stickyHeader")?.classList.remove("visible");
+ if(typeof trackEvent==='function')trackEvent('screen_view',{screen_name:screenId});
 }
 
 function toggleGuide(){
  const guide=document.getElementById("guide");
- if(guide.classList.contains("hidden")){
+ const isOpening=guide.classList.contains("hidden");
+ if(typeof trackEvent==='function')trackEvent('click_toggle_guide',{action:isOpening?'open':'close',from_screen:activeScreen});
+ if(isOpening){
   showScreen("guide");
  }else{
   showScreen(activeScreen);
@@ -378,6 +391,10 @@ function next(){
 }
 function resolve(i){
  let a=g.event.actions[i],p=a[1]+Math.min(.1,g.rep/500)+Math.min(.08,g.chem/500)-Math.min(.1,g.rumors*.02),ok=Math.random()<p,eff=ok?a[4]:a[5],msg=(ok?a[2]:a[3]).replaceAll("{player}",g.player);
+ if(typeof trackEvent==='function'){
+  trackEvent('click_game_choice',{choice_index:i,choice_text:a[0],event_title:g.event.title,stage:g.stage,player:g.player,tier_name:tiers[g.tier].name});
+  trackEvent('game_event_outcome',{outcome:ok?'success':'failure',event_title:g.event.title,player:g.player});
+ }
  Object.entries(eff).forEach(([k,v])=>g[k]=Math.max(0,g[k]+v));
  if(ok){
    if(g.stage===0)g.relations.push({player:g.player,status:"Primera salida"});
@@ -407,8 +424,12 @@ function upd(){
 }
 function finish(){
  showScreen("final");
- document.getElementById("finalTitle").textContent=g.couples>=3?"👑 REINA INTERNACIONAL":g.couples>=1?"❤️ CARRERA CONSOLIDADA":"🍸 MUCHO RUMOR, POCO NOVIAZGO";
+ const finalTitle=g.couples>=3?"👑 REINA INTERNACIONAL":g.couples>=1?"❤️ CARRERA CONSOLIDADA":"🍸 MUCHO RUMOR, POCO NOVIAZGO";
+ document.getElementById("finalTitle").textContent=finalTitle;
  document.getElementById("finalText").innerHTML=`${g.name} terminó a los ${g.age} años en categoría <b>${tiers[g.tier].name}</b>, con ${g.couples} noviazgos y ${g.relations.length} historias sentimentales.<br><br>⭐ ${g.fame} · 🧠 ${g.rep} · 🤝 ${g.contacts} · 🔥 ${g.chem} · 💬 ${g.rumors}`;
+ if(typeof trackEvent==='function'){
+  trackEvent('game_finish',{final_title:finalTitle,final_tier:tiers[g.tier].name,total_couples:g.couples,total_fame:g.fame,total_rep:g.rep,total_contacts:g.contacts,total_chem:g.chem,total_rumors:g.rumors,final_age:g.age});
+ }
 }
 build();
 initStickyObserver();
