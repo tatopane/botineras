@@ -70,30 +70,143 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .rel b{color:var(--gold)}.mentor{margin:14px 18px 0;background:#2c1a08;border:1px solid #ffd16666;border-radius:14px;padding:13px;color:#ffe6a0}
 .log{max-height:250px;overflow:auto;background:#0d0f16;border-radius:12px;padding:10px}.log p{margin:0;padding:8px;border-bottom:1px solid #ffffff10}
 .green{color:#62e6a2}.red{color:#ff828e}.note{font-size:12px;color:#aaa;text-align:center;line-height:1.4}
-@media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr)}.scene{height:420px}.person img{height:190px}}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
+.guide-box{background:#10121a;border:1px solid #ffffff18;border-radius:14px;padding:16px}
+.guide-box h3{color:var(--gold);margin-top:0;margin-bottom:10px;font-size:18px}
+.guide-box p,.guide-box ul,.guide-box ol{font-size:14px;line-height:1.55;color:#ddd;margin:6px 0}
+.guide-box ul,.guide-box ol{padding-left:20px}
+.guide-box li{margin-bottom:6px}
+.sticky-header{position:fixed;top:0;left:0;right:0;z-index:1000;pointer-events:none;opacity:0;transform:translateY(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),opacity 0.25s ease;background:rgba(23,25,37,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,63,159,0.35);box-shadow:0 10px 30px rgba(0,0,0,0.8)}
+.sticky-header.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.sticky-wrap{padding:8px 18px;max-width:1080px;margin:auto}
+.compact-stats{display:flex;justify-content:space-around;align-items:center;gap:6px}
+.c-stat{background:rgba(15,17,25,0.7);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:5px 12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:15px;color:#fff;flex:1}
+.stat.clickable{cursor:pointer;transition:transform 0.15s ease,border-color 0.15s ease,box-shadow 0.15s ease;border:1px solid transparent}
+.stat.clickable:hover,.stat.clickable:active{transform:scale(1.04);border-color:var(--pink);box-shadow:0 4px 15px rgba(255,63,159,0.25)}
+.stat-tooltip{background:#10121a;border:1px solid var(--pink);border-radius:12px;padding:12px 16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(255,63,159,0.2);animation:fadeIn 0.2s ease}
+.stat-tooltip-title{font-weight:bold;color:var(--gold);font-size:15px;display:block;margin-bottom:3px}
+.stat-tooltip-text{font-size:13px;color:#ddd;margin:0;line-height:1.4}
+.stat-tooltip-close{background:none;border:none;color:#aaa;font-size:16px;padding:4px 8px;cursor:pointer;border-radius:6px}
+.stat-tooltip-close:hover{color:#fff;background:#353847}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr)}.scene{height:420px}.person img{height:190px}.sticky-wrap{padding:6px 10px}.c-stat{padding:4px 6px;gap:3px;font-size:13px}.c-stat b{font-size:14px}}
 </style>
-</head>
 <body>
+<div id="stickyHeader" class="sticky-header">
+  <div class="wrap sticky-wrap">
+    <div class="compact-stats">
+      <div class="c-stat"><span>⭐</span><b id="c_fame"></b></div>
+      <div class="c-stat"><span>🧠</span><b id="c_rep"></b></div>
+      <div class="c-stat"><span>🤝</span><b id="c_contacts"></b></div>
+      <div class="c-stat"><span>🔥</span><b id="c_chem"></b></div>
+      <div class="c-stat"><span>💬</span><b id="c_rumors"></b></div>
+      <div class="c-stat"><span>❤️</span><b id="c_couples"></b></div>
+    </div>
+  </div>
+</div>
 <div class="wrap">
-<div class="hero"><h1>👠 BOTINERAS</h1><p>Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo.</p></div>
+<div class="hero">
+  <h1>👠 BOTINERAS</h1>
+  <p>Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo.</p>
+  <button class="secondary" style="margin-top:8px;font-size:14px;padding:8px 16px;" onclick="toggleGuide()">📖 ¿Cómo jugar?</button>
+</div>
+
+<section id="guide" class="card pad hidden">
+  <div class="top">
+    <h2>📖 Guía de Juego: ¿Cómo Jugar?</h2>
+    <button class="secondary" onclick="toggleGuide()">← Volver</button>
+  </div>
+  <p style="color:#bbb;line-height:1.5">Bienvenida a <strong>Botineras</strong>, la novela interactiva de la farándula futbolera argentina. Tu misión es construir la carrera mediática y sentimental más distinguida, conquistando los corazones de las máximas figuras del fútbol mundial.</p>
+  
+  <div class="guide-grid">
+    <div class="guide-box">
+      <h3>👑 El Objetivo</h3>
+      <p>A lo largo de <strong>24 turnos</strong> (8 años de carrera), tomarás decisiones en distintas salidas y eventos sociales. Deberás equilibrar tu exposición pública, cuidar tu reputación y cultivar la química con tus parejas para escalar de categoría y lograr noviazgos confirmados.</p>
+    </div>
+
+    <div class="guide-box">
+      <h3>🎭 Personajes y Talentos</h3>
+      <p>Cada personaje posee fortalezas únicas que impulsan tu inicio de carrera:</p>
+      <ul>
+        <li><strong>Wonda Nara:</strong> Visión de negocios, astucia y gran presencia mediática.</li>
+        <li><strong>La China Suáres:</strong> Química romántica explosiva y atracción inmediata.</li>
+        <li><strong>Sasha Ferra:</strong> Experta en viralidad y alcance masivo en redes sociales.</li>
+        <li><strong>Bri Marcas:</strong> Acceso exclusivo a sectores VIP y contactos clave.</li>
+        <li><strong>Jaz Peraltaa:</strong> Carisma impredecible y gran encanto natural.</li>
+        <li><strong>Clari Cremaschi:</strong> Respaldo de marcas comerciales y alta reputación.</li>
+      </ul>
+    </div>
+
+    <div class="guide-box">
+      <h3>📊 Atributos Clave</h3>
+      <ul>
+        <li>⭐ <strong>Fama:</strong> Tu alcance público y presencia en la prensa.</li>
+        <li>🧠 <strong>Reputación:</strong> Prestigio y nivel de valoración social.</li>
+        <li>🤝 <strong>Contactos:</strong> Tu red de influencias y accesos exclusivos.</li>
+        <li>🔥 <strong>Química:</strong> Conexión y atracción con el futbolista de turno.</li>
+        <li>💬 <strong>Rumores:</strong> <em>¡Atención!</em> Los chismes y escándalos dañan seriamente tu perfil y frenan tu ascenso.</li>
+        <li>❤️ <strong>Noviazgos:</strong> Relaciones formalizadas que consagran tu carrera.</li>
+      </ul>
+    </div>
+
+    <div class="guide-box">
+      <h3>⚽ Escalafón de Categorías</h3>
+      <p>Tu estatus general determinará a qué nivel de futbolistas tenés acceso. A medida que tu perfil crece, ascenderás por las categorías:</p>
+      <p style="text-align:center;color:var(--gold);font-weight:bold">Barrio → Ascenso → Primera → Latam → Europa → Champions</p>
+      <p>¡Superá cada nivel para relacionarte con las mayores estrellas del planeta!</p>
+    </div>
+
+    <div class="guide-box">
+      <h3>🔥 Etapas del Romance</h3>
+      <p>Cada futbolista atraviesa fases progresivas en la relación:</p>
+      <ol>
+        <li><strong>Primera salida:</strong> El primer contacto.</li>
+        <li><strong>Después del boliche:</strong> Primeros trascendidos.</li>
+        <li><strong>Viaje sorpresa:</strong> Nace el romance.</li>
+        <li><strong>La foto filtrada:</strong> Se vuelve noticia nacional.</li>
+        <li><strong>Exclusividad:</strong> Al formalizar, ¡sumás un <strong>Noviazgo</strong>! Tu contador aumenta y quedás lista para buscar una nueva conquista.</li>
+      </ol>
+    </div>
+
+    <div class="guide-box">
+      <h3>🎲 Decisiones y Riesgos</h3>
+      <p>En cada salida tendrás 3 alternativas para elegir:</p>
+      <ul>
+        <li>Una alta <strong>Reputación</strong> y una sólida <strong>Química</strong> aumentan tus probabilidades de que las cosas salgan bien.</li>
+        <li>Los <strong>Rumores</strong> acumulados aumentan el riesgo de ser rechazada o dejada en visto.</li>
+        <li>Si la química se agota o una jugada sale muy mal, la relación puede terminar abruptamente.</li>
+        <li>Prestá atención a los tips de tu mentor <strong>Guillote Coppolo</strong>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <section id="setup" class="card">
 <div class="pad">
 <h2>Elegí personaje</h2>
 <div id="people" class="grid"></div>
-<p><b>Tip:</b> tocá “Elegir foto” en cada personaje para cargar la foto real desde tu teléfono. Queda guardada durante la partida.</p>
-<button onclick="startGame()">Empezar carrera</button>
+<p><b>Tip:</b> tocá “Sube tu foto” en cada personaje para cargar tu foto desde el teléfono. Queda guardada durante la partida.</p>
 </div>
 <p class="note">Parodia ficticia. Los romances y situaciones del juego no describen hechos reales.</p>
 </section>
 
 <section id="game" class="hidden">
-<div class="card pad">
+<div class="card pad" id="statsCard">
 <div class="top"><div><div id="rank" class="rank"></div><h3 id="age" style="margin:4px 0"></h3></div><button class="secondary" onclick="location.reload()">Reiniciar</button></div>
 <div class="stats">
-<div class="stat">⭐ Fama<b id="fame"></b></div><div class="stat">🧠 Reputación<b id="rep"></b></div>
-<div class="stat">🤝 Contactos<b id="contacts"></b></div><div class="stat">🔥 Química<b id="chem"></b></div>
-<div class="stat">💬 Rumores<b id="rumors"></b></div><div class="stat">❤️ Noviazgos<b id="couples"></b></div>
+<div class="stat clickable" onclick="showStatInfo('fame')" title="Tocá para ver qué significa">⭐ Fama<b id="fame"></b></div>
+<div class="stat clickable" onclick="showStatInfo('rep')" title="Tocá para ver qué significa">🧠 Reputación<b id="rep"></b></div>
+<div class="stat clickable" onclick="showStatInfo('contacts')" title="Tocá para ver qué significa">🤝 Contactos<b id="contacts"></b></div>
+<div class="stat clickable" onclick="showStatInfo('chem')" title="Tocá para ver qué significa">🔥 Química<b id="chem"></b></div>
+<div class="stat clickable" onclick="showStatInfo('rumors')" title="Tocá para ver qué significa">💬 Rumores<b id="rumors"></b></div>
+<div class="stat clickable" onclick="showStatInfo('couples')" title="Tocá para ver qué significa">❤️ Noviazgos<b id="couples"></b></div>
+</div>
+<div id="statTooltip" class="stat-tooltip hidden">
+  <div>
+    <span id="statTooltipTitle" class="stat-tooltip-title"></span>
+    <p id="statTooltipText" class="stat-tooltip-text"></p>
+  </div>
+  <button class="stat-tooltip-close" onclick="hideStatInfo()" title="Cerrar">✕</button>
 </div>
 <div class="progress"><div id="bar"></div></div>
 </div>
@@ -168,20 +281,75 @@ const eventTypes=[
 ]}
 ];
 
-let selected=0,g={};
+let selected=0,g={},activeScreen="setup";
+
+const statInfo = {
+ fame: { title: "⭐ Fama", desc: "Tu alcance mediático, nivel de notoriedad y presencia en prensa y redes sociales." },
+ rep: { title: "🧠 Reputación", desc: "Tu prestigio e imagen pública. Una alta reputación genera confianza y aumenta tus probabilidades de éxito en cada salida." },
+ contacts: { title: "🤝 Contactos", desc: "Tu red de influencias y accesos VIP en la farándula para organizar mejores encuentros." },
+ chem: { title: "🔥 Química", desc: "La atracción y conexión romántica con tu pareja actual. Si cae demasiado, la relación puede terminar de golpe." },
+ rumors: { title: "💬 Rumores", desc: "Escándalos y chismes mediáticos sin controlar. Perjudican tu estatus y aumentan el riesgo de ser dejada en visto." },
+ couples: { title: "❤️ Noviazgos", desc: "Relaciones confirmadas y formalizadas exitosamente a lo largo de tu carrera." }
+};
+
+function showStatInfo(key){
+ const info = statInfo[key];
+ if(!info) return;
+ document.getElementById("statTooltipTitle").textContent = info.title;
+ document.getElementById("statTooltipText").textContent = info.desc;
+ document.getElementById("statTooltip").classList.remove("hidden");
+}
+
+function hideStatInfo(){
+ document.getElementById("statTooltip").classList.add("hidden");
+}
 
 function build(){
  document.getElementById("people").innerHTML=chars.map((c,i)=>`<div class="person ${i===0?'sel':''}" onclick="pick(${i},this)">
  <img id="img${i}" src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22230%22><rect fill=%22%232d2f3b%22 width=%22400%22 height=%22230%22/><text x=%22200%22 y=%22130%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2230%22 font-family=%22sans-serif%22>Sin foto</text></svg>'"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
- <label class="upload">Elegir foto real<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
+ <label class="upload" onclick="event.stopPropagation()">Sube tu foto<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
 }
 function loadPhoto(ev,i){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)}
-function pick(i,e){selected=i;document.querySelectorAll(".person").forEach(x=>x.classList.remove("sel"));e.classList.add("sel")}
+function pick(i,e){selected=i;document.querySelectorAll(".person").forEach(x=>x.classList.remove("sel"));if(e)e.classList.add("sel");startGame()}
+
+function showScreen(screenId){
+ ["setup","game","final","guide"].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.classList.add("hidden");
+ });
+ document.getElementById(screenId).classList.remove("hidden");
+ if(screenId!=="guide")activeScreen=screenId;
+ if(screenId!=="game")document.getElementById("stickyHeader")?.classList.remove("visible");
+}
+
+function toggleGuide(){
+ const guide=document.getElementById("guide");
+ if(guide.classList.contains("hidden")){
+  showScreen("guide");
+ }else{
+  showScreen(activeScreen);
+ }
+}
+
+function initStickyObserver(){
+ const card=document.getElementById("statsCard");
+ const header=document.getElementById("stickyHeader");
+ if(!card||!header)return;
+ const obs=new IntersectionObserver(([e])=>{
+  const isGameActive=activeScreen==="game";
+  const scrolledPast=e.boundingClientRect.top<0;
+  header.classList.toggle("visible",isGameActive&&!e.isIntersecting&&scrolledPast);
+ },{threshold:[0]});
+ obs.observe(card);
+}
+
 function startGame(){
  let c=chars[selected],img=document.getElementById("img"+selected).src;
  g={name:c.name,img,age:18,tier:0,turn:0,fame:4,rep:6,contacts:6,chem:5,rumors:0,couples:0,relations:[],stage:0,player:null,event:null};
  Object.entries(c.bonus).forEach(([k,v])=>g[k]+=v);
- document.getElementById("setup").classList.add("hidden");document.getElementById("game").classList.remove("hidden");next();
+ hideStatInfo();
+ document.getElementById("stickyHeader")?.classList.remove("visible");
+ showScreen("game");next();
 }
 function score(){return g.fame+g.rep+g.contacts+g.chem-g.rumors*5}
 function updateTier(){for(let i=tiers.length-1;i>=0;i--)if(score()>=tiers[i].need){g.tier=i;break}}
@@ -222,15 +390,17 @@ function upRel(status){
 function continueGame(){g.turn++;if(g.turn%3===0)g.age++;if(g.turn>=24){finish();return}next()}
 function upd(){
  document.getElementById("fame").textContent=g.fame;document.getElementById("rep").textContent=g.rep;document.getElementById("contacts").textContent=g.contacts;document.getElementById("chem").textContent=g.chem;document.getElementById("rumors").textContent=g.rumors;document.getElementById("couples").textContent=g.couples;
+ document.getElementById("c_fame").textContent=g.fame;document.getElementById("c_rep").textContent=g.rep;document.getElementById("c_contacts").textContent=g.contacts;document.getElementById("c_chem").textContent=g.chem;document.getElementById("c_rumors").textContent=g.rumors;document.getElementById("c_couples").textContent=g.couples;
  document.getElementById("bar").style.width=Math.min(100,score()/2.1)+"%";
  document.getElementById("relations").innerHTML=g.relations.length?g.relations.map(r=>`<div class="rel"><div class="face">⚽</div><div><b>${r.status}</b><br>${r.player}</div></div>`).join(""):'<span style="color:#999">Todavía nada confirmado.</span>';
 }
 function finish(){
- document.getElementById("game").classList.add("hidden");document.getElementById("final").classList.remove("hidden");
+ showScreen("final");
  document.getElementById("finalTitle").textContent=g.couples>=3?"👑 REINA INTERNACIONAL":g.couples>=1?"❤️ CARRERA CONSOLIDADA":"🍸 MUCHO RUMOR, POCO NOVIAZGO";
  document.getElementById("finalText").innerHTML=`${g.name} terminó a los ${g.age} años en categoría <b>${tiers[g.tier].name}</b>, con ${g.couples} noviazgos y ${g.relations.length} historias sentimentales.<br><br>⭐ ${g.fame} · 🧠 ${g.rep} · 🤝 ${g.contacts} · 🔥 ${g.chem} · 💬 ${g.rumors}`;
 }
 build();
+initStickyObserver();
 </script>
 </body>
 </html>
