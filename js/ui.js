@@ -118,7 +118,10 @@ function renderScene() {
 
   // Reset results and special views
   const resEl = document.getElementById("result");
-  if (resEl) resEl.innerHTML = "";
+  if (resEl) {
+    resEl.innerHTML = "";
+    resEl.classList.add("hidden");
+  }
 
   const boosterEl = document.getElementById("booster");
   if (boosterEl) boosterEl.classList.add("hidden");
@@ -133,6 +136,7 @@ function renderScene() {
 function renderChoices() {
   const choicesEl = document.getElementById("choices");
   if (!choicesEl || !g.event) return;
+  choicesEl.classList.remove("hidden");
   choicesEl.innerHTML = g.event.actions.map((a, i) => `
     <button class="choice" onclick="resolve(${i})">
       <strong>${a[0]}</strong>
@@ -195,10 +199,18 @@ function renderBooster(b) {
   const boosterEl = document.getElementById("booster");
   const choicesEl = document.getElementById("choices");
   const actionBtn = document.getElementById("actionBtn");
+  const resEl = document.getElementById("result");
   if (!boosterEl) return;
 
-  if (choicesEl) choicesEl.classList.add("hidden");
+  if (choicesEl) {
+    choicesEl.classList.add("hidden");
+    choicesEl.innerHTML = "";
+  }
   if (actionBtn) actionBtn.classList.add("hidden");
+  if (resEl) {
+    resEl.classList.add("hidden");
+    resEl.innerHTML = "";
+  }
 
   boosterEl.classList.remove("hidden");
   const desc = b.desc.replaceAll("{player}", g.player || "tu pareja");
@@ -227,10 +239,16 @@ function renderBreakup(msg) {
   const actionBtn = document.getElementById("actionBtn");
   const resEl = document.getElementById("result");
 
-  if (choicesEl) choicesEl.classList.add("hidden");
+  if (choicesEl) {
+    choicesEl.classList.add("hidden");
+    choicesEl.innerHTML = "";
+  }
   if (boosterEl) boosterEl.classList.add("hidden");
   if (actionBtn) actionBtn.classList.add("hidden");
-  if (resEl) resEl.innerHTML = "";
+  if (resEl) {
+    resEl.classList.add("hidden");
+    resEl.innerHTML = "";
+  }
 
   if (breakupEl) {
     breakupEl.classList.remove("hidden");
@@ -251,11 +269,15 @@ function renderResult(ok, msg) {
   const boosterEl = document.getElementById("booster");
   const breakupEl = document.getElementById("breakupBanner");
 
-  if (choicesEl) choicesEl.innerHTML = "";
+  if (choicesEl) {
+    choicesEl.classList.add("hidden");
+    choicesEl.innerHTML = "";
+  }
   if (boosterEl) boosterEl.classList.add("hidden");
   if (breakupEl) breakupEl.classList.add("hidden");
 
   if (resEl) {
+    resEl.classList.remove("hidden");
     resEl.innerHTML = `
       <div class="result ${ok ? "ok" : "bad"}">
         <div class="big">${ok ? "✅" : "❌"}</div>
