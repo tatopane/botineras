@@ -1,95 +1,355 @@
 // Botineras — Game logic
-let selected=0,g={},activeScreen="setup";
+let selected = 0;
+let g = {};
+let activeScreen = "setup";
 
-function score(){return g.fame+g.rep+g.contacts+g.chem-g.rumors*5}
-
-function updateTier(){for(let i=tiers.length-1;i>=0;i--)if(score()>=tiers[i].need){g.tier=i;break}}
-
-function startGame(){
- let c=chars[selected],img=document.getElementById("img"+selected).src;
- g={name:c.name,img,age:18,tier:0,turn:0,fame:4,rep:6,contacts:6,chem:5,rumors:0,couples:0,relations:[],stage:0,player:null,event:null};
- Object.entries(c.bonus).forEach(([k,v])=>g[k]+=v);
- hideStatInfo();
- document.getElementById("stickyHeader")?.classList.remove("visible");
- showScreen("game");next();
- setTimeout(()=>{
-  const target=document.getElementById("statsCard")||document.getElementById("game");
-  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
- },60);
+function score() {
+  return (g.fame || 0) + (g.rep || 0) + (g.contacts || 0) + (g.chem || 0) - (g.rumors || 0) * 5;
 }
 
-function next(){
- updateTier();
- if(!g.player)g.player=tiers[g.tier].players[Math.floor(Math.random()*tiers[g.tier].players.length)];
- g.stage=Math.min(4,g.stage);g.event=eventTypes[g.stage];
- const rankText=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
- const ageText=`${g.name}, ${g.age} años`;
- document.getElementById("rank").textContent=rankText;
- document.getElementById("c_rank").textContent=rankText;
- document.getElementById("age").textContent=ageText;
- document.getElementById("c_age").textContent=ageText;
- document.getElementById("scene").src=g.event.img;
- document.getElementById("title").textContent=g.event.title;
- document.getElementById("story").textContent=g.event.text.replaceAll("{player}",g.player);
- document.getElementById("mentor").innerHTML=Math.random()<.45?`<div class="mentor">🕴️ <b>Guillote Coppolo:</b> “${["Primero la segunda salida, después la portada.","Un rumor bien llevado vale por dos contactos.","Nunca confirmes antes del postre.","Si te bloquea, era una prueba de carácter."][Math.floor(Math.random()*4)]}”</div>`:"";
- document.getElementById("choices").innerHTML=g.event.actions.map((a,i)=>`<button class="choice" onclick="resolve(${i})"><strong>${a[0]}</strong>Puede avanzar la relación o hacerla retroceder.</button>`).join("");
- document.getElementById("result").innerHTML="";upd();
+function updateTier() {
+  for (let i = tiers.length - 1; i >= 0; i--) {
+    if (score() >= tiers[i].need) {
+      g.tier = i;
+      break;
+    }
+  }
 }
 
-function resolve(i){
- let a=g.event.actions[i],p=a[1]+Math.min(.1,g.rep/500)+Math.min(.08,g.chem/500)-Math.min(.1,g.rumors*.02),ok=Math.random()<p,eff=ok?a[4]:a[5],msg=(ok?a[2]:a[3]).replaceAll("{player}",g.player);
- if(typeof trackEvent==='function'){
-  trackEvent('click_game_choice',{choice_index:i,choice_text:a[0],event_title:g.event.title,stage:g.stage,player:g.player,tier_name:tiers[g.tier].name});
-  trackEvent('game_event_outcome',{outcome:ok?'success':'failure',event_title:g.event.title,player:g.player});
- }
- Object.entries(eff).forEach(([k,v])=>g[k]=Math.max(0,g[k]+v));
- if(ok){
-   if(g.stage===0)g.relations.push({player:g.player,status:"Primera salida"});
-   if(g.stage===1)upRel("Rumor fuerte");
-   if(g.stage===2)upRel("Romance");
-   if(g.stage===3)upRel("Romance confirmado");
-   if(g.stage===4){upRel("Noviazgo");g.couples++;g.stage=0;g.player=null}
-   else g.stage++;
- }else{
-   if(g.chem<5||Math.random()<.25){upRel("Terminó mal");g.stage=0;g.player=null}
- }
- document.getElementById("result").innerHTML=`<div class="result ${ok?'ok':'bad'}"><div class="big">${ok?'✅':'❌'}</div><b>${ok?'Te salió bien':'Mala jugada'}</b><p>${msg}</p><button onclick="continueGame()">Seguir</button></div>`;
- document.getElementById("choices").innerHTML="";
- document.getElementById("log").innerHTML=`<p class="${ok?'green':'red'}">${ok?'🟢':'🔴'} ${msg}</p>`+document.getElementById("log").innerHTML;
- upd();
+function getRelStage() {
+  if (g.relProgress >= 76) return 2;  // noviazgo firme
+  if (g.relProgress >= 41) return 1;  // avanzada
+  return 0;                           // inicio
 }
 
-function upRel(status){
- let r=[...g.relations].reverse().find(x=>x.player===g.player&&x.status!=="Terminó mal");
- if(r)r.status=status;else g.relations.push({player:g.player,status});
+function applyEffects(effects) {
+  if (!effects) return;
+  Object.entries(effects).forEach(([k, v]) => {
+    if (k === "relProgress") {
+      g.relProgress = Math.max(0, Math.min(100, (g.relProgress || 0) + v));
+    } else if (g[k] !== undefined) {
+      g[k] = Math.max(0, g[k] + v);
+    }
+  });
+  g.relStage = getRelStage();
 }
 
-function continueGame(){g.turn++;if(g.turn%3===0)g.age++;if(g.turn>=24){finish();return}next()}
-
-function finish(){
- showScreen("final");
- const finalTitle=g.couples>=3?"👑 REINA INTERNACIONAL":g.couples>=1?"❤️ CARRERA CONSOLIDADA":"🍸 MUCHO RUMOR, POCO NOVIAZGO";
- document.getElementById("finalTitle").textContent=finalTitle;
- document.getElementById("finalText").innerHTML=`<b>${g.name}</b> terminó su carrera a los <b>${g.age} años</b> en categoría <b>${tiers[g.tier].name}</b> con <b>${g.couples} noviazgos</b> y <b>${g.relations.length} historias sentimentales</b>.<br><br>` +
-  `⭐ Fama: ${g.fame} · 🧠 Reputación: ${g.rep} · 🤝 Contactos: ${g.contacts}<br>` +
-  `🔥 Química: ${g.chem} · 💬 Rumores: ${g.rumors} · ❤️ Noviazgos: ${g.couples}`;
- if(typeof trackEvent==='function'){
-  trackEvent('game_finish',{final_title:finalTitle,final_tier:tiers[g.tier].name,total_couples:g.couples,total_fame:g.fame,total_rep:g.rep,total_contacts:g.contacts,total_chem:g.chem,total_rumors:g.rumors,final_age:g.age});
- }
+function checkBreakup() {
+  if (g.relStage === 2 && g.relProgress <= 75) {
+    g.relStatus = "broken";
+    return true;
+  }
+  if (g.relProgress <= 0 || g.chem <= 0) {
+    g.relStatus = "broken";
+    return true;
+  }
+  return false;
 }
 
-function end(){
- g={
-  name:g.name||"Wonda Nara",
-  img:g.img||chars[0].img,
-  age:26,tier:5,turn:24,fame:185,rep:95,contacts:90,chem:80,rumors:1,couples:3,
-  relations:[
-   {player:"El 9 de Lugano",status:"Noviazgo"},
-   {player:"Julián Álvares",status:"Noviazgo"},
-   {player:"Erling Håland",status:"Noviazgo"}
-  ],
-  stage:4,player:"Erling Håland",event:eventTypes[4]
- };
- finish();
+function pickEvent() {
+  const stage = getRelStage();
+  const available = eventTypes.filter(e => e.stage === stage);
+  if (available.length === 0) return eventTypes[0];
+  return available[Math.floor(Math.random() * available.length)];
 }
-window.end=end;
+
+function canUseAction(id) {
+  const act = actions.find(a => a.id === id);
+  if (!act) return false;
+  if (act.once && g.actionsUsed && g.actionsUsed[id]) return false;
+  return true;
+}
+
+function triggerAction(id) {
+  const act = actions.find(a => a.id === id);
+  if (!act || !canUseAction(id)) return;
+  if (!g.actionsUsed) g.actionsUsed = {};
+  g.actionsUsed[id] = true;
+
+  if (id === "A4") {
+    const penalty = g.relProgress > 75 ? { rep: -25, rumors: 15 } : { rep: -5 };
+    applyEffects(penalty);
+    upRel("Terminó relación");
+    g.relStatus = "broken";
+    if (typeof trackEvent === "function") {
+      trackEvent("use_action", { action_id: id, action_name: act.name, outcome: "breakup", player: g.player });
+    }
+    if (typeof renderBreakup === "function") {
+      renderBreakup(`Decidiste cortar la relación con ${g.player || "tu pareja"} por tu cuenta.`);
+    }
+    return;
+  }
+
+  const p = act.successRate + Math.min(0.1, g.rep / 500) + Math.min(0.08, g.chem / 500) - Math.min(0.1, g.rumors * 0.02);
+  const ok = Math.random() < p;
+  const eff = ok ? act.reward : act.fail;
+  applyEffects(eff);
+
+  let broke = false;
+  if (!ok && act.failBreaks) {
+    g.relStatus = "broken";
+    broke = true;
+  } else {
+    broke = checkBreakup();
+  }
+
+  if (typeof trackEvent === "function") {
+    trackEvent("use_action", { action_id: id, action_name: act.name, outcome: ok ? "success" : "failure", broke, player: g.player });
+  }
+
+  if (broke) {
+    upRel("Ruptura por escándalo");
+    if (typeof renderBreakup === "function") {
+      renderBreakup(`Mala jugada: La relación con ${g.player || "tu pareja"} no resistió el escándalo.`);
+    }
+  } else {
+    const msg = ok ? `Acción exitosa: ${act.name}` : `Salió mal: ${act.name}`;
+    if (typeof renderResult === "function") {
+      renderResult(ok, msg);
+    }
+  }
+  if (typeof upd === "function") upd();
+}
+
+function triggerBooster(boosterId, choice) {
+  const b = boosters.find(x => x.id === boosterId);
+  if (!b) return;
+  const opt = choice === "A" ? b.optionA : b.optionB;
+  const ok = Math.random() < opt.rate;
+  const eff = ok ? opt.reward : (opt.fail || {});
+  applyEffects(eff);
+  const msg = (ok ? opt.msgSuccess : opt.msgFail).replaceAll("{player}", g.player || "tu pareja");
+
+  if (typeof trackEvent === "function") {
+    trackEvent("resolve_booster", { booster_id: boosterId, choice, outcome: ok ? "success" : "failure", player: g.player });
+  }
+
+  const broke = checkBreakup();
+  if (broke) {
+    upRel("Terminó mal");
+    if (typeof renderBreakup === "function") {
+      renderBreakup(`💔 ${msg}`);
+    }
+  } else {
+    if (typeof renderResult === "function") {
+      renderResult(ok, msg);
+    }
+  }
+  if (typeof upd === "function") upd();
+}
+
+function startGame() {
+  const c = chars[selected];
+  const imgEl = typeof document !== "undefined" ? document.getElementById("img" + selected) : null;
+  const img = imgEl ? imgEl.src : c.img;
+
+  g = {
+    name: c.name,
+    img,
+    age: 18,
+    tier: 0,
+    turn: 0,
+    turnCount: 0,
+    fame: 4,
+    rep: 6,
+    contacts: 6,
+    chem: 5,
+    rumors: 0,
+    couples: 0,
+    relations: [],
+    relProgress: 20,
+    relStage: 0,
+    relStatus: "active",
+    player: null,
+    event: null,
+    actionsUsed: {},
+    boosterJustDone: false,
+    currentBooster: null
+  };
+
+  Object.entries(c.bonus).forEach(([k, v]) => {
+    g[k] = (g[k] || 0) + v;
+  });
+  g.relStage = getRelStage();
+
+  if (typeof trackEvent === "function") {
+    trackEvent("game_start", { character_name: g.name, character_trait: c.trait });
+  }
+
+  if (typeof hideStatInfo === "function") hideStatInfo();
+  if (typeof document !== "undefined") {
+    document.getElementById("stickyHeader")?.classList.remove("visible");
+  }
+  if (typeof showScreen === "function") showScreen("game");
+
+  next();
+
+  if (typeof setTimeout !== "undefined") {
+    setTimeout(() => {
+      const target = document.getElementById("statsCard") || document.getElementById("game");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+  }
+}
+
+function next() {
+  updateTier();
+  if (!g.player || g.relStatus === "broken") {
+    g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
+    g.relProgress = 20;
+    g.relStage = 0;
+    g.relStatus = "active";
+  }
+  g.relStage = getRelStage();
+  g.event = pickEvent();
+
+  if (typeof renderScene === "function") renderScene();
+  if (typeof renderChoices === "function") renderChoices();
+  if (typeof renderActions === "function") renderActions();
+  if (typeof upd === "function") upd();
+}
+
+function resolve(i) {
+  const a = g.event.actions[i];
+  const p = a[1] + Math.min(0.1, g.rep / 500) + Math.min(0.08, g.chem / 500) - Math.min(0.1, g.rumors * 0.02);
+  const ok = Math.random() < p;
+  const eff = ok ? a[4] : a[5];
+  const msg = (ok ? a[2] : a[3]).replaceAll("{player}", g.player);
+
+  if (typeof trackEvent === "function") {
+    trackEvent("click_game_choice", {
+      choice_index: i,
+      choice_text: a[0],
+      event_title: g.event.title,
+      event_id: g.event.id,
+      stage: g.relStage,
+      player: g.player,
+      tier_name: tiers[g.tier].name
+    });
+    trackEvent("game_event_outcome", { outcome: ok ? "success" : "failure", event_title: g.event.title, player: g.player });
+  }
+
+  applyEffects(eff);
+
+  if (ok) {
+    if (g.relStage === 0) {
+      const r = g.relations.find(x => x.player === g.player && x.status !== "Terminó mal");
+      if (!r) g.relations.push({ player: g.player, status: "Primera salida" });
+    }
+    if (g.relStage === 1) upRel("Romance");
+    if (g.relStage === 2) {
+      if (g.relProgress >= 90) {
+        upRel("Noviazgo");
+        g.couples++;
+        g.player = null;
+        g.relProgress = 0;
+        g.relStage = 0;
+      } else {
+        upRel("Romance confirmado");
+      }
+    }
+  } else {
+    if (checkBreakup() || g.chem < 5 || Math.random() < 0.25) {
+      upRel("Terminó mal");
+      g.relStatus = "broken";
+      g.player = null;
+      g.relProgress = 0;
+      g.relStage = 0;
+    }
+  }
+
+  if (typeof renderResult === "function") {
+    renderResult(ok, msg);
+  }
+  if (typeof upd === "function") upd();
+}
+
+function upRel(status) {
+  const r = [...g.relations].reverse().find(x => x.player === g.player && x.status !== "Terminó mal");
+  if (r) {
+    r.status = status;
+  } else if (g.player) {
+    g.relations.push({ player: g.player, status });
+  }
+}
+
+function continueGame() {
+  g.turn++;
+  g.turnCount++;
+  if (g.turn % 3 === 0) g.age++;
+  if (g.turn >= 24) {
+    finish();
+    return;
+  }
+
+  if (g.turnCount % 5 === 0 && !g.boosterJustDone) {
+    g.boosterJustDone = true;
+    const b = boosters[Math.floor(Math.random() * boosters.length)];
+    g.currentBooster = b;
+    if (typeof renderBooster === "function") {
+      renderBooster(b);
+    }
+    return;
+  }
+  g.boosterJustDone = false;
+  next();
+}
+
+function finish() {
+  if (typeof showScreen === "function") showScreen("final");
+  const finalTitle = g.couples >= 3 ? "👑 REINA INTERNACIONAL" : g.couples >= 1 ? "❤️ CARRERA CONSOLIDADA" : "🍸 MUCHO RUMOR, POCO NOVIAZGO";
+  const finalTitleEl = document.getElementById("finalTitle");
+  if (finalTitleEl) finalTitleEl.textContent = finalTitle;
+  const finalTextEl = document.getElementById("finalText");
+  if (finalTextEl) {
+    finalTextEl.innerHTML =
+      `<b>${g.name}</b> terminó su carrera a los <b>${g.age} años</b> en categoría <b>${tiers[g.tier].name}</b> con <b>${g.couples} noviazgos</b> y <b>${g.relations.length} historias sentimentales</b>.<br><br>` +
+      `⭐ Fama: ${g.fame} · 🧠 Reputación: ${g.rep} · 🤝 Contactos: ${g.contacts}<br>` +
+      `🔥 Química: ${g.chem} · 💬 Rumores: ${g.rumors} · ❤️ Noviazgos: ${g.couples}`;
+  }
+  if (typeof trackEvent === "function") {
+    trackEvent("game_finish", {
+      final_title: finalTitle,
+      final_tier: tiers[g.tier].name,
+      total_couples: g.couples,
+      total_fame: g.fame,
+      total_rep: g.rep,
+      total_contacts: g.contacts,
+      total_chem: g.chem,
+      total_rumors: g.rumors,
+      final_age: g.age
+    });
+  }
+}
+
+function end() {
+  g = {
+    name: g.name || "Wonda Nara",
+    img: g.img || chars[0].img,
+    age: 26,
+    tier: 5,
+    turn: 24,
+    turnCount: 24,
+    fame: 185,
+    rep: 95,
+    contacts: 90,
+    chem: 80,
+    rumors: 1,
+    couples: 3,
+    relations: [
+      { player: "El 9 de Lugano", status: "Noviazgo" },
+      { player: "Julián Álvares", status: "Noviazgo" },
+      { player: "Erling Håland", status: "Noviazgo" }
+    ],
+    relProgress: 95,
+    relStage: 2,
+    relStatus: "active",
+    player: "Erling Håland",
+    event: eventTypes[4]
+  };
+  finish();
+}
+
+if (typeof window !== "undefined") {
+  window.end = end;
+}

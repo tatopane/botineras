@@ -63,7 +63,7 @@
 2. **Después del boliche** → Romance
 3. **Viaje sorpresa** → Romance confirmado
 4. **La foto filtrada** → Noviazgo
-5. **Exclusividad** → Noviazgo (+1) y reinicia stage
+5. **Formalizar** → Noviazgo (+1) y reinicia stage
 
 ### Finales
 | Condición | Título |

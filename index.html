@@ -106,8 +106,33 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .stat-tooltip-text{font-size:13px;color:#ddd;margin:0;line-height:1.4}
 .stat-tooltip-close{background:none;border:none;color:#aaa;font-size:16px;padding:4px 8px;cursor:pointer;border-radius:6px}
 .stat-tooltip-close:hover{color:#fff;background:#353847}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.action-btn-wrap{margin:10px 18px 0;display:flex;justify-content:flex-end}
+.action-btn-wrap button{background:linear-gradient(135deg,#7b2cbf,#ff3f9f);font-size:14px;padding:9px 16px;box-shadow:0 4px 15px rgba(255,63,159,0.3)}
+.actions-panel-modal{margin:14px 18px;background:#10121a;border:1px solid var(--pink);border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,0.8);animation:fadeIn 0.25s ease}
+.actions-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.actions-panel-header h3{margin:0;color:var(--gold);font-size:18px}
+.actions-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
+.action-card{background:#181b28;border:1px solid #ffffff15;border-radius:12px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.action-card.disabled{opacity:0.5;filter:grayscale(0.6)}
+.action-card-header{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.action-card-header strong{font-size:14px;color:#fff}
+.action-rate{font-size:12px;color:var(--gold);font-weight:bold}
+.action-desc{font-size:12px;color:#bbb;margin:0;line-height:1.35}
+.action-exec-btn{padding:8px 12px;font-size:13px;border-radius:8px;margin-top:4px}
+.booster-card{margin:18px;padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f132e,#111422);border:2px solid var(--gold);box-shadow:0 8px 30px rgba(255,209,102,0.2);animation:fadeIn 0.3s ease}
+.booster-badge{font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.booster-card h2{margin:0 0 8px;font-size:24px;color:#fff}
+.booster-desc{font-size:15px;line-height:1.5;color:#e0e0e0;margin-bottom:16px}
+.booster-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.booster-btn{text-align:left;background:#2a2d3a;padding:14px;border-radius:12px;border:1px solid #ffffff20;transition:all 0.15s ease}
+.booster-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+.booster-btn strong{display:block;color:var(--gold);margin-bottom:4px;font-size:15px}
+.booster-btn span{font-size:12px;color:#aaa}
+.breakup-card{margin:18px;padding:24px;border-radius:18px;background:#380e15;border:2px solid var(--red);text-align:center;animation:fadeIn 0.3s ease}
+.breakup-card h2{color:#fff;margin:6px 0}
+.breakup-card p{color:#f5b5bd;font-size:16px;line-height:1.4}
 @media(max-width:700px){
+  .booster-choices{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(3,1fr)}
   .scene{height:190px}
   .sceneText{left:12px;right:12px;bottom:10px}
@@ -204,7 +229,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
         <li><strong>Después del boliche:</strong> Primeros trascendidos.</li>
         <li><strong>Viaje sorpresa:</strong> Nace el romance.</li>
         <li><strong>La foto filtrada:</strong> Se vuelve noticia nacional.</li>
-        <li><strong>Exclusividad:</strong> Al formalizar, ¡sumás un <strong>Noviazgo</strong>! Tu contador aumenta y quedás lista para buscar una nueva conquista.</li>
+        <li><strong>Formalizar:</strong> Al formalizar, ¡sumás un <strong>Noviazgo</strong>! Tu contador aumenta y quedás lista para buscar una nueva conquista.</li>
       </ol>
     </div>
 
@@ -252,7 +277,15 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 
 <div class="card">
 <div class="scene"><img id="scene" alt="Escena del evento" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><rect fill=%22%23171925%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22200%22 text-anchor=%22middle%22 fill=%22%23ff3f9f%22 font-size=%2260%22 font-family=%22sans-serif%22>👠</text><text x=%22400%22 y=%22250%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2220%22 font-family=%22sans-serif%22>Escena no disponible</text></svg>'"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
-<div id="mentor"></div><div id="choices" class="choices"></div><div id="result"></div>
+<div id="mentor"></div>
+<div id="actionBtn" class="action-btn-wrap hidden">
+  <button onclick="showActionsPanel()">⚡ Acción especial</button>
+</div>
+<div id="actionsPanel" class="actions-panel-modal hidden"></div>
+<div id="booster" class="hidden"></div>
+<div id="breakupBanner" class="hidden"></div>
+<div id="choices" class="choices"></div>
+<div id="result"></div>
 </div>
 
 <div class="card pad"><h3>❤️ Historial sentimental</h3><div id="relations" class="relation"><span style="color:#999">Todavía nada confirmado.</span></div></div>
