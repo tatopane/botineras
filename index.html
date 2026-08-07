@@ -65,7 +65,6 @@
 .pad{padding:20px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
 .person{background:#10121a;border:2px solid transparent;border-radius:16px;overflow:hidden;cursor:pointer}.person.sel{border-color:var(--pink)}
 .person img{width:100%;height:230px;object-fit:cover;object-position:top;background:#2d2f3b}.info{padding:12px}.info h3{margin:0}.trait{font-size:13px;color:#bbb;margin-top:5px}
-.upload{display:block;margin-top:8px;font-size:12px;color:#bbb}
 button{border:0;border-radius:12px;padding:13px 17px;background:var(--pink);color:white;font-weight:800;font-size:16px;cursor:pointer}
 button.secondary{background:#353847}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:10px}
 .stat{background:#0f1119;border-radius:12px;text-align:center;padding:9px;font-size:12px;color:#bbb}.stat b{display:block;color:white;font-size:20px}
@@ -86,9 +85,12 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .guide-box p,.guide-box ul,.guide-box ol{font-size:14px;line-height:1.55;color:#ddd;margin:6px 0}
 .guide-box ul,.guide-box ol{padding-left:20px}
 .guide-box li{margin-bottom:6px}
-.sticky-header{position:fixed;top:0;left:0;right:0;z-index:1000;pointer-events:none;opacity:0;transform:translateY(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),opacity 0.25s ease;background:rgba(23,25,37,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,63,159,0.35);box-shadow:0 10px 30px rgba(0,0,0,0.8)}
+.sticky-header{position:fixed;top:0;left:0;right:0;z-index:1000;pointer-events:none;opacity:0;transform:translateY(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),opacity 0.25s ease;background:rgba(23,25,37,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,63,159,0.35);box-shadow:0 10px 30px rgba(0,0,0,0.8)}
 .sticky-header.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.sticky-wrap{padding:8px 18px;max-width:1080px;margin:auto}
+.sticky-wrap{padding:8px 18px;max-width:1080px;margin:auto;display:flex;flex-direction:column;gap:5px}
+.sticky-top-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px}
+.sticky-rank{color:var(--gold);font-weight:bold;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.sticky-age{color:#fff;font-size:13px;font-weight:600}
 .compact-stats{display:flex;justify-content:space-around;align-items:center;gap:6px}
 .c-stat{background:rgba(15,17,25,0.7);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:5px 12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:15px;color:#fff;flex:1}
 .stat.clickable{cursor:pointer;transition:transform 0.15s ease,border-color 0.15s ease,box-shadow 0.15s ease;border:1px solid transparent}
@@ -99,13 +101,17 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .stat-tooltip-close{background:none;border:none;color:#aaa;font-size:16px;padding:4px 8px;cursor:pointer;border-radius:6px}
 .stat-tooltip-close:hover{color:#fff;background:#353847}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr)}.scene{height:420px}.person img{height:190px}.sticky-wrap{padding:6px 10px}.c-stat{padding:4px 6px;gap:3px;font-size:13px}.c-stat b{font-size:14px}}
+@media(max-width:700px){.stats{grid-template-columns:repeat(3,1fr)}.scene{height:420px}.person img{height:190px}.sticky-wrap{padding:5px 8px;gap:4px}.sticky-rank{font-size:11px;letter-spacing:0.5px}.sticky-age{font-size:11px}.c-stat{padding:3px 4px;gap:2px;font-size:11px}.c-stat b{font-size:12px}}
 </style>
 <body>
 <script src="js/analytics.js"></script>
 <script src="js/posthog.js"></script>
 <div id="stickyHeader" class="sticky-header">
   <div class="wrap sticky-wrap">
+    <div class="sticky-top-row">
+      <div id="c_rank" class="sticky-rank"></div>
+      <div id="c_age" class="sticky-age"></div>
+    </div>
     <div class="compact-stats">
       <div class="c-stat"><span>⭐</span><b id="c_fame"></b></div>
       <div class="c-stat"><span>🧠</span><b id="c_rep"></b></div>
@@ -197,7 +203,6 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 <div class="pad">
 <h2>Elegí personaje</h2>
 <div id="people" class="grid"></div>
-<p><b>Tip:</b> tocá “Sube tu foto” en cada personaje para cargar tu foto desde el teléfono. Queda guardada durante la partida.</p>
 </div>
 <p class="note">Parodia ficticia. Los romances y situaciones del juego no describen hechos reales.</p>
 </section>
@@ -233,7 +238,12 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 </section>
 
 <section id="final" class="card pad hidden" style="text-align:center">
-<h1 id="finalTitle"></h1><p id="finalText" style="font-size:20px;line-height:1.5"></p><button onclick="location.reload()">Jugar otra vez</button>
+<h1 id="finalTitle"></h1>
+<p id="finalText" style="font-size:18px;line-height:1.6;margin:16px 0"></p>
+<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
+  <button onclick="shareWhatsApp()" style="background:#25d366;color:#fff;font-weight:bold;">🟢 Compartir en WhatsApp</button>
+  <button class="secondary" onclick="location.reload()">Jugar otra vez</button>
+</div>
 </section>
 </div>
 
@@ -319,13 +329,7 @@ function hideStatInfo(){
 
 function build(){
  document.getElementById("people").innerHTML=chars.map((c,i)=>`<div class="person ${i===0?'sel':''}" onclick="pick(${i},this)">
- <img id="img${i}" src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22230%22><rect fill=%22%232d2f3b%22 width=%22400%22 height=%22230%22/><text x=%22200%22 y=%22130%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2230%22 font-family=%22sans-serif%22>Sin foto</text></svg>'"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
- <label class="upload" onclick="event.stopPropagation()">Sube tu foto<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
-}
-function loadPhoto(ev,i){
- const f=ev.target.files[0];if(!f)return;
- if(typeof trackEvent==='function')trackEvent('click_upload_photo',{character_name:chars[i].name});
- const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)
+ <img id="img${i}" src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22230%22><rect fill=%22%232d2f3b%22 width=%22400%22 height=%22230%22/><text x=%22200%22 y=%22130%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2230%22 font-family=%22sans-serif%22>Sin foto</text></svg>'"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div></div></div>`).join("");
 }
 function pick(i,e){
  selected=i;
@@ -381,8 +385,12 @@ function next(){
  updateTier();
  if(!g.player)g.player=tiers[g.tier].players[Math.floor(Math.random()*tiers[g.tier].players.length)];
  g.stage=Math.min(4,g.stage);g.event=eventTypes[g.stage];
- document.getElementById("rank").textContent=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
- document.getElementById("age").textContent=`${g.name}, ${g.age} años`;
+ const rankText=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
+ const ageText=`${g.name}, ${g.age} años`;
+ document.getElementById("rank").textContent=rankText;
+ document.getElementById("c_rank").textContent=rankText;
+ document.getElementById("age").textContent=ageText;
+ document.getElementById("c_age").textContent=ageText;
  document.getElementById("scene").src=g.event.img||imgs[g.tier];
  document.getElementById("title").textContent=g.event.title;
  document.getElementById("story").textContent=g.event.text.replaceAll("{player}",g.player);
@@ -407,7 +415,7 @@ function resolve(i){
  }else{
    if(g.chem<5||Math.random()<.25){upRel("Terminó mal");g.stage=0;g.player=null}
  }
- document.getElementById("result").innerHTML=`<div class="result ${ok?'ok':'bad'}"><div class="big">${ok?'✅':'❌'}</div><b>${ok?'¡SALIO VERDE!':'¡SALIO ROJO!'}</b><p>${msg}</p><button onclick="continueGame()">Seguir</button></div>`;
+ document.getElementById("result").innerHTML=`<div class="result ${ok?'ok':'bad'}"><div class="big">${ok?'✅':'❌'}</div><b>${ok?'Te salió bien':'Mala jugada'}</b><p>${msg}</p><button onclick="continueGame()">Seguir</button></div>`;
  document.getElementById("choices").innerHTML="";
  document.getElementById("log").innerHTML=`<p class="${ok?'green':'red'}">${ok?'🟢':'🔴'} ${msg}</p>`+document.getElementById("log").innerHTML;
  upd();
@@ -420,6 +428,8 @@ function continueGame(){g.turn++;if(g.turn%3===0)g.age++;if(g.turn>=24){finish()
 function upd(){
  document.getElementById("fame").textContent=g.fame;document.getElementById("rep").textContent=g.rep;document.getElementById("contacts").textContent=g.contacts;document.getElementById("chem").textContent=g.chem;document.getElementById("rumors").textContent=g.rumors;document.getElementById("couples").textContent=g.couples;
  document.getElementById("c_fame").textContent=g.fame;document.getElementById("c_rep").textContent=g.rep;document.getElementById("c_contacts").textContent=g.contacts;document.getElementById("c_chem").textContent=g.chem;document.getElementById("c_rumors").textContent=g.rumors;document.getElementById("c_couples").textContent=g.couples;
+ if(g.name&&g.age)document.getElementById("c_age").textContent=`${g.name}, ${g.age} años`;
+ if(g.tier!==undefined&&g.player)document.getElementById("c_rank").textContent=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
  document.getElementById("bar").style.width=Math.min(100,score()/2.1)+"%";
  document.getElementById("relations").innerHTML=g.relations.length?g.relations.map(r=>`<div class="rel"><div class="face">⚽</div><div><b>${r.status}</b><br>${r.player}</div></div>`).join(""):'<span style="color:#999">Todavía nada confirmado.</span>';
 }
@@ -427,11 +437,65 @@ function finish(){
  showScreen("final");
  const finalTitle=g.couples>=3?"👑 REINA INTERNACIONAL":g.couples>=1?"❤️ CARRERA CONSOLIDADA":"🍸 MUCHO RUMOR, POCO NOVIAZGO";
  document.getElementById("finalTitle").textContent=finalTitle;
- document.getElementById("finalText").innerHTML=`${g.name} terminó a los ${g.age} años en categoría <b>${tiers[g.tier].name}</b>, con ${g.couples} noviazgos y ${g.relations.length} historias sentimentales.<br><br>⭐ ${g.fame} · 🧠 ${g.rep} · 🤝 ${g.contacts} · 🔥 ${g.chem} · 💬 ${g.rumors}`;
+ document.getElementById("finalText").innerHTML=`<b>${g.name}</b> terminó su carrera a los <b>${g.age} años</b> en categoría <b>${tiers[g.tier].name}</b> con <b>${g.couples} noviazgos</b> y <b>${g.relations.length} historias sentimentales</b>.<br><br>` +
+  `⭐ Fama: ${g.fame} · 🧠 Reputación: ${g.rep} · 🤝 Contactos: ${g.contacts}<br>` +
+  `🔥 Química: ${g.chem} · 💬 Rumores: ${g.rumors} · ❤️ Noviazgos: ${g.couples}`;
  if(typeof trackEvent==='function'){
   trackEvent('game_finish',{final_title:finalTitle,final_tier:tiers[g.tier].name,total_couples:g.couples,total_fame:g.fame,total_rep:g.rep,total_contacts:g.contacts,total_chem:g.chem,total_rumors:g.rumors,final_age:g.age});
  }
 }
+
+function shareWhatsApp(){
+ const gameUrl=window.location.href.split('#')[0];
+ const finalTitle=document.getElementById("finalTitle").textContent;
+ const tierName=tiers[g.tier].name;
+
+ const text=`${finalTitle}\n`+
+  `Jugué como ${g.name} (${g.age} años) en Botineras 👠\n`+
+  `Categoría alcanzada: ${tierName}\n\n`+
+  `Métricas de mi carrera:\n`+
+  `⭐ Fama: ${g.fame}\n`+
+  `🧠 Reputación: ${g.rep}\n`+
+  `🤝 Contactos: ${g.contacts}\n`+
+  `🔥 Química: ${g.chem}\n`+
+  `💬 Rumores: ${g.rumors}\n`+
+  `❤️ Noviazgos: ${g.couples}\n\n`+
+  `Probá tu carrera de botinera: ${gameUrl}`;
+
+ if(typeof trackEvent==='function'){
+  trackEvent('click_share_whatsapp',{final_title:finalTitle,final_tier:tierName,character_name:g.name,final_age:g.age});
+ }
+
+ const waUrl=`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+ window.open(waUrl,'_blank');
+}
+
+function end(){
+ g={
+  name:g.name||"Wonda Nara",
+  img:g.img||chars[0].img,
+  age:26,
+  tier:5,
+  turn:24,
+  fame:185,
+  rep:95,
+  contacts:90,
+  chem:80,
+  rumors:1,
+  couples:3,
+  relations:[
+   {player:"El 9 de Lugano",status:"Noviazgo"},
+   {player:"Julián Álvares",status:"Noviazgo"},
+   {player:"Erling Håland",status:"Noviazgo"}
+  ],
+  stage:4,
+  player:"Erling Håland",
+  event:eventTypes[4]
+ };
+ finish();
+}
+window.end=end;
+
 build();
 initStickyObserver();
 </script>

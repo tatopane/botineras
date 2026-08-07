@@ -96,7 +96,6 @@
 - **Feedback inmediato.** Cada acción del usuario debe tener respuesta visual < 100ms.
 - **Estados vacíos.** Siempre mostrar algo cuando no hay datos (ej: "Todavía nada confirmado").
 - **Estados de error.** Si algo falla (carga de imagen, etc.), mostrar fallback.
-- **Carga de fotos local.** El usuario puede subir fotos locales vía FileReader. Quedan en memoria durante la sesión.
 
 ### Analytics y Eventos
 - **Tracking obligatorio:** Para cada nueva funcionalidad, pantalla, botón o cambio que se agregue o modifique, se debe incluir/actualizar su correspondiente rastreo de eventos tanto en PostHog como en Google Analytics (`trackEvent` / `gtag`).
