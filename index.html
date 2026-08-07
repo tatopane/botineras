@@ -264,27 +264,27 @@ const imgs=[
 ];
 
 const eventTypes=[
-{title:"Primera salida",text:"{player} te invita a tomar algo después del partido.",actions:[
+{title:"Primera salida",img:"images/pixel/webp/event-bar.webp",text:"{player} te invita a tomar algo después del partido.",actions:[
 ["Aceptar sin subir nada",.72,"La charla fluye y acuerdan una segunda salida.","La conversación se muere a los veinte minutos.",{chem:12,rep:7},{chem:-5}],
 ["Subir una historia misteriosa",.53,"El rumor crece y {player} sigue el juego.","Se enoja por la exposición y te deja en visto.",{fame:13,rumors:1,chem:7},{rep:-8,chem:-8,rumors:1}],
 ["Pedirle a Guillote que arme el encuentro",.64,"Guillote consigue mesa privada y todo sale perfecto.","Guillote aparece con ocho personas más.",{contacts:11,chem:8},{rep:-5}]
 ]},
-{title:"Después del boliche",text:"Salís del boliche con {player}. Afuera hay fotógrafos.",actions:[
+{title:"Después del boliche",img:"images/pixel/webp/event-boliche.webp",text:"Salís del boliche con {player}. Afuera hay fotógrafos.",actions:[
 ["Salir juntos",.56,"Las fotos disparan el primer rumor serio.","{player} se tapa la cara y el gesto queda horrible.",{fame:16,rumors:1,chem:8},{rep:-9,rumors:1}],
 ["Salir por separado",.74,"La discreción fortalece el vínculo.","Te vas sola y él termina en otro after.",{rep:11,chem:10},{chem:-8}],
 ["Escapar por la cocina",.61,"La aventura los hace reír y suma química.","Terminás encerrada en el depósito.",{chem:14,contacts:5},{rep:-6}]
 ]},
-{title:"Viaje sorpresa",text:"{player} te invita a viajar por dos días.",actions:[
+{title:"Viaje sorpresa",img:"images/pixel/webp/event-viaje.webp",text:"{player} te invita a viajar por dos días.",actions:[
 ["Ir sin avisar a nadie",.63,"El viaje sale perfecto y aparece un romance.","La reserva estaba a nombre de otra persona.",{chem:18,rep:8},{rep:-10,chem:-7}],
 ["Contárselo a una amiga",.49,"La amiga guarda el secreto y te ayuda con todo.","La amiga se lo cuenta a otra amiga.",{contacts:8,chem:10},{rumors:2,rep:-8}],
 ["Pedir ubicación en vivo",.7,"Evitás sorpresas y el viaje funciona.","{player} interpreta la cautela como desconfianza.",{rep:10,chem:8},{chem:-5}]
 ]},
-{title:"La foto filtrada",text:"Aparece una foto tuya con {player} en un restaurante.",actions:[
+{title:"La foto filtrada",img:"images/pixel/webp/event-restaurant.webp",text:"Aparece una foto tuya con {player} en un restaurante.",actions:[
 ["Confirmar que se están conociendo",.58,"El público compra la historia y el vínculo avanza.","{player} niega todo en una entrevista.",{fame:20,chem:12,rumors:1},{rep:-18,chem:-12,rumors:2}],
 ["Negarlo con elegancia",.72,"La intriga crece sin dañar la relación.","La negación suena demasiado ensayada.",{rep:15,fame:9},{rep:-6,rumors:1}],
 ["No decir nada",.64,"El silencio les permite seguir viéndose.","El rumor crece más de lo esperado.",{chem:10,rep:8},{rumors:2,rep:-5}]
 ]},
-{title:"Exclusividad",text:"{player} te pregunta si querés dejar de verse con otras personas.",actions:[
+{title:"Exclusividad",img:"images/pixel/webp/event-exclusividad.webp",text:"{player} te pregunta si querés dejar de verse con otras personas.",actions:[
 ["Aceptar",.67,"Empieza un noviazgo confirmado.","A los pocos días descubre que no estaban entendiendo lo mismo.",{chem:22,rep:12},{chem:-15,rep:-7}],
 ["Pedir tiempo",.55,"La honestidad fortalece el vínculo.","{player} decide seguir adelante sin vos.",{rep:13,chem:7},{chem:-12}],
 ["Responder con un meme",.45,"Le causa gracia y terminan formalizando igual.","No entiende el meme y te bloquea.",{fame:8,chem:18},{chem:-18,rep:-5}]
@@ -369,7 +369,7 @@ function next(){
  g.stage=Math.min(4,g.stage);g.event=eventTypes[g.stage];
  document.getElementById("rank").textContent=`${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
  document.getElementById("age").textContent=`${g.name}, ${g.age} años`;
- document.getElementById("scene").src=imgs[g.tier];
+ document.getElementById("scene").src=g.event.img||imgs[g.tier];
  document.getElementById("title").textContent=g.event.title;
  document.getElementById("story").textContent=g.event.text.replaceAll("{player}",g.player);
  document.getElementById("mentor").innerHTML=Math.random()<.45?`<div class="mentor">🕴️ <b>Guillote Coppolo:</b> “${["Primero la segunda salida, después la portada.","Un rumor bien llevado vale por dos contactos.","Nunca confirmes antes del postre.","Si te bloquea, era una prueba de carácter."][Math.floor(Math.random()*4)]}”</div>`:"";
