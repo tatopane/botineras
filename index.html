@@ -4,6 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Botineras — Carrera de Romances</title>
+<meta name="description" content="Jugá a Botineras, la novela interactiva de farándula futbolera. Elegí personaje, tomá decisiones, acumulá fama y escalá de Barrio a Champions. Parodia ficticia.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👠</text></svg>">
+<!-- Open Graph -->
+<meta property="og:title" content="Botineras — Carrera de Romances">
+<meta property="og:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
+<meta property="og:image" content="https://botineras.tato.pm/images/og-image.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://botineras.tato.pm">
+<meta property="og:type" content="website">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Botineras — Carrera de Romances">
+<meta name="twitter:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
+<meta name="twitter:image" content="https://botineras.tato.pm/images/og-image.webp">
 <style>
 :root{--pink:#ff3f9f;--gold:#ffd166;--green:#23c97c;--red:#ef4c5d;--card:#171925}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#31102d,#0a0b11 30%);color:#fff;font-family:Arial,sans-serif}
@@ -56,7 +72,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 </div>
 
 <div class="card">
-<div class="scene"><img id="scene"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
+<div class="scene"><img id="scene" alt="Escena del evento"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
 <div id="mentor"></div><div id="choices" class="choices"></div><div id="result"></div>
 </div>
 
@@ -71,12 +87,12 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 
 <script>
 const chars=[
-{name:"Wonda Nara",trait:"Negocio y escándalo",img:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80",bonus:{fame:8,rep:4}},
-{name:"La China Suáres",trait:"Química explosiva",img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",bonus:{chem:12,fame:5}},
-{name:"Sasha Ferra",trait:"Todo se hace viral",img:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",bonus:{fame:12,contacts:4}},
-{name:"Bri Marcas",trait:"Acceso VIP",img:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80",bonus:{contacts:12,rep:3}},
-{name:"Jaz Peraltaa",trait:"Carisma impredecible",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",bonus:{chem:8,rep:7}},
-{name:"Clari Cremaschi",trait:"Las marcas la bancan",img:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80",bonus:{rep:10,fame:4}}
+{name:"Wonda Nara",trait:"Negocio y escándalo",img:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=75",bonus:{fame:8,rep:4}},
+{name:"La China Suáres",trait:"Química explosiva",img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=75",bonus:{chem:12,fame:5}},
+{name:"Sasha Ferra",trait:"Todo se hace viral",img:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=75",bonus:{fame:12,contacts:4}},
+{name:"Bri Marcas",trait:"Acceso VIP",img:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=75",bonus:{contacts:12,rep:3}},
+{name:"Jaz Peraltaa",trait:"Carisma impredecible",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=75",bonus:{chem:8,rep:7}},
+{name:"Clari Cremaschi",trait:"Las marcas la bancan",img:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=400&q=75",bonus:{rep:10,fame:4}}
 ];
 
 const tiers=[
@@ -89,12 +105,12 @@ const tiers=[
 ];
 
 const imgs=[
-"https://images.unsplash.com/photo-1566737236500-c8ac43014a8e?auto=format&fit=crop&w=1400&q=80",
-"https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1400&q=80",
-"https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1400&q=80",
-"https://images.unsplash.com/photo-1502602898657-3e91760cbb34e?auto=format&fit=crop&w=1400&q=80",
-"https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1400&q=80",
-"https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1400&q=80"
+"https://images.unsplash.com/photo-1566737236500-c8ac43014a8e?auto=format&fit=crop&w=800&q=75",
+"https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=800&q=75",
+"https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=75",
+"https://images.unsplash.com/photo-1502602898657-3e91760cbb34e?auto=format&fit=crop&w=800&q=75",
+"https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=75",
+"https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=75"
 ];
 
 const eventTypes=[
@@ -129,7 +145,7 @@ let selected=0,g={};
 
 function build(){
  document.getElementById("people").innerHTML=chars.map((c,i)=>`<div class="person ${i===0?'sel':''}" onclick="pick(${i},this)">
- <img id="img${i}" src="${c.img}"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
+ <img id="img${i}" src="${c.img}" alt="${c.name}"><div class="info"><h3>${c.name}</h3><div class="trait">${c.trait}</div>
  <label class="upload">Elegir foto real<input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event,${i})"></label></div></div>`).join("");
 }
 function loadPhoto(ev,i){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>document.getElementById("img"+i).src=e.target.result;r.readAsDataURL(f)}

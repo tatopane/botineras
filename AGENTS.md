@@ -2,7 +2,13 @@
 
 ## 📋 Descripción del proyecto
 
-**Botineras** es un juego de navegador web tipo "novela interactiva / dating sim" con temática de farándula futbolística argentina. Parodia ficticia donde el jugador elige un personaje y navega por eventos, toma decisiones, acumula stats (fama, reputación, contactos, química, rumores, noviazgos) y escala desde "Barrio" hasta "Champions".
+**Botineras** es un juego de navegador web tipo "novela interactiva / dating sim" con temática de farándula futbolística argentina. **Objetivo principal: viralidad.** Parodia ficticia donde el jugador elige un personaje y navega por eventos, toma decisiones, acumula stats (fama, reputación, contactos, química, rumores, noviazgos) y escala desde "Barrio" hasta "Champions".
+
+### 👥 Equipo
+| Rol | Quién | 
+| :--- | :--- |
+| **Co-creador / Producto** | Tato |
+| **Co-creador / Colaborador** | Papu |
 
 - **URL:** https://botineras.tato.pm
 - **Dominio:** botineras.tato.pm (CNAME a GitHub Pages)
@@ -76,7 +82,7 @@
 3. **Sin backend.** Cero llamadas a servidores propios, cero APIs con key, cero base de datos. Todo el estado es local (en memoria, localStorage, o sessionStorage).
 4. **GitHub Pages friendly.** Cada commit a `main` se deploya automáticamente. No hay branches de deploy separadas.
 5. **Responsive.** Funciona en mobile (viewport, touch events, sin hover dependency).
-6. **Sin dependencias externas.** Salvo imágenes de Unsplash (CDN). No cargar librerías JS de terceros (ni jQuery, ni Alpine, ni nada).
+6. **Sin nombres reales.** Todos los personajes y referencias deben ser ficticios. Usar nombres cercanos a la realidad pero inventados (ej: no "Wanda Nara", sí algo como "Wonda Nara").
 
 ### Código
 - **ES6+** sin transpilación. Usar `const`/`let`, arrow functions, template literals, destructuring, spread.
