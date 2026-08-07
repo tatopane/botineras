@@ -78,8 +78,18 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .sceneText{position:absolute;left:18px;right:18px;bottom:14px;z-index:2}
 .sceneText h2{font-size:clamp(22px,4vw,32px);margin:0 0 4px;text-shadow:0 2px 10px rgba(0,0,0,0.85)}
 .sceneText p{font-size:16px;line-height:1.4;margin:0;color:#f0f0f0;text-shadow:0 1px 6px rgba(0,0,0,0.9)}
-.choices{display:grid;gap:10px;padding:18px}.choice{text-align:left;background:#2a2d3a}.choice strong{display:block;color:var(--gold);margin-bottom:5px}
-.result{margin:18px;padding:22px;border-radius:18px;text-align:center;font-size:20px}.ok{background:#0c4b30;border:2px solid var(--green)}.bad{background:#4c1118;border:2px solid var(--red)}
+.event-body{min-height:252px;position:relative;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+.choices{display:grid;gap:10px;padding:18px;min-height:252px;box-sizing:border-box;align-content:center}
+.choice{text-align:left;background:#2a2d3a;padding:13px 17px;border-radius:12px;border:1px solid #ffffff18;transition:transform 0.15s ease,border-color 0.15s ease;cursor:pointer}
+.choice:hover{border-color:var(--pink);transform:translateY(-1px)}
+.choice strong{display:block;color:var(--gold);margin-bottom:4px;font-size:16px}
+.choice span{font-size:13px;color:#bbb;line-height:1.35;display:block}
+.result{margin:18px;padding:20px;border-radius:18px;text-align:center;font-size:18px;min-height:216px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;animation:fadeIn 0.2s ease}
+.result .big{font-size:48px;line-height:1}
+.result b{font-size:20px}
+.result p{margin:4px 0 10px;font-size:15px;line-height:1.4;max-width:560px}
+.result button{padding:12px 28px;font-size:15px}
+.ok{background:#0c4b30;border:2px solid var(--green)}.bad{background:#4c1118;border:2px solid var(--red)}
 .big{font-size:58px}.relation{display:flex;gap:10px;overflow:auto;padding-bottom:7px}.rel{min-width:210px;background:#10121a;border:1px solid #ffffff18;border-radius:14px;overflow:hidden}
 .rel .face{height:135px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#1c8d55,#0b3a23)}.rel div:last-child{padding:10px}
 .rel b{color:var(--gold)}.mentor{margin:14px 18px 0;background:#2c1a08;border:1px solid #ffd16666;border-radius:14px;padding:13px;color:#ffe6a0}
@@ -138,8 +148,16 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
   .sceneText{left:12px;right:12px;bottom:10px}
   .sceneText h2{font-size:20px;margin-bottom:3px}
   .sceneText p{font-size:14px;line-height:1.3}
-  .choices{padding:12px;gap:8px}
+  .event-body{min-height:210px}
+  .choices{padding:12px;gap:8px;min-height:210px}
   .choice{padding:10px 14px}
+  .choice strong{font-size:14px;margin-bottom:2px}
+  .choice span{font-size:12px}
+  .result{margin:12px;padding:16px;min-height:186px;font-size:16px;gap:6px}
+  .result .big{font-size:38px}
+  .result b{font-size:17px}
+  .result p{font-size:13px;margin:2px 0 8px}
+  .result button{padding:10px 22px;font-size:14px}
   .person img{height:190px}
   .sticky-wrap{padding:5px 8px;gap:4px}
   .sticky-rank{font-size:11px;letter-spacing:0.5px}
@@ -284,8 +302,10 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 <div id="actionsPanel" class="actions-panel-modal hidden"></div>
 <div id="booster" class="hidden"></div>
 <div id="breakupBanner" class="hidden"></div>
-<div id="choices" class="choices"></div>
-<div id="result"></div>
+<div class="event-body">
+  <div id="choices" class="choices"></div>
+  <div id="result" class="hidden"></div>
+</div>
 </div>
 
 <div class="card pad"><h3>❤️ Historial sentimental</h3><div id="relations" class="relation"><span style="color:#999">Todavía nada confirmado.</span></div></div>
