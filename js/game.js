@@ -257,11 +257,22 @@ function resolve(i) {
       choice_text: a[0],
       event_title: g.event.title,
       event_id: g.event.id,
-      stage: g.relStage,
+      outcome: ok ? "success" : "failure",
+      character_name: g.name,
+      turn: g.turn,
+      events_in_relation: g.eventsInRelation + 1,
       player: g.player,
-      tier_name: tiers[g.tier].name
+      tier_name: tiers[g.tier].name,
+      tier_index: g.tier,
+      stage: g.relStage,
+      relProgress: g.relProgress,
+      fame: g.fame,
+      rep: g.rep,
+      contacts: g.contacts,
+      chem: g.chem,
+      rumors: g.rumors,
+      couples: g.couples
     });
-    trackEvent("game_event_outcome", { outcome: ok ? "success" : "failure", event_title: g.event.title, player: g.player });
   }
 
   applyEffects(eff);
@@ -288,7 +299,7 @@ function resolve(i) {
     }
   } else {
     // failBreaks: eventos de stage 2 (firme) que en fallo rompen la relación
-    if (g.event.failBreaks || checkBreakup() || g.chem < 5 || Math.random() < 0.25) {
+    if (g.event.failBreaks || checkBreakup() || g.chem < 5 || Math.random() < 0.10) {
       upRel("Terminó mal");
       g.relStatus = "broken";
       g.player = null;
