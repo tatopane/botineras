@@ -24,6 +24,11 @@ function showScreen(screenId) {
   if (screenId !== "game") {
     document.getElementById("stickyHeader")?.classList.remove("visible");
   }
+  // Mostrar/ocultar botón Reiniciar
+  const resetBtn = document.getElementById("resetBtn");
+  if (resetBtn) {
+    resetBtn.classList.toggle("hidden", screenId !== "game");
+  }
   if (typeof trackEvent === "function") {
     trackEvent("screen_view", { screen_name: screenId });
   }
@@ -517,7 +522,7 @@ function upd() {
     if (cRank) cRank.textContent = `${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
   }
 
-  const barWidth = Math.min(100, score() / 2.1) + "%";
+  const barWidth = Math.min(100, score() / 3.6) + "%";
   const bar = document.getElementById("bar");
   if (bar) bar.style.width = barWidth;
   const cBar = document.getElementById("c_bar");

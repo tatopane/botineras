@@ -10,11 +10,11 @@ const chars = [
 
 const tiers = [
   { name: "Barrio", need: 0, players: ["El 9 de Lugano", "El arquero streamer", "La figura del futsal", "El entrenador de Dock Sud"] },
-  { name: "Ascenso", need: 25, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 4 de Ferro"] },
-  { name: "Primera", need: 55, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade"] },
-  { name: "Latam", need: 90, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales"] },
-  { name: "Europa", need: 130, players: ["Vinícius Júniorr", "Jude Bellinghan", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines"] },
-  { name: "Champions", need: 175, players: ["Erling Håland", "Kylian M'Bapé", "Lamine Yamall", "Rodrig", "Julián Álvares", "Harry Kane"] }
+  { name: "Ascenso", need: 50, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 4 de Ferro"] },
+  { name: "Primera", need: 100, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade"] },
+  { name: "Latam", need: 150, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales"] },
+  { name: "Europa", need: 200, players: ["Vinícius Júniorr", "Jude Bellinghan", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines"] },
+  { name: "Champions", need: 300, players: ["Erling Håland", "Kylian M'Bapé", "Lamine Yamall", "Rodrig", "Julián Álvares", "Harry Kane"] }
 ];
 
 const eventTypes = [

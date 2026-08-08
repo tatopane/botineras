@@ -7,9 +7,13 @@ function score() {
   return (g.fame || 0) + (g.rep || 0) + (g.contacts || 0) + (g.chem || 0) - (g.rumors || 0) * 5;
 }
 
+function tierScore() {
+  return (g.fame || 0) + (g.rep || 0) + (g.contacts || 0) - (g.rumors || 0) * 5;
+}
+
 function updateTier() {
   for (let i = tiers.length - 1; i >= 0; i--) {
-    if (score() >= tiers[i].need) {
+    if (tierScore() >= tiers[i].need) {
       g.tier = i;
       break;
     }
@@ -361,7 +365,7 @@ function continueGame() {
   // Cada 2 eventos desde el 4to en adelante, oportunidad de subir de categoría
   if (g.eventsInRelation >= 4 && (g.eventsInRelation - 4) % 3 === 0 && g.tier < tiers.length - 1) {
     const nextTier = tiers[g.tier + 1];
-    if (nextTier && score() >= nextTier.need) {
+    if (nextTier && tierScore() >= nextTier.need) {
       const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
       g.upgradeTarget = { player: newPlayer, tierIndex: g.tier + 1, tierName: nextTier.name };
       if (typeof renderUpgrade === "function") {
