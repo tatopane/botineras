@@ -286,11 +286,59 @@ function renderBreakup(msg) {
       <div class="breakup-card">
         <div class="big">💔</div>
         <h2>La relación se terminó</h2>
-        <p>${msg}</p>
-        <button onclick="continueGame()" style="margin-top:14px;background:#ef4c5d">Buscar nueva conquista</button>
+        <p style="font-size:15px;color:#ff828e;margin-bottom:12px;font-style:italic">“${msg}”</p>
+        <p style="font-size:13px;color:#aaa;">Esa salida no salió bien... toca seguir adelante.</p>
+        <button onclick="continueGame()" style="margin-top:14px;background:#ef4c5d">Seguir</button>
       </div>
     `;
   }
+}
+
+function renderNewRelation() {
+  const breakupEl = document.getElementById("breakupBanner");
+  const boosterEl = document.getElementById("booster");
+  const resEl = document.getElementById("result");
+  const choicesEl = document.getElementById("choices");
+  const actionBtn = document.getElementById("actionBtn");
+  const sceneCard = document.querySelector(".card > .scene")?.parentElement;
+
+  if (breakupEl) breakupEl.classList.add("hidden");
+  if (boosterEl) boosterEl.classList.add("hidden");
+  if (resEl) { resEl.classList.add("hidden"); resEl.innerHTML = ""; }
+  if (choicesEl) { choicesEl.classList.add("hidden"); choicesEl.innerHTML = ""; }
+  if (actionBtn) actionBtn.classList.add("hidden");
+  if (sceneCard) sceneCard.classList.remove("booster-active");
+
+  const sceneImg = document.getElementById("scene");
+  if (sceneImg) {
+    sceneImg.src = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%231a0f2e%22/><stop offset=%22100%25%22 stop-color=%22%23171925%22/></linearGradient></defs><rect fill=%22url(%23g)%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22180%22 text-anchor=%22middle%22 fill=%22%23ff3f9f%22 font-size=%2272%22 font-family=%22sans-serif%22>💖</text></svg>";
+  }
+
+  const titleEl = document.getElementById("title");
+  if (titleEl) titleEl.textContent = `💖 ¡Nueva relación!`;
+
+  const storyEl = document.getElementById("story");
+  if (storyEl) storyEl.textContent = `Te presentaron a ${g.player}. ¡Empezás una nueva relación en la categoría ${tiers[g.tier].name}!`;
+
+  const mentorEl = document.getElementById("mentor");
+  if (mentorEl) mentorEl.innerHTML = "";
+
+  // Botón para confirmar y seguir
+  if (choicesEl) {
+    choicesEl.classList.remove("hidden");
+    choicesEl.innerHTML = `
+      <button class="choice" onclick="confirmNewRelation()" style="text-align:center;justify-content:center">
+        <strong>💋 ¡A jugar!</strong>
+      </button>
+    `;
+  }
+
+  if (typeof upd === "function") upd();
+}
+
+function hideNewRelation() {
+  const choicesEl = document.getElementById("choices");
+  if (choicesEl) { choicesEl.innerHTML = ""; }
 }
 
 function renderResult(ok, msg) {

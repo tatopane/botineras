@@ -202,16 +202,34 @@ function startGame() {
 
 function next() {
   updateTier();
+  let isNewRelation = false;
   if (!g.player || g.relStatus === "broken") {
     g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
     g.relProgress = 20;
     g.relStage = 0;
     g.relStatus = "active";
     g.usedEvents = [];
+    isNewRelation = true;
   }
   g.relStage = getRelStage();
   g.event = pickEvent();
 
+  if (isNewRelation) {
+    // Mostrar intro de nueva relación antes del evento
+    if (typeof renderNewRelation === "function") renderNewRelation();
+    if (typeof upd === "function") upd();
+    return;
+  }
+
+  if (typeof renderScene === "function") renderScene();
+  if (typeof renderChoices === "function") renderChoices();
+  if (typeof renderActions === "function") renderActions();
+  if (typeof upd === "function") upd();
+}
+
+// Llamada desde el botón "Seguir" de la pantalla de nueva relación
+function confirmNewRelation() {
+  if (typeof hideNewRelation === "function") hideNewRelation();
   if (typeof renderScene === "function") renderScene();
   if (typeof renderChoices === "function") renderChoices();
   if (typeof renderActions === "function") renderActions();
@@ -271,7 +289,10 @@ function resolve(i) {
     }
   }
 
-  if (typeof renderResult === "function") {
+  if (g.relStatus === "broken") {
+    // Mostrar pantalla de ruptura con el motivo
+    if (typeof renderBreakup === "function") renderBreakup(msg);
+  } else if (typeof renderResult === "function") {
     renderResult(ok, msg);
   }
   if (typeof upd === "function") upd();
