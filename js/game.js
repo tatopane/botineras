@@ -160,11 +160,11 @@ function startGame() {
     fame: 4,
     rep: 6,
     contacts: 6,
-    chem: 5,
+    chem: 15,
     rumors: 0,
     couples: 0,
     relations: [],
-    relProgress: 20,
+    relProgress: 25,
     relStage: 0,
     relStatus: "active",
     player: null,
@@ -207,7 +207,7 @@ function next() {
   let isNewRelation = false;
   if (!g.player || g.relStatus === "broken") {
     g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
-    g.relProgress = 20;
+    g.relProgress = 25;
     g.relStage = 0;
     g.relStatus = "active";
     g.usedEvents = [];
@@ -359,7 +359,7 @@ function continueGame() {
   }
 
   // Cada 2 eventos desde el 4to en adelante, oportunidad de subir de categoría
-  if (g.eventsInRelation >= 4 && g.eventsInRelation % 3 === 0 && g.tier < tiers.length - 1) {
+  if (g.eventsInRelation >= 4 && (g.eventsInRelation - 4) % 3 === 0 && g.tier < tiers.length - 1) {
     const nextTier = tiers[g.tier + 1];
     if (nextTier && score() >= nextTier.need) {
       const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
@@ -419,7 +419,7 @@ function confirmUpgrade() {
   // Asignar nuevo jugador del tier superior
   g.player = target.player;
   g.tier = target.tierIndex;
-  g.relProgress = 20;
+  g.relProgress = 25;
   g.relStage = 0;
   g.relStatus = "active";
   g.usedEvents = [];

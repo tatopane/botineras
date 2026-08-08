@@ -27,9 +27,9 @@ const eventTypes = [
     minProgress: 0,
     maxProgress: 40,
     actions: [
-      ["Aceptar sin subir nada", 0.72, "La charla fluye y acuerdan una segunda salida.", "La conversación se muere a los veinte minutos.", { chem: 12, rep: 7, relProgress: 15 }, { chem: -5, relProgress: -8 }],
-      ["Subir una historia misteriosa", 0.53, "El rumor crece y {player} sigue el juego.", "Se enoja por la exposición y te deja en visto.", { fame: 13, rumors: 1, chem: 7, relProgress: 10 }, { rep: -8, chem: -8, rumors: 1, relProgress: -10 }],
-      ["Pedirle a Guillote que arme el encuentro", 0.64, "Guillote consigue mesa privada y todo sale perfecto.", "Guillote aparece con ocho personas más.", { contacts: 11, chem: 8, relProgress: 12 }, { rep: -5, relProgress: -6 }]
+      ["Aceptar sin subir nada", 0.72, "La charla fluye y acuerdan una segunda salida.", "La conversación se muere a los veinte minutos.", { chem: 18, rep: 7, relProgress: 18 }, { chem: -5, relProgress: -8 }],
+      ["Subir una historia misteriosa", 0.53, "El rumor crece y {player} sigue el juego.", "Se enoja por la exposición y te deja en visto.", { fame: 13, rumors: 1, chem: 14, relProgress: 14 }, { rep: -8, chem: -8, rumors: 1, relProgress: -10 }],
+      ["Pedirle a Guillote que arme el encuentro", 0.64, "Guillote consigue mesa privada y todo sale perfecto.", "Guillote aparece con ocho personas más.", { contacts: 11, chem: 14, relProgress: 15 }, { rep: -5, relProgress: -6 }]
     ]
   },
   {
@@ -41,9 +41,9 @@ const eventTypes = [
     minProgress: 0,
     maxProgress: 40,
     actions: [
-      ["Salir juntos", 0.56, "Las fotos disparan el primer rumor serio.", "{player} se tapa la cara y el gesto queda horrible.", { fame: 16, rumors: 1, chem: 8, relProgress: 12 }, { rep: -9, rumors: 1, relProgress: -10 }],
-      ["Salir por separado", 0.74, "La discreción fortalece el vínculo.", "Te vas sola y él termina en otro after.", { rep: 11, chem: 10, relProgress: 14 }, { chem: -8, relProgress: -8 }],
-      ["Escapar por la cocina", 0.61, "La aventura los hace reír y suma química.", "Terminás encerrada en el depósito.", { chem: 14, contacts: 5, relProgress: 12 }, { rep: -6, relProgress: -7 }]
+      ["Salir juntos", 0.56, "Las fotos disparan el primer rumor serio.", "{player} se tapa la cara y el gesto queda horrible.", { fame: 16, rumors: 1, chem: 14, relProgress: 15 }, { rep: -9, rumors: 1, relProgress: -10 }],
+      ["Salir por separado", 0.74, "La discreción fortalece el vínculo.", "Te vas sola y él termina en otro after.", { rep: 11, chem: 16, relProgress: 18 }, { chem: -8, relProgress: -8 }],
+      ["Escapar por la cocina", 0.61, "La aventura los hace reír y suma química.", "Terminás encerrada en el depósito.", { chem: 20, contacts: 5, relProgress: 15 }, { rep: -6, relProgress: -7 }]
     ]
   },
   {
@@ -55,9 +55,9 @@ const eventTypes = [
     minProgress: 41,
     maxProgress: 75,
     actions: [
-      ["Ir sin avisar a nadie", 0.63, "El viaje sale perfecto y aparece un romance.", "La reserva estaba a nombre de otra persona.", { chem: 18, rep: 8, relProgress: 16 }, { rep: -10, chem: -7, relProgress: -12 }],
-      ["Contárselo a una amiga", 0.49, "La amiga guarda el secreto y te ayuda con todo.", "La amiga se lo cuenta a otra amiga.", { contacts: 8, chem: 10, relProgress: 10 }, { rumors: 2, rep: -8, relProgress: -12 }],
-      ["Pedir ubicación en vivo", 0.70, "Evitás sorpresas y el viaje funciona.", "{player} interpreta la cautela como desconfianza.", { rep: 10, chem: 8, relProgress: 12 }, { chem: -5, relProgress: -8 }]
+      ["Ir sin avisar a nadie", 0.63, "El viaje sale perfecto y aparece un romance.", "La reserva estaba a nombre de otra persona.", { chem: 24, rep: 8, relProgress: 20 }, { rep: -10, chem: -7, relProgress: -12 }],
+      ["Contárselo a una amiga", 0.49, "La amiga guarda el secreto y te ayuda con todo.", "La amiga se lo cuenta a otra amiga.", { contacts: 8, chem: 16, relProgress: 14 }, { rumors: 2, rep: -8, relProgress: -12 }],
+      ["Pedir ubicación en vivo", 0.70, "Evitás sorpresas y el viaje funciona.", "{player} interpreta la cautela como desconfianza.", { rep: 10, chem: 14, relProgress: 16 }, { chem: -5, relProgress: -8 }]
     ]
   },
   {
@@ -69,9 +69,9 @@ const eventTypes = [
     minProgress: 41,
     maxProgress: 75,
     actions: [
-      ["Confirmar que se están conociendo", 0.58, "El público compra la historia y el vínculo avanza.", "{player} niega todo en una entrevista.", { fame: 20, chem: 12, rumors: 1, relProgress: 15 }, { rep: -18, chem: -12, rumors: 2, relProgress: -18 }],
-      ["Negarlo con elegancia", 0.72, "La intriga crece sin dañar la relación.", "La negación suena demasiado ensayada.", { rep: 15, fame: 9, relProgress: 12 }, { rep: -6, rumors: 1, relProgress: -8 }],
-      ["No decir nada", 0.64, "El silencio les permite seguir viéndose.", "El rumor crece más de lo esperado.", { chem: 10, rep: 8, relProgress: 10 }, { rumors: 2, rep: -5, relProgress: -10 }]
+      ["Confirmar que se están conociendo", 0.58, "El público compra la historia y el vínculo avanza.", "{player} niega todo en una entrevista.", { fame: 20, chem: 20, rumors: 1, relProgress: 18 }, { rep: -18, chem: -12, rumors: 2, relProgress: -18 }],
+      ["Negarlo con elegancia", 0.72, "La intriga crece sin dañar la relación.", "La negación suena demasiado ensayada.", { rep: 15, fame: 9, chem: 6, relProgress: 15 }, { rep: -6, rumors: 1, relProgress: -8 }],
+      ["No decir nada", 0.64, "El silencio les permite seguir viéndose.", "El rumor crece más de lo esperado.", { chem: 16, rep: 8, relProgress: 14 }, { rumors: 2, rep: -5, relProgress: -10 }]
     ]
   },
   {
@@ -84,9 +84,9 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Aceptar", 0.67, "Empieza un noviazgo confirmado.", "A los pocos días descubre que no estaban entendiendo lo mismo.", { chem: 22, rep: 12, relProgress: 25 }, { chem: -15, rep: -7, relProgress: -20 }],
-      ["Pedir tiempo", 0.55, "La honestidad fortalece el vínculo.", "{player} decide seguir adelante sin vos.", { rep: 13, chem: 7, relProgress: 10 }, { chem: -12, relProgress: -15 }],
-      ["Responder con un meme", 0.45, "Le causa gracia y terminan formalizando igual.", "No entiende el meme y te bloquea.", { fame: 8, chem: 18, relProgress: 18 }, { chem: -18, rep: -5, relProgress: -20 }]
+      ["Aceptar", 0.67, "Empieza un noviazgo confirmado.", "A los pocos días descubre que no estaban entendiendo lo mismo.", { chem: 28, rep: 12, relProgress: 30 }, { chem: -15, rep: -7, relProgress: -20 }],
+      ["Pedir tiempo", 0.55, "La honestidad fortalece el vínculo.", "{player} decide seguir adelante sin vos.", { rep: 13, chem: 14, relProgress: 14 }, { chem: -12, relProgress: -15 }],
+      ["Responder con un meme", 0.45, "Le causa gracia y terminan formalizando igual.", "No entiende el meme y te bloquea.", { fame: 8, chem: 24, relProgress: 22 }, { chem: -18, rep: -5, relProgress: -20 }]
     ]
   },
   {
@@ -98,9 +98,9 @@ const eventTypes = [
     minProgress: 0,
     maxProgress: 40,
     actions: [
-      ["Aceptar sin preguntar", 0.65, "La charla fluye mientras navegan y el día sale increíble.", "Se descompone en el viaje y el plan termina mal.", { chem: 8, relProgress: 12 }, { chem: -5, relProgress: -8 }],
-      ["Preguntar quién más va", 0.55, "Valora tu cautela y van solos en plan íntimo.", "Piensa que estás desconfiada y cancela la salida.", { rep: 6, relProgress: 10 }, { rep: -4, relProgress: -12 }],
-      ["Subir historia en biquini", 0.50, "El posteo se vuelve viral y {player} reacciona encantado.", "La prensa hace un escándalo y te critica duramente.", { fame: 12, rumors: 1, relProgress: 5 }, { rep: -8, chem: -5, relProgress: -10 }]
+      ["Aceptar sin preguntar", 0.65, "La charla fluye mientras navegan y el día sale increíble.", "Se descompone en el viaje y el plan termina mal.", { chem: 14, relProgress: 15 }, { chem: -5, relProgress: -8 }],
+      ["Preguntar quién más va", 0.55, "Valora tu cautela y van solos en plan íntimo.", "Piensa que estás desconfiada y cancela la salida.", { rep: 6, relProgress: 14 }, { rep: -4, relProgress: -12 }],
+      ["Subir historia en biquini", 0.50, "El posteo se vuelve viral y {player} reacciona encantado.", "La prensa hace un escándalo y te critica duramente.", { fame: 12, rumors: 1, relProgress: 10 }, { rep: -8, chem: -5, relProgress: -10 }]
     ]
   },
   {
@@ -112,9 +112,9 @@ const eventTypes = [
     minProgress: 41,
     maxProgress: 75,
     actions: [
-      ["Ir sin avisar", 0.45, "Llegás de sorpresa, cenan juntos y la química explota.", "La guardia del country no te deja entrar y te graba un vecino.", { chem: 15, relProgress: 18 }, { rep: -10, rumors: 2, relProgress: -15 }],
-      ["Decirle a una amiga la dirección", 0.60, "Tu amiga te cubre las espaldas y la noche es un éxito.", "Tu amiga le pasa el dato a un periodista y se arma quilombo.", { contacts: 8, relProgress: 12 }, { rumors: 2, rep: -6, relProgress: -10 }],
-      ["Pedir que venga él/ella a tu casa", 0.70, "Acepta sin vueltas y demuestra que va en serio.", "Pone excusas y te deja esperando toda la noche.", { rep: 8, relProgress: 8 }, { chem: -5, relProgress: -5 }]
+      ["Ir sin avisar", 0.45, "Llegás de sorpresa, cenan juntos y la química explota.", "La guardia del country no te deja entrar y te graba un vecino.", { chem: 22, relProgress: 22 }, { rep: -10, rumors: 2, relProgress: -15 }],
+      ["Decirle a una amiga la dirección", 0.60, "Tu amiga te cubre las espaldas y la noche es un éxito.", "Tu amiga le pasa el dato a un periodista y se arma quilombo.", { contacts: 8, chem: 6, relProgress: 16 }, { rumors: 2, rep: -6, relProgress: -10 }],
+      ["Pedir que venga él/ella a tu casa", 0.70, "Acepta sin vueltas y demuestra que va en serio.", "Pone excusas y te deja esperando toda la noche.", { rep: 8, chem: 6, relProgress: 12 }, { chem: -5, relProgress: -5 }]
     ]
   },
   {
@@ -126,9 +126,9 @@ const eventTypes = [
     minProgress: 41,
     maxProgress: 75,
     actions: [
-      ["Enfrentarlo y aclarar", 0.60, "Tienen una charla honesta, desmiente todo y se unen más.", "Se pone a la defensiva y la discusión se vuelve amarga.", { rep: 10, chem: 8, relProgress: 10 }, { rep: -8, chem: -10, relProgress: -15 }],
-      ["Hacerte la desentendida", 0.55, "Tu indiferencia lo intriga y te busca con más ganas.", "El rumor sigue creciendo y quedás como que no te enterás de nada.", { fame: 8, relProgress: 5 }, { rumors: 2, chem: -8, relProgress: -12 }],
-      ["Publicar una indirecta en redes", 0.50, "La indirecta explota en Twitter y salís ganando en imagen.", "Quedás como despechada y te llenan de memes.", { fame: 15, contacts: 5, relProgress: 3 }, { rep: -12, rumors: 3, relProgress: -18 }]
+      ["Enfrentarlo y aclarar", 0.60, "Tienen una charla honesta, desmiente todo y se unen más.", "Se pone a la defensiva y la discusión se vuelve amarga.", { rep: 10, chem: 14, relProgress: 14 }, { rep: -8, chem: -10, relProgress: -15 }],
+      ["Hacerte la desentendida", 0.55, "Tu indiferencia lo intriga y te busca con más ganas.", "El rumor sigue creciendo y quedás como que no te enterás de nada.", { fame: 8, chem: 6, relProgress: 10 }, { rumors: 2, chem: -8, relProgress: -12 }],
+      ["Publicar una indirecta en redes", 0.50, "La indirecta explota en Twitter y salís ganando en imagen.", "Quedás como despechada y te llenan de memes.", { fame: 15, contacts: 5, chem: 6, relProgress: 8 }, { rep: -12, rumors: 3, relProgress: -18 }]
     ]
   },
   {
@@ -141,8 +141,8 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Perdonar y seguir", 0.40, "Te pide disculpas públicas y te regala un auto de lujo.", "Reincide a las dos semanas y la relación se rompe.", { rep: 10, chem: 12, relProgress: 5 }, { rep: -15, chem: -20, relProgress: -30 }],
-      ["Terminar con dignidad", 0.85, "Salís fortalecida, con la frente en alto y respeto general.", "La separación es dolorosa y te afecta anímicamente.", { rep: 15, fame: 8, relProgress: -15 }, { rep: -10, chem: -10, relProgress: -20 }],
+      ["Perdonar y seguir", 0.40, "Te pide disculpas públicas y te regala un auto de lujo.", "Reincide a las dos semanas y la relación se rompe.", { rep: 10, chem: 18, relProgress: 10 }, { rep: -15, chem: -20, relProgress: -30 }],
+      ["Terminar con dignidad", 0.85, "Salís fortalecida, con la frente en alto y respeto general.", "La separación es dolorosa y te afecta anímicamente.", { rep: 15, fame: 8, chem: 8, relProgress: -15 }, { rep: -10, chem: -10, relProgress: -20 }],
       ["Exponerlo todo en redes", 0.50, "Tu descargo bate récords de visualizaciones y te consagrás reina mediática.", "Se filtra una contradicción y el escándalo te salpica de lleno.", { fame: 25, contacts: 10, relProgress: -20 }, { rep: -20, rumors: 5, relProgress: -30 }]
     ]
   },
@@ -156,9 +156,9 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Mudarse juntos", 0.50, "La convivencia es un sueño y la relación se consolida al máximo.", "La rutina y los choques de ego arruinan la magia.", { chem: 18, relProgress: 20 }, { rep: -10, chem: -15, relProgress: -20 }],
-      ["Pedir tiempo para pensarlo", 0.65, "Tu madurez le da seguridad y respeta tus tiempos.", "Lo toma como un rechazo y se enfría la pasión.", { rep: 10, relProgress: 5 }, { chem: -8, relProgress: -12 }],
-      ["Mudarse pero con contrato", 0.55, "Asegurás tu patrimonio e independencia con mucha clase.", "Sus abogados ponen trabas y se genera desconfianza.", { rep: 12, relProgress: 10 }, { chem: -5, relProgress: -8 }]
+      ["Mudarse juntos", 0.50, "La convivencia es un sueño y la relación se consolida al máximo.", "La rutina y los choques de ego arruinan la magia.", { chem: 26, relProgress: 26 }, { rep: -10, chem: -15, relProgress: -20 }],
+      ["Pedir tiempo para pensarlo", 0.65, "Tu madurez le da seguridad y respeta tus tiempos.", "Lo toma como un rechazo y se enfría la pasión.", { rep: 10, chem: 8, relProgress: 10 }, { chem: -8, relProgress: -12 }],
+      ["Mudarse pero con contrato", 0.55, "Asegurás tu patrimonio e independencia con mucha clase.", "Sus abogados ponen trabas y se genera desconfianza.", { rep: 12, chem: 6, relProgress: 14 }, { chem: -5, relProgress: -8 }]
     ]
   },
   {
@@ -171,9 +171,9 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Irse juntos a Rusia", 0.45, "Vivís como una zarina entre pieles, diamantes y amor total.", "El frío y el aislamiento destruyen el romance.", { chem: 20, relProgress: 22, fame: -10 }, { rep: -15, chem: -18, relProgress: -25 }],
-      ["Intentar relación a distancia", 0.55, "Los pasajes en primera y las videollamadas mantienen la llama.", "La distancia enfría todo y se apaga el fuego.", { rep: 8, chem: 5, relProgress: 5 }, { chem: -12, relProgress: -15 }],
-      ["Terminar antes del viaje", 0.80, "Cerrás la historia en el mejor momento y conservás tu prestigio.", "Queda la sensación de lo que pudo haber sido.", { rep: 12, relProgress: -15 }, { fame: -8, chem: -5, relProgress: -10 }]
+      ["Irse juntos a Rusia", 0.45, "Vivís como una zarina entre pieles, diamantes y amor total.", "El frío y el aislamiento destruyen el romance.", { chem: 28, relProgress: 28, fame: -10 }, { rep: -15, chem: -18, relProgress: -25 }],
+      ["Intentar relación a distancia", 0.55, "Los pasajes en primera y las videollamadas mantienen la llama.", "La distancia enfría todo y se apaga el fuego.", { rep: 8, chem: 12, relProgress: 10 }, { chem: -12, relProgress: -15 }],
+      ["Terminar antes del viaje", 0.80, "Cerrás la historia en el mejor momento y conservás tu prestigio.", "Queda la sensación de lo que pudo haber sido.", { rep: 12, chem: 6, relProgress: -15 }, { fame: -8, chem: -5, relProgress: -10 }]
     ]
   },
   {
@@ -186,9 +186,9 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Aceptar emocionada", 0.55, "El casamiento es un evento de la farándula. Salís en todas las tapas.", "El día de la boda {player} llega tarde y los rumores arruinan la fiesta.", { chem: 25, fame: 20, rep: 10, relProgress: 20 }, { rep: -15, chem: -12, rumors: 3, relProgress: -20 }],
-      ["Hacerlo en secreto", 0.65, "Una ceremonia íntima en Punta del Este. Solo los más cercanos.", "Te filtran las fotos igual y el secreto se vuelve escándalo.", { chem: 18, rep: 12, relProgress: 15 }, { rep: -8, rumors: 2, relProgress: -12 }],
-      ["Pedir un acuerdo prenupcial", 0.60, "{player} acepta sin dramas y demuestra madurez.", "Los abogados convierten el amor en un contrato frío.", { rep: 14, contacts: 8, relProgress: 8 }, { chem: -8, relProgress: -8 }]
+      ["Aceptar emocionada", 0.55, "El casamiento es un evento de la farándula. Salís en todas las tapas.", "El día de la boda {player} llega tarde y los rumores arruinan la fiesta.", { chem: 32, fame: 20, rep: 10, relProgress: 26 }, { rep: -15, chem: -12, rumors: 3, relProgress: -20 }],
+      ["Hacerlo en secreto", 0.65, "Una ceremonia íntima en Punta del Este. Solo los más cercanos.", "Te filtran las fotos igual y el secreto se vuelve escándalo.", { chem: 24, rep: 12, relProgress: 20 }, { rep: -8, rumors: 2, relProgress: -12 }],
+      ["Pedir un acuerdo prenupcial", 0.60, "{player} acepta sin dramas y demuestra madurez.", "Los abogados convierten el amor en un contrato frío.", { rep: 14, contacts: 8, chem: 6, relProgress: 12 }, { chem: -8, relProgress: -8 }]
     ]
   },
   {
@@ -201,9 +201,9 @@ const eventTypes = [
     maxProgress: 100,
     failBreaks: true,
     actions: [
-      ["Sí, quiero ser madre", 0.50, "La noticia del embarazo es portada de todas las revistas. Felicidad total.", "La presión mediática y las dudas personales generan una crisis inesperada.", { chem: 28, fame: 15, rep: 8, relProgress: 18 }, { chem: -18, rep: -10, rumors: 2, relProgress: -20 }],
-      ["Esperar un poco más", 0.60, "{player} respeta tus tiempos y el vínculo se fortalece.", "El 'esperar' se interpreta como un 'no' y la relación se enfría.", { rep: 10, chem: 8, relProgress: 8 }, { chem: -10, relProgress: -12 }],
-      ["Ser sincera y decir que no", 0.55, "La honestidad duele pero sienta las bases de una relación madura.", "{player} no supera la noticia y la relación se desmorona.", { rep: 12, relProgress: 5 }, { chem: -20, relProgress: -25 }]
+      ["Sí, quiero ser madre", 0.50, "La noticia del embarazo es portada de todas las revistas. Felicidad total.", "La presión mediática y las dudas personales generan una crisis inesperada.", { chem: 35, fame: 15, rep: 8, relProgress: 24 }, { chem: -18, rep: -10, rumors: 2, relProgress: -20 }],
+      ["Esperar un poco más", 0.60, "{player} respeta tus tiempos y el vínculo se fortalece.", "El 'esperar' se interpreta como un 'no' y la relación se enfría.", { rep: 10, chem: 16, relProgress: 12 }, { chem: -10, relProgress: -12 }],
+      ["Ser sincera y decir que no", 0.55, "La honestidad duele pero sienta las bases de una relación madura.", "{player} no supera la noticia y la relación se desmorona.", { rep: 12, chem: 6, relProgress: 10 }, { chem: -20, relProgress: -25 }]
     ]
   }
 ];
