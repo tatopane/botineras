@@ -175,6 +175,36 @@ const eventTypes = [
       ["Intentar relación a distancia", 0.55, "Los pasajes en primera y las videollamadas mantienen la llama.", "La distancia enfría todo y se apaga el fuego.", { rep: 8, chem: 5, relProgress: 5 }, { chem: -12, relProgress: -15 }],
       ["Terminar antes del viaje", 0.80, "Cerrás la historia en el mejor momento y conservás tu prestigio.", "Queda la sensación de lo que pudo haber sido.", { rep: 12, relProgress: -15 }, { fame: -8, chem: -5, relProgress: -10 }]
     ]
+  },
+  {
+    id: "E12",
+    title: "Matrimonio",
+    img: "images/pixel/webp/event-exclusividad.webp",
+    text: "{player} te pidió que se case con él/ella. Vestido blanco, cura, todo.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    failBreaks: true,
+    actions: [
+      ["Aceptar emocionada", 0.55, "El casamiento es un evento de la farándula. Salís en todas las tapas.", "El día de la boda {player} llega tarde y los rumores arruinan la fiesta.", { chem: 25, fame: 20, rep: 10, relProgress: 20 }, { rep: -15, chem: -12, rumors: 3, relProgress: -20 }],
+      ["Hacerlo en secreto", 0.65, "Una ceremonia íntima en Punta del Este. Solo los más cercanos.", "Te filtran las fotos igual y el secreto se vuelve escándalo.", { chem: 18, rep: 12, relProgress: 15 }, { rep: -8, rumors: 2, relProgress: -12 }],
+      ["Pedir un acuerdo prenupcial", 0.60, "{player} acepta sin dramas y demuestra madurez.", "Los abogados convierten el amor en un contrato frío.", { rep: 14, contacts: 8, relProgress: 8 }, { chem: -8, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E13",
+    title: "Tener hijos",
+    img: "images/pixel/webp/event-viaje.webp",
+    text: "{player} quiere hablar de formar una familia. No es una pregunta casual.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    failBreaks: true,
+    actions: [
+      ["Sí, quiero ser madre", 0.50, "La noticia del embarazo es portada de todas las revistas. Felicidad total.", "La presión mediática y las dudas personales generan una crisis inesperada.", { chem: 28, fame: 15, rep: 8, relProgress: 18 }, { chem: -18, rep: -10, rumors: 2, relProgress: -20 }],
+      ["Esperar un poco más", 0.60, "{player} respeta tus tiempos y el vínculo se fortalece.", "El 'esperar' se interpreta como un 'no' y la relación se enfría.", { rep: 10, chem: 8, relProgress: 8 }, { chem: -10, relProgress: -12 }],
+      ["Ser sincera y decir que no", 0.55, "La honestidad duele pero sienta las bases de una relación madura.", "{player} no supera la noticia y la relación se desmorona.", { rep: 12, relProgress: 5 }, { chem: -20, relProgress: -25 }]
+    ]
   }
 ];
 
