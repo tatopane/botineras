@@ -48,7 +48,12 @@ function checkBreakup() {
 
 function pickEvent() {
   const stage = getRelStage();
-  const available = eventTypes.filter(e => e.stage === stage);
+  let available = eventTypes.filter(e => e.stage === stage);
+  // Excluir eventos ya usados en esta relación
+  if (g.usedEvents && g.usedEvents.length) {
+    const unused = available.filter(e => !g.usedEvents.includes(e.id));
+    if (unused.length > 0) available = unused;
+  }
   if (available.length === 0) return eventTypes[0];
   return available[Math.floor(Math.random() * available.length)];
 }
@@ -71,6 +76,7 @@ function triggerAction(id) {
     applyEffects(penalty);
     upRel("Terminó relación");
     g.relStatus = "broken";
+    g.usedEvents = [];
     if (typeof trackEvent === "function") {
       trackEvent("use_action", { action_id: id, action_name: act.name, outcome: "breakup", player: g.player });
     }
@@ -127,6 +133,7 @@ function triggerBooster(boosterId, choice) {
   const broke = checkBreakup();
   if (broke) {
     upRel("Terminó mal");
+    g.usedEvents = [];
     if (typeof renderBreakup === "function") {
       renderBreakup(`💔 ${msg}`);
     }
@@ -164,7 +171,8 @@ function startGame() {
     event: null,
     actionsUsed: {},
     boosterJustDone: false,
-    currentBooster: null
+    currentBooster: null,
+    usedEvents: []
   };
 
   Object.entries(c.bonus).forEach(([k, v]) => {
@@ -199,6 +207,7 @@ function next() {
     g.relProgress = 20;
     g.relStage = 0;
     g.relStatus = "active";
+    g.usedEvents = [];
   }
   g.relStage = getRelStage();
   g.event = pickEvent();
@@ -230,6 +239,10 @@ function resolve(i) {
   }
 
   applyEffects(eff);
+  // Registrar evento como usado en esta relación
+  if (g.event && g.event.id && !g.usedEvents.includes(g.event.id)) {
+    g.usedEvents.push(g.event.id);
+  }
 
   if (ok) {
     if (g.relStage === 0) {
@@ -244,6 +257,7 @@ function resolve(i) {
         g.player = null;
         g.relProgress = 0;
         g.relStage = 0;
+        g.usedEvents = [];
       } else {
         upRel("Romance confirmado");
       }
@@ -255,6 +269,7 @@ function resolve(i) {
       g.player = null;
       g.relProgress = 0;
       g.relStage = 0;
+      g.usedEvents = [];
     }
   }
 
