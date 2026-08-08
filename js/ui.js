@@ -131,6 +131,10 @@ function renderScene() {
 
   const choicesEl = document.getElementById("choices");
   if (choicesEl) choicesEl.classList.remove("hidden");
+  
+  // Quitar estilo de booster si estaba activo
+  const sceneCard = document.querySelector(".card > .scene")?.parentElement;
+  if (sceneCard) sceneCard.classList.remove("booster-active");
 }
 
 function renderChoices() {
@@ -202,40 +206,60 @@ function renderActions() {
 }
 
 function renderBooster(b) {
-  const boosterEl = document.getElementById("booster");
-  const choicesEl = document.getElementById("choices");
-  const actionBtn = document.getElementById("actionBtn");
-  const resEl = document.getElementById("result");
-  if (!boosterEl) return;
+  const desc = b.desc.replaceAll("{player}", g.player || "tu pareja");
 
-  if (choicesEl) {
-    choicesEl.classList.add("hidden");
-    choicesEl.innerHTML = "";
+  // Reemplazar escena: imagen con gradiente especial
+  const sceneImg = document.getElementById("scene");
+  if (sceneImg) {
+    sceneImg.src = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%2320153e%22/><stop offset=%22100%25%22 stop-color=%22%231a0f2e%22/></linearGradient></defs><rect fill=%22url(%23g)%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22180%22 text-anchor=%22middle%22 fill=%22%23ffd166%22 font-size=%2272%22 font-family=%22sans-serif%22>✨</text></svg>";
   }
+
+  // Reemplazar título y descripción
+  const titleEl = document.getElementById("title");
+  if (titleEl) titleEl.innerHTML = `<span class="booster-badge">✨ EVENTO ESPECIAL</span> ${b.name}`;
+
+  const storyEl = document.getElementById("story");
+  if (storyEl) storyEl.textContent = desc;
+
+  // Borde dorado en la card de escena
+  const sceneCard = document.querySelector(".card > .scene")?.parentElement;
+  if (sceneCard) sceneCard.classList.add("booster-active");
+
+  // Ocultar choices default, mentor, action btn
+  const choicesEl = document.getElementById("choices");
+  if (choicesEl) {
+    choicesEl.classList.remove("hidden");
+    choicesEl.innerHTML = `
+      <div class="booster-choices">
+        <button class="choice booster-btn" onclick="triggerBooster('${b.id}', 'A')">
+          <strong>${b.optionA.text}</strong>
+        </button>
+        <button class="choice booster-btn" onclick="triggerBooster('${b.id}', 'B')">
+          <strong>${b.optionB.text}</strong>
+        </button>
+      </div>
+    `;
+  }
+
+  const mentorEl = document.getElementById("mentor");
+  if (mentorEl) mentorEl.innerHTML = "";
+
+  const actionBtn = document.getElementById("actionBtn");
   if (actionBtn) actionBtn.classList.add("hidden");
+
+  const resEl = document.getElementById("result");
   if (resEl) {
     resEl.classList.add("hidden");
     resEl.innerHTML = "";
   }
 
-  boosterEl.classList.remove("hidden");
-  const desc = b.desc.replaceAll("{player}", g.player || "tu pareja");
+  const boosterEl = document.getElementById("booster");
+  if (boosterEl) boosterEl.classList.add("hidden");
 
-  boosterEl.innerHTML = `
-    <div class="booster-card">
-      <div class="booster-badge">✨ EVENTO ESPECIAL / BOOSTER</div>
-      <h2>${b.name}</h2>
-      <p class="booster-desc">${desc}</p>
-      <div class="booster-choices">
-        <button class="booster-btn opt-a" onclick="triggerBooster('${b.id}', 'A')">
-          <strong>${b.optionA.text}</strong>
-        </button>
-        <button class="booster-btn opt-b" onclick="triggerBooster('${b.id}', 'B')">
-          <strong>${b.optionB.text}</strong>
-        </button>
-      </div>
-    </div>
-  `;
+  const breakupEl = document.getElementById("breakupBanner");
+  if (breakupEl) breakupEl.classList.add("hidden");
+
+  if (typeof upd === "function") upd();
 }
 
 function renderBreakup(msg) {
