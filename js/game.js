@@ -1,83 +1,17 @@
-// Botineras — Game logic
+// Botineras — Game logic (UI layer; pure logic in engine.js)
 let selected = 0;
 let g = {};
 let activeScreen = "setup";
 
-function score() {
-  return (g.fame || 0) + (g.rep || 0) + (g.contacts || 0) + (g.chem || 0) - (g.rumors || 0) * 5;
-}
-
-function tierScore() {
-  return (g.fame || 0) + (g.rep || 0) + (g.contacts || 0) - (g.rumors || 0) * 5;
-}
-
-function updateTier() {
-  for (let i = tiers.length - 1; i >= 0; i--) {
-    if (tierScore() >= tiers[i].need) {
-      g.tier = i;
-      break;
-    }
-  }
-}
-
-function getRelStage() {
-  if (g.relProgress >= 76) return 2;  // noviazgo firme
-  if (g.relProgress >= 41) return 1;  // avanzada
-  return 0;                           // inicio
-}
-
-function applyEffects(effects) {
-  if (!effects) return;
-  Object.entries(effects).forEach(([k, v]) => {
-    if (k === "relProgress") {
-      g.relProgress = Math.max(0, Math.min(100, (g.relProgress || 0) + v));
-    } else if (g[k] !== undefined) {
-      g[k] = Math.max(0, g[k] + v);
-    }
-  });
-  g.relStage = getRelStage();
-}
-
-function checkBreakup() {
-  if (g.relStage === 2 && g.relProgress <= 75) {
-    g.relStatus = "broken";
-    return true;
-  }
-  if (g.relProgress <= 0 || g.chem <= 0) {
-    g.relStatus = "broken";
-    return true;
-  }
-  return false;
-}
-
-function pickEvent() {
-  const stage = getRelStage();
-  let available = eventTypes.filter(e => e.stage === stage);
-  // Excluir eventos ya usados en esta relación
-  if (g.usedEvents && g.usedEvents.length) {
-    const unused = available.filter(e => !g.usedEvents.includes(e.id));
-    if (unused.length > 0) available = unused;
-  }
-  if (available.length === 0) return eventTypes[0];
-  return available[Math.floor(Math.random() * available.length)];
-}
-
-function canUseAction(id) {
-  const act = actions.find(a => a.id === id);
-  if (!act) return false;
-  if (act.once && g.actionsUsed && g.actionsUsed[id]) return false;
-  return true;
-}
-
 function triggerAction(id) {
   const act = actions.find(a => a.id === id);
-  if (!act || !canUseAction(id)) return;
+  if (!act || !canUseAction(g, id)) return;
   if (!g.actionsUsed) g.actionsUsed = {};
   g.actionsUsed[id] = true;
 
   if (id === "A4") {
     const penalty = g.relProgress > 75 ? { rep: -25, rumors: 15 } : { rep: -5 };
-    applyEffects(penalty);
+    applyEffects(g, penalty);
     upRel("Terminó relación");
     g.relStatus = "broken";
     g.usedEvents = [];
@@ -93,14 +27,14 @@ function triggerAction(id) {
   const p = act.successRate + Math.min(0.1, g.rep / 500) + Math.min(0.08, g.chem / 500) - Math.min(0.1, g.rumors * 0.02);
   const ok = Math.random() < p;
   const eff = ok ? act.reward : act.fail;
-  applyEffects(eff);
+  applyEffects(g, eff);
 
   let broke = false;
   if (!ok && act.failBreaks) {
     g.relStatus = "broken";
     broke = true;
   } else {
-    broke = checkBreakup();
+    broke = checkBreakup(g);
   }
 
   if (typeof trackEvent === "function") {
@@ -127,14 +61,14 @@ function triggerBooster(boosterId, choice) {
   const opt = choice === "A" ? b.optionA : b.optionB;
   const ok = Math.random() < opt.rate;
   const eff = ok ? opt.reward : (opt.fail || {});
-  applyEffects(eff);
+  applyEffects(g, eff);
   const msg = (ok ? opt.msgSuccess : opt.msgFail).replaceAll("{player}", g.player || "tu pareja");
 
   if (typeof trackEvent === "function") {
     trackEvent("resolve_booster", { booster_id: boosterId, choice, outcome: ok ? "success" : "failure", player: g.player });
   }
 
-  const broke = checkBreakup();
+  const broke = checkBreakup(g);
   if (broke) {
     upRel("Terminó mal");
     g.usedEvents = [];
@@ -184,7 +118,7 @@ function startGame() {
   Object.entries(c.bonus).forEach(([k, v]) => {
     g[k] = (g[k] || 0) + v;
   });
-  g.relStage = getRelStage();
+  g.relStage = getRelStage(g);
 
   if (typeof trackEvent === "function") {
     trackEvent("game_start", { character_name: g.name, character_trait: c.trait });
@@ -207,7 +141,7 @@ function startGame() {
 }
 
 function next() {
-  updateTier();
+  updateTier(g);
   let isNewRelation = false;
   if (!g.player || g.relStatus === "broken") {
     g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
@@ -219,8 +153,8 @@ function next() {
     g.eventsInRelation = 0;
     g.crisisActive = false;
   }
-  g.relStage = getRelStage();
-  g.event = pickEvent();
+  g.relStage = getRelStage(g);
+  g.event = pickEvent(g);
 
   if (isNewRelation) {
     // Mostrar intro de nueva relación antes del evento
@@ -245,22 +179,19 @@ function confirmNewRelation() {
 }
 
 function resolve(i) {
-  const a = g.event.actions[i];
-  const p = a[1] + Math.min(0.1, g.rep / 500) + Math.min(0.08, g.chem / 500) - Math.min(0.1, g.rumors * 0.02);
-  const ok = Math.random() < p;
-  const eff = ok ? a[4] : a[5];
-  const msg = (ok ? a[2] : a[3]).replaceAll("{player}", g.player);
+  const result = resolveEvent(g, i);
 
+  // Tracking
   if (typeof trackEvent === "function") {
     trackEvent("click_game_choice", {
       choice_index: i,
-      choice_text: a[0],
+      choice_text: g.event.actions[i][0],
       event_title: g.event.title,
       event_id: g.event.id,
-      outcome: ok ? "success" : "failure",
+      outcome: result.ok ? "success" : "failure",
       character_name: g.name,
       turn: g.turn,
-      events_in_relation: g.eventsInRelation + 1,
+      events_in_relation: g.eventsInRelation,
       player: g.player,
       tier_name: tiers[g.tier].name,
       tier_index: g.tier,
@@ -275,79 +206,53 @@ function resolve(i) {
     });
   }
 
-  applyEffects(eff);
-  // Registrar evento como usado en esta relación
-  if (g.event && g.event.id && !g.usedEvents.includes(g.event.id)) {
-    g.usedEvents.push(g.event.id);
-  }
-  g.eventsInRelation++;
-
-  if (ok) {
+  // Relation history bookkeeping
+  if (result.ok && !result.broke) {
     if (g.relStage === 0) {
       const r = g.relations.find(x => x.player === g.player && x.status !== "Terminó mal");
       if (!r) g.relations.push({ player: g.player, status: "Primera salida" });
     }
     if (g.relStage === 1) upRel("Romance");
     if (g.relStage === 2) {
-      if (g.relProgress >= 75) {
-        upRel("Noviazgo");
-        g.couples++;
-        // La relación continúa con el mismo jugador
-      } else {
-        upRel("Romance confirmado");
-      }
-    }
-  } else {
-    // failBreaks: eventos de stage 2 (firme) que en fallo rompen la relación
-    if (g.event.failBreaks || checkBreakup() || g.chem < 5 || Math.random() < 0.10) {
-      upRel("Terminó mal");
-      g.relStatus = "broken";
-      g.player = null;
-      g.relProgress = 0;
-      g.relStage = 0;
-      g.usedEvents = [];
+      upRel(g.relProgress >= 75 ? "Noviazgo" : "Romance confirmado");
     }
   }
 
-  // Check for relationship crisis trigger: from 5th event, if chem < 50
-  if (g.relStatus !== "broken" && g.eventsInRelation >= 5 && g.chem < 50 && !g.crisisActive) {
-    g.crisisActive = true;
+  if (result.broke) {
+    upRel("Terminó mal");
+    g.player = null;
+    g.relProgress = 0;
+    g.relStage = 0;
+  }
+
+  // Crisis → show crisis UI
+  if (result.crisis) {
     if (typeof renderCrisis === "function") renderCrisis();
     if (typeof upd === "function") upd();
     return;
   }
 
-  if (g.relStatus === "broken") {
-    // Mostrar pantalla de ruptura con el motivo
-    if (typeof renderBreakup === "function") renderBreakup(msg);
-  } else if (typeof renderResult === "function") {
-    renderResult(ok, msg);
+  if (result.broke) {
+    if (typeof renderBreakup === "function") renderBreakup(result.msg);
+  } else {
+    if (typeof renderResult === "function") renderResult(result.ok, result.msg);
   }
   if (typeof upd === "function") upd();
 }
 
 function resolveCrisis(choice) {
-  g.crisisActive = false;
-  if (choice === "success") {
-    g.chem = 51;
+  const oldPlayer = g.player;
+  const result = engineResolveCrisis(g, choice);
+
+  if (typeof trackEvent === "function") {
+    trackEvent("crisis_resolved", { outcome: result, player: oldPlayer });
+  }
+  if (typeof hideCrisis === "function") hideCrisis();
+
+  if (result === "success") {
     const msg = `💪 Superaron la crisis de pareja. La química se renovó y están en 51%.`;
-    if (typeof trackEvent === "function") {
-      trackEvent("crisis_resolved", { outcome: "success", player: g.player });
-    }
-    if (typeof hideCrisis === "function") hideCrisis();
     if (typeof renderResult === "function") renderResult(true, msg);
   } else {
-    const oldPlayer = g.player;
-    if (typeof trackEvent === "function") {
-      trackEvent("crisis_resolved", { outcome: "failure", player: oldPlayer });
-    }
-    // Failure — breakup, same tier
-    g.relStatus = "broken";
-    g.player = null;
-    g.usedEvents = [];
-    g.eventsInRelation = 0;
-    g.crisisActive = false;
-    if (typeof hideCrisis === "function") hideCrisis();
     if (typeof renderBreakup === "function") {
       renderBreakup(`La crisis de pareja con ${oldPlayer} fue demasiado. No pudieron recomponer la relación.`);
     }
@@ -376,7 +281,7 @@ function continueGame() {
   // Cada 2 eventos desde el 4to en adelante, oportunidad de subir de categoría
   if (g.eventsInRelation >= 4 && (g.eventsInRelation - 4) % 3 === 0 && g.tier < tiers.length - 1) {
     const nextTier = tiers[g.tier + 1];
-    if (nextTier && tierScore() >= nextTier.need) {
+    if (nextTier && tierScore(g) >= nextTier.need) {
       const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
       g.upgradeTarget = { player: newPlayer, tierIndex: g.tier + 1, tierName: nextTier.name };
       if (typeof renderUpgrade === "function") {

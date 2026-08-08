@@ -11,10 +11,10 @@ const chars = [
 const tiers = [
   { name: "Barrio", need: 0, players: ["El 9 de Lugano", "El arquero streamer", "La figura del futsal", "El entrenador de Dock Sud"] },
   { name: "Ascenso", need: 30, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 4 de Ferro"] },
-  { name: "Primera", need: 60, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade"] },
-  { name: "Latam", need: 90, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales"] },
-  { name: "Europa", need: 150, players: ["Vinícius Júniorr", "Jude Bellinghan", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines"] },
-  { name: "Champions", need: 240, players: ["Erling Håland", "Kylian M'Bapé", "Lamine Yamall", "Rodrig", "Julián Álvares", "Harry Kane"] }
+  { name: "Primera", need: 80, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade"] },
+  { name: "Latam", need: 120, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales"] },
+  { name: "Europa", need: 210, players: ["Vinícius Júniorr", "Jude Bellinghan", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines"] },
+  { name: "Champions", need: 320, players: ["Erling Håland", "Kylian M'Bapé", "Lamine Yamall", "Rodrig", "Julián Álvares", "Harry Kane"] }
 ];
 
 const eventTypes = [
@@ -204,6 +204,21 @@ const eventTypes = [
       ["Sí, quiero ser madre", 0.50, "La noticia del embarazo es portada de todas las revistas. Felicidad total.", "La presión mediática y las dudas personales generan una crisis inesperada.", { chem: 35, fame: 22, rep: 14, relProgress: 24 }, { chem: -18, rep: -10, rumors: 2, relProgress: -20 }],
       ["Esperar un poco más", 0.60, "{player} respeta tus tiempos y el vínculo se fortalece.", "El 'esperar' se interpreta como un 'no' y la relación se enfría.", { rep: 16, chem: 16, relProgress: 12 }, { chem: -10, relProgress: -12 }],
       ["Ser sincera y decir que no", 0.55, "La honestidad duele pero sienta las bases de una relación madura.", "{player} no supera la noticia y la relación se desmorona.", { rep: 18, chem: 6, relProgress: 10 }, { chem: -20, relProgress: -25 }]
+    ]
+  },
+  {
+    id: "E14",
+    title: "Embarazo no deseado",
+    img: "images/pixel/webp/event-restaurant.webp",
+    text: "El test dio positivo. No estaba en los planes. {player} reacciona como puede.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    failBreaks: true,
+    actions: [
+      ["Afrontarlo juntos", 0.55, "{player} te da la mano y juntos enfrentan la noticia con madurez.", "El miedo puede más y empiezan a echarse culpas.", { chem: 20, rep: 15, relProgress: 15 }, { chem: -15, rep: -10, relProgress: -20 }],
+      ["Ocultarlo y seguir", 0.45, "Lo mantienen en secreto y el rumor las convierte en reinas del misterio.", "Los filtran todo y el escándalo mediático destruye la confianza.", { fame: 25, rumors: 2, relProgress: 8 }, { rep: -18, chem: -12, rumors: 4, relProgress: -20 }],
+      ["Hablar con Guillote para manejarlo", 0.60, "Guillote negocia un acuerdo de confidencialidad y salen fortalecidas.", "Guillote se va de boca en un programa y el quilombo es total.", { rep: 12, contacts: 10, relProgress: 10 }, { rep: -15, rumors: 3, relProgress: -15 }]
     ]
   }
 ];

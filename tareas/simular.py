@@ -92,6 +92,11 @@ EVENTS = [
         ["Esperar un poco más", 0.60, {"rep": 16, "chem": 16, "relProgress": 12}, {"chem": -10, "relProgress": -12}],
         ["Ser sincera y decir que no", 0.55, {"rep": 18, "chem": 6, "relProgress": 10}, {"chem": -20, "relProgress": -25}],
     ]},
+    {"id": "E14", "stage": 2, "failBreaks": True, "actions": [
+        ["Afrontarlo juntos", 0.55, {"chem": 20, "rep": 15, "relProgress": 15}, {"chem": -15, "rep": -10, "relProgress": -20}],
+        ["Ocultarlo y seguir", 0.45, {"fame": 25, "rumors": 2, "relProgress": 8}, {"rep": -18, "chem": -12, "rumors": 4, "relProgress": -20}],
+        ["Hablar con Guillote para manejarlo", 0.60, {"rep": 12, "contacts": 10, "relProgress": 10}, {"rep": -15, "rumors": 3, "relProgress": -15}],
+    ]},
 ]
 
 BOOSTERS = [
