@@ -238,7 +238,7 @@ function resolve(i) {
     }
     if (g.relStage === 1) upRel("Romance");
     if (g.relStage === 2) {
-      if (g.relProgress >= 90) {
+      if (g.relProgress >= 75) {
         upRel("Noviazgo");
         g.couples++;
         g.player = null;

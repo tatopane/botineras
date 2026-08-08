@@ -164,6 +164,12 @@ function renderActions() {
   const panel = document.getElementById("actionsPanel");
   if (!btnContainer || !panel) return;
 
+  // Acciones disponibles solo desde el turno 5
+  if (g.turn < 5) {
+    btnContainer.classList.add("hidden");
+    return;
+  }
+
   btnContainer.classList.remove("hidden");
   panel.classList.add("hidden");
 
