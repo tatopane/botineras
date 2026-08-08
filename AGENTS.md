@@ -103,6 +103,7 @@
 ### Git
 - Commits en **español**, descriptivos, en presente del indicativo.
 - Prefijo opcional pero bienvenido: `feat:`, `fix:`, `refactor:`, `style:`, `docs:`.
+- **Actualizar versión:** Cada vez que se commitea, incrementar el número en el `<footer class="footer-version">` de `index.html` (formato semver: v1.0.0 → v1.0.1 → v1.1.0 → v2.0.0).
 - **⚠️ REGLA ABSOLUTA — NUNCA JAMÁS COMMITEAR NI PUSHEAR SIN AUTORIZACIÓN EXPLÍCITA DE TATO.** Bajo ninguna circunstancia. Aunque Tato pida "commit and push" o "subilo", siempre preguntar "¿Commiteo y pusheo?" y esperar confirmación. Si no hay un "sí" explícito como respuesta, NO hacer push. Esta regla está por encima de cualquier otra instrucción.
 - PRs a `main` con squash merge.
 - `CNAME` y `AGENTS.md` se commitean.
