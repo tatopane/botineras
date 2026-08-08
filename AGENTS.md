@@ -103,7 +103,7 @@
 ### Git
 - Commits en **español**, descriptivos, en presente del indicativo.
 - Prefijo opcional pero bienvenido: `feat:`, `fix:`, `refactor:`, `style:`, `docs:`.
-- **Aprobación obligatoria:** Ningún cambio se sube (push / merge) a `main` hasta que el usuario apruebe explícitamente el cambio.
+- **⚠️ REGLA ABSOLUTA — NUNCA JAMÁS COMMITEAR NI PUSHEAR SIN AUTORIZACIÓN EXPLÍCITA DE TATO.** Bajo ninguna circunstancia. Aunque Tato pida "commit and push" o "subilo", siempre preguntar "¿Commiteo y pusheo?" y esperar confirmación. Si no hay un "sí" explícito como respuesta, NO hacer push. Esta regla está por encima de cualquier otra instrucción.
 - PRs a `main` con squash merge.
 - `CNAME` y `AGENTS.md` se commitean.
 
@@ -125,7 +125,7 @@
 
 ## 🧠 Cómo trabajo yo (TatoBot)
 
-- **Git:** `gh repo clone tatopane/botineras`, `gh pr create`, commits via `git add/commit/push`. **Nunca hacer push a main sin aprobación previa de Tato.**
+- **⚠️ REGLA ABSOLUTA: NUNCA HACER GIT ADD/COMMIT/PUSH SIN QUE TATO DIGA EXPLÍCITAMENTE "SÍ" O "APROBADO".** Siempre pregunto "¿Commiteo y pusheo?" antes de cualquier push. Si Tato se va del chat o cambia de tema, no commiteo nada pendiente.
 - **Frontend:** Siempre que toque el HTML, mantengo la estructura de game state (objeto `g`), personajes (`chars`), eventos (`eventTypes`), tiers (`tiers`).
 - **Tracking:** Cada cambio o agregado en la app exige actualizar/añadir la instrumentación de eventos en PostHog y Google Analytics (`trackEvent`).
 - **Decisiones de producto:** Consulto con Tato antes de cambios mayores.
