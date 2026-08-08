@@ -82,6 +82,7 @@ const eventTypes = [
     stage: 2,
     minProgress: 76,
     maxProgress: 100,
+    failBreaks: true,
     actions: [
       ["Aceptar", 0.67, "Empieza un noviazgo confirmado.", "A los pocos días descubre que no estaban entendiendo lo mismo.", { chem: 22, rep: 12, relProgress: 25 }, { chem: -15, rep: -7, relProgress: -20 }],
       ["Pedir tiempo", 0.55, "La honestidad fortalece el vínculo.", "{player} decide seguir adelante sin vos.", { rep: 13, chem: 7, relProgress: 10 }, { chem: -12, relProgress: -15 }],
@@ -138,6 +139,7 @@ const eventTypes = [
     stage: 2,
     minProgress: 76,
     maxProgress: 100,
+    failBreaks: true,
     actions: [
       ["Perdonar y seguir", 0.40, "Te pide disculpas públicas y te regala un auto de lujo.", "Reincide a las dos semanas y la relación se rompe.", { rep: 10, chem: 12, relProgress: 5 }, { rep: -15, chem: -20, relProgress: -30 }],
       ["Terminar con dignidad", 0.85, "Salís fortalecida, con la frente en alto y respeto general.", "La separación es dolorosa y te afecta anímicamente.", { rep: 15, fame: 8, relProgress: -15 }, { rep: -10, chem: -10, relProgress: -20 }],
@@ -152,6 +154,7 @@ const eventTypes = [
     stage: 2,
     minProgress: 76,
     maxProgress: 100,
+    failBreaks: true,
     actions: [
       ["Mudarse juntos", 0.50, "La convivencia es un sueño y la relación se consolida al máximo.", "La rutina y los choques de ego arruinan la magia.", { chem: 18, relProgress: 20 }, { rep: -10, chem: -15, relProgress: -20 }],
       ["Pedir tiempo para pensarlo", 0.65, "Tu madurez le da seguridad y respeta tus tiempos.", "Lo toma como un rechazo y se enfría la pasión.", { rep: 10, relProgress: 5 }, { chem: -8, relProgress: -12 }],
@@ -166,6 +169,7 @@ const eventTypes = [
     stage: 2,
     minProgress: 76,
     maxProgress: 100,
+    failBreaks: true,
     actions: [
       ["Irse juntos a Rusia", 0.45, "Vivís como una zarina entre pieles, diamantes y amor total.", "El frío y el aislamiento destruyen el romance.", { chem: 20, relProgress: 22, fame: -10 }, { rep: -15, chem: -18, relProgress: -25 }],
       ["Intentar relación a distancia", 0.55, "Los pasajes en primera y las videollamadas mantienen la llama.", "La distancia enfría todo y se apaga el fuego.", { rep: 8, chem: 5, relProgress: 5 }, { chem: -12, relProgress: -15 }],

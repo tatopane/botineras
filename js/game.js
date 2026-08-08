@@ -254,16 +254,14 @@ function resolve(i) {
       if (g.relProgress >= 75) {
         upRel("Noviazgo");
         g.couples++;
-        g.player = null;
-        g.relProgress = 0;
-        g.relStage = 0;
-        g.usedEvents = [];
+        // La relación continúa con el mismo jugador
       } else {
         upRel("Romance confirmado");
       }
     }
   } else {
-    if (checkBreakup() || g.chem < 5 || Math.random() < 0.25) {
+    // failBreaks: eventos de stage 2 (firme) que en fallo rompen la relación
+    if (g.event.failBreaks || checkBreakup() || g.chem < 5 || Math.random() < 0.25) {
       upRel("Terminó mal");
       g.relStatus = "broken";
       g.player = null;
