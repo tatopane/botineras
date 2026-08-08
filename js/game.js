@@ -172,7 +172,9 @@ function startGame() {
     actionsUsed: {},
     boosterJustDone: false,
     currentBooster: null,
-    usedEvents: []
+    usedEvents: [],
+    eventsInRelation: 0,
+    crisisActive: false
   };
 
   Object.entries(c.bonus).forEach(([k, v]) => {
@@ -210,6 +212,8 @@ function next() {
     g.relStatus = "active";
     g.usedEvents = [];
     isNewRelation = true;
+    g.eventsInRelation = 0;
+    g.crisisActive = false;
   }
   g.relStage = getRelStage();
   g.event = pickEvent();
@@ -261,6 +265,7 @@ function resolve(i) {
   if (g.event && g.event.id && !g.usedEvents.includes(g.event.id)) {
     g.usedEvents.push(g.event.id);
   }
+  g.eventsInRelation++;
 
   if (ok) {
     if (g.relStage === 0) {
@@ -289,11 +294,48 @@ function resolve(i) {
     }
   }
 
+  // Check for relationship crisis trigger: from 5th event, if chem < 50
+  if (g.relStatus !== "broken" && g.eventsInRelation >= 5 && g.chem < 50 && !g.crisisActive) {
+    g.crisisActive = true;
+    if (typeof renderCrisis === "function") renderCrisis();
+    if (typeof upd === "function") upd();
+    return;
+  }
+
   if (g.relStatus === "broken") {
     // Mostrar pantalla de ruptura con el motivo
     if (typeof renderBreakup === "function") renderBreakup(msg);
   } else if (typeof renderResult === "function") {
     renderResult(ok, msg);
+  }
+  if (typeof upd === "function") upd();
+}
+
+function resolveCrisis(choice) {
+  g.crisisActive = false;
+  if (choice === "success") {
+    g.chem = 51;
+    const msg = `💪 Superaron la crisis de pareja. La química se renovó y están en 51%.`;
+    if (typeof trackEvent === "function") {
+      trackEvent("crisis_resolved", { outcome: "success", player: g.player });
+    }
+    if (typeof hideCrisis === "function") hideCrisis();
+    if (typeof renderResult === "function") renderResult(true, msg);
+  } else {
+    const oldPlayer = g.player;
+    if (typeof trackEvent === "function") {
+      trackEvent("crisis_resolved", { outcome: "failure", player: oldPlayer });
+    }
+    // Failure — breakup, same tier
+    g.relStatus = "broken";
+    g.player = null;
+    g.usedEvents = [];
+    g.eventsInRelation = 0;
+    g.crisisActive = false;
+    if (typeof hideCrisis === "function") hideCrisis();
+    if (typeof renderBreakup === "function") {
+      renderBreakup(`La crisis de pareja con ${oldPlayer} fue demasiado. No pudieron recomponer la relación.`);
+    }
   }
   if (typeof upd === "function") upd();
 }
@@ -314,6 +356,19 @@ function continueGame() {
   if (g.turn >= 24) {
     finish();
     return;
+  }
+
+  // Cada 2 eventos desde el 4to en adelante, oportunidad de subir de categoría
+  if (g.eventsInRelation >= 4 && g.eventsInRelation % 3 === 0 && g.tier < tiers.length - 1) {
+    const nextTier = tiers[g.tier + 1];
+    if (nextTier && score() >= nextTier.need) {
+      const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
+      g.upgradeTarget = { player: newPlayer, tierIndex: g.tier + 1, tierName: nextTier.name };
+      if (typeof renderUpgrade === "function") {
+        renderUpgrade();
+      }
+      return;
+    }
   }
 
   if (g.turnCount % 5 === 0 && !g.boosterJustDone) {
@@ -354,6 +409,36 @@ function finish() {
       final_age: g.age
     });
   }
+}
+
+function confirmUpgrade() {
+  const target = g.upgradeTarget;
+  if (!target) return;
+  // Terminar relación actual
+  upRel("Ascenso de categoría");
+  // Asignar nuevo jugador del tier superior
+  g.player = target.player;
+  g.tier = target.tierIndex;
+  g.relProgress = 20;
+  g.relStage = 0;
+  g.relStatus = "active";
+  g.usedEvents = [];
+  g.eventsInRelation = 0;
+  g.upgradeTarget = null;
+  // Mostrar intro de nueva relación
+  if (typeof hideUpgrade === "function") hideUpgrade();
+  if (typeof renderNewRelation === "function") renderNewRelation();
+  if (typeof upd === "function") upd();
+}
+
+function rejectUpgrade() {
+  // Rechazar la oportunidad, seguir con la relación actual
+  g.upgradeTarget = null;
+  if (typeof hideUpgrade === "function") hideUpgrade();
+  // Resetear contador para que no aparezca de nuevo hasta dentro de 2 eventos más
+  g.eventsInRelation = 1;
+  g.boosterJustDone = false;
+  if (typeof renderBooster === "function") renderBooster(boosters[Math.floor(Math.random() * boosters.length)]);
 }
 
 function end() {

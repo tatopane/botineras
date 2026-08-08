@@ -341,6 +341,115 @@ function hideNewRelation() {
   if (choicesEl) { choicesEl.innerHTML = ""; }
 }
 
+function renderCrisis() {
+  const breakupEl = document.getElementById("breakupBanner");
+  const boosterEl = document.getElementById("booster");
+  const resEl = document.getElementById("result");
+  const choicesEl = document.getElementById("choices");
+  const actionBtn = document.getElementById("actionBtn");
+  const sceneCard = document.querySelector(".card > .scene")?.parentElement;
+
+  if (breakupEl) breakupEl.classList.add("hidden");
+  if (boosterEl) boosterEl.classList.add("hidden");
+  if (resEl) { resEl.classList.add("hidden"); resEl.innerHTML = ""; }
+  if (actionBtn) actionBtn.classList.add("hidden");
+  if (sceneCard) sceneCard.classList.remove("booster-active");
+
+  const sceneImg = document.getElementById("scene");
+  if (sceneImg) {
+    sceneImg.src = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%234a0e1c%22/><stop offset=%22100%25%22 stop-color=%22%231a0f2e%22/></linearGradient></defs><rect fill=%22url(%23g)%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22180%22 text-anchor=%22middle%22 fill=%22%23ff6b7c%22 font-size=%2272%22 font-family=%22sans-serif%22>💥</text></svg>";
+  }
+
+  const titleEl = document.getElementById("title");
+  if (titleEl) titleEl.innerHTML = `<span class="booster-badge" style="background:#d9384a">💥 CRISIS DE PAREJA</span> ¡La relación está al borde!`;
+
+  const storyEl = document.getElementById("story");
+  if (storyEl) {
+    storyEl.textContent = `La química con ${g.player} está por los suelos (${g.chem}%). Este podría ser el final de la relación si no actúan rápido. ¿Qué hacés?`;
+  }
+
+  const mentorEl = document.getElementById("mentor");
+  if (mentorEl) mentorEl.innerHTML = "";
+
+  if (choicesEl) {
+    choicesEl.classList.remove("hidden");
+    choicesEl.innerHTML = `
+      <div class="booster-choices">
+        <button class="choice booster-btn" onclick="resolveCrisis('success')" style="border-color:#5bce8a">
+          <strong>💬 Hablarlo en serio</strong>
+          <span style="display:block;font-size:12px;color:#aaa;margin-top:4px">Sentarse a charlar sin filtros para salvar la relación.</span>
+        </button>
+        <button class="choice booster-btn secondary" onclick="resolveCrisis('failure')" style="border-color:#d9384a">
+          <strong>🚪 Separarse de una vez</strong>
+          <span style="display:block;font-size:12px;color:#aaa;margin-top:4px">Aceptar que no da para más y cortar por lo sano.</span>
+        </button>
+      </div>
+    `;
+  }
+
+  if (typeof upd === "function") upd();
+}
+
+function hideCrisis() {
+  const choicesEl = document.getElementById("choices");
+  if (choicesEl) { choicesEl.innerHTML = ""; }
+}
+
+function renderUpgrade() {
+  const target = g.upgradeTarget;
+  if (!target) return;
+  const { player: newPlayer, tierName } = target;
+  const breakupEl = document.getElementById("breakupBanner");
+  const boosterEl = document.getElementById("booster");
+  const resEl = document.getElementById("result");
+  const choicesEl = document.getElementById("choices");
+  const actionBtn = document.getElementById("actionBtn");
+  const sceneCard = document.querySelector(".card > .scene")?.parentElement;
+
+  if (breakupEl) breakupEl.classList.add("hidden");
+  if (boosterEl) boosterEl.classList.add("hidden");
+  if (resEl) { resEl.classList.add("hidden"); resEl.innerHTML = ""; }
+  if (actionBtn) actionBtn.classList.add("hidden");
+  if (sceneCard) sceneCard.classList.remove("booster-active");
+
+  const sceneImg = document.getElementById("scene");
+  if (sceneImg) {
+    sceneImg.src = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%2331102d%22/><stop offset=%22100%25%22 stop-color=%22%230a0b11%22/></linearGradient></defs><rect fill=%22url(%23g)%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22180%22 text-anchor=%22middle%22 fill=%22%23ffd166%22 font-size=%2272%22 font-family=%22sans-serif%22>⭐</text></svg>";
+  }
+
+  const titleEl = document.getElementById("title");
+  if (titleEl) titleEl.innerHTML = `<span class="booster-badge">⬆️ OPORTUNIDAD DE ASCENSO</span> ¡Nuevo pretendiente!`;
+
+  const storyEl = document.getElementById("story");
+  if (storyEl) {
+    storyEl.textContent = `Conociste a ${newPlayer}, figura de la categoría ${tierName}. Tu actual relación se terminó... ¿te cambiás a una nueva conquista de ${tierName}?`;
+  }
+
+  const mentorEl = document.getElementById("mentor");
+  if (mentorEl) mentorEl.innerHTML = "";
+
+  if (choicesEl) {
+    choicesEl.classList.remove("hidden");
+    choicesEl.innerHTML = `
+      <button class="choice" onclick="confirmUpgrade()" style="border-color:var(--gold)">
+        <strong>✅ Aceptar — Empezar con ${newPlayer}</strong>
+        <span>Dejás tu relación actual y ascendés a ${tierName}.</span>
+      </button>
+      <button class="choice secondary" onclick="rejectUpgrade()" style="background:#353847">
+        <strong>❌ Rechazar — Seguir con ${g.player}</strong>
+        <span>Preferís mantener tu relación actual.</span>
+      </button>
+    `;
+  }
+
+  if (typeof upd === "function") upd();
+}
+
+function hideUpgrade() {
+  const choicesEl = document.getElementById("choices");
+  if (choicesEl) { choicesEl.innerHTML = ""; }
+}
+
 function renderResult(ok, msg) {
   const resEl = document.getElementById("result");
   const choicesEl = document.getElementById("choices");
