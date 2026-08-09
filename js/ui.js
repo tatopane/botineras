@@ -522,7 +522,7 @@ function upd() {
     if (cRank) cRank.textContent = `${tiers[g.tier].name.toUpperCase()} — ${g.player}`;
   }
 
-  const barWidth = Math.min(100, score() / 3.6) + "%";
+  const barWidth = Math.min(100, score(g) / 3.6) + "%";
   const bar = document.getElementById("bar");
   if (bar) bar.style.width = barWidth;
   const cBar = document.getElementById("c_bar");

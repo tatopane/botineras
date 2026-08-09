@@ -98,7 +98,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 /* Booster active: reemplaza el borde de la card de escena */
 .booster-active{border-color:var(--gold)!important;box-shadow:0 0 30px rgba(255,209,102,0.25),0 16px 50px #0008!important;transition:all 0.3s ease}
 .booster-active .scene:after{background:linear-gradient(to bottom,transparent 20%,rgba(255,209,102,0.08) 50%,rgba(15,17,25,0.95) 100%)!important}
-.booster-badge{display:inline-block;font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;padding:3px 10px;border:1px solid var(--gold);border-radius:999px}
+.booster-badge{display:block;font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;padding:3px 10px;border:1px solid var(--gold);border-radius:999px;text-align:center}
 .guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
 .guide-box{background:#10121a;border:1px solid #ffffff18;border-radius:14px;padding:16px}
 .guide-box h3{color:var(--gold);margin-top:0;margin-bottom:10px;font-size:18px}
@@ -134,7 +134,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 .action-desc{font-size:12px;color:#bbb;margin:0;line-height:1.35}
 .action-exec-btn{padding:8px 12px;font-size:13px;border-radius:8px;margin-top:4px}
 .booster-card{margin:18px;padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f132e,#111422);border:2px solid var(--gold);box-shadow:0 8px 30px rgba(255,209,102,0.2);animation:fadeIn 0.3s ease}
-.booster-badge{font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.booster-badge{font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;text-align:center}
 .booster-card h2{margin:0 0 8px;font-size:24px;color:#fff}
 .booster-desc{font-size:15px;line-height:1.5;color:#e0e0e0;margin-bottom:16px}
 .booster-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -336,7 +336,7 @@ button.secondary{background:#353847}.stats{display:grid;grid-template-columns:re
 </div>
 
 <footer class="footer-version">
-  v1.0.0
+  v1.0.1
 </footer>
 
 <script src="js/data.js"></script>
