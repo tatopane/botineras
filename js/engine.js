@@ -11,12 +11,16 @@ function tierScore(g) {
 }
 
 function updateTier(g) {
+  if (g.maxTier === undefined) g.maxTier = 0;
+  let calcTier = 0;
   for (let i = tiers.length - 1; i >= 0; i--) {
     if (tierScore(g) >= tiers[i].need) {
-      g.tier = i;
+      calcTier = i;
       break;
     }
   }
+  if (calcTier > g.maxTier) g.maxTier = calcTier;
+  g.tier = g.maxTier;
 }
 
 function getRelStage(g) {
@@ -128,8 +132,18 @@ function engineResolveCrisis(g, choice) {
   return "failure";
 }
 
+function pickNewPlayer(g) {
+  if (!g.usedPlayers) g.usedPlayers = [];
+  const pool = tiers[g.tier].players;
+  const available = pool.filter(p => !g.usedPlayers.includes(p));
+  const pick = available.length > 0 ? available : pool;
+  const player = pick[Math.floor(Math.random() * pick.length)];
+  if (!g.usedPlayers.includes(player)) g.usedPlayers.push(player);
+  return player;
+}
+
 function startNewRelation(g) {
-  g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
+  g.player = pickNewPlayer(g);
   g.relProgress = 25;
   g.relStage = 0;
   g.relStatus = "active";
@@ -148,6 +162,11 @@ function checkUpgrade(g) {
   if (g.tier >= tiers.length - 1) return { ready: false };
   const nextTier = tiers[g.tier + 1];
   if (!nextTier || tierScore(g) < nextTier.need) return { ready: false };
-  const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
+  // Track used players at next tier
+  if (!g.usedPlayers) g.usedPlayers = [];
+  const pool = nextTier.players;
+  const available = pool.filter(p => !g.usedPlayers.includes(p));
+  const pick = available.length > 0 ? available : pool;
+  const newPlayer = pick[Math.floor(Math.random() * pick.length)];
   return { ready: true, nextTier: g.tier + 1, newPlayer, tierName: nextTier.name };
 }

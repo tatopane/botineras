@@ -93,6 +93,7 @@ function startGame() {
     img,
     age: 18,
     tier: 0,
+    maxTier: 0,
     turn: 0,
     turnCount: 0,
     fame: 4,
@@ -111,6 +112,7 @@ function startGame() {
     boosterJustDone: false,
     currentBooster: null,
     usedEvents: [],
+    usedPlayers: [],
     eventsInRelation: 0,
     crisisActive: false
   };
@@ -144,7 +146,7 @@ function next() {
   updateTier(g);
   let isNewRelation = false;
   if (!g.player || g.relStatus === "broken") {
-    g.player = tiers[g.tier].players[Math.floor(Math.random() * tiers[g.tier].players.length)];
+    g.player = pickNewPlayer(g);
     g.relProgress = 25;
     g.relStage = 0;
     g.relStatus = "active";
@@ -339,6 +341,8 @@ function confirmUpgrade() {
   // Asignar nuevo jugador del tier superior
   g.player = target.player;
   g.tier = target.tierIndex;
+  if (!g.usedPlayers) g.usedPlayers = [];
+  if (!g.usedPlayers.includes(g.player)) g.usedPlayers.push(g.player);
   g.relProgress = 25;
   g.relStage = 0;
   g.relStatus = "active";

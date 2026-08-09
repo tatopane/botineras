@@ -58,6 +58,7 @@ function simulateGame(seed) {
     name: char.name,
     age: 18,
     tier: 0,
+    maxTier: 0,
     turn: 0,
     turnCount: 0,
     fame: 4, rep: 6, contacts: 6, chem: 15, rumors: 0,
@@ -71,6 +72,7 @@ function simulateGame(seed) {
     boosterJustDone: false,
     currentBooster: null,
     usedEvents: [],
+    usedPlayers: [],
     eventsInRelation: 0,
     crisisActive: false,
   };
