@@ -65,9 +65,13 @@ function pickEvent(g) {
 }
 
 function canUseAction(g, id) {
+  if (typeof g === "string" && id === undefined) {
+    id = g;
+    g = typeof window !== "undefined" && window.g ? window.g : (typeof globalThis !== "undefined" && globalThis.g ? globalThis.g : {});
+  }
   const act = actions.find(a => a.id === id);
   if (!act) return false;
-  if (act.once && g.actionsUsed && g.actionsUsed[id]) return false;
+  if (act.once && g && g.actionsUsed && g.actionsUsed[id]) return false;
   return true;
 }
 

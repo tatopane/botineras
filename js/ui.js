@@ -191,7 +191,7 @@ function renderActions() {
       <p class="note" style="text-align:left;margin-bottom:12px">Podés ejecutar una jugada audaz para acelerar tu carrera o cortar de raíz.</p>
       <div class="actions-list">
         ${actions.map(act => {
-          const available = canUseAction(act.id);
+          const available = canUseAction(g, act.id);
           const desc = act.desc.replaceAll("{player}", g.player || "tu pareja");
           return `
             <div class="action-card ${available ? "" : "disabled"}">
