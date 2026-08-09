@@ -1,11 +1,11 @@
 // Botineras — Data
 const chars = [
-  { name: "Wonda Nara", trait: "Negocio y escándalo", img: "images/pixel/webp/wanda-pixel.webp", bonus: { fame: 8, rep: 4 } },
-  { name: "La China Suáres", trait: "Química explosiva", img: "images/pixel/webp/china-pixel.webp", bonus: { chem: 12, fame: 5 } },
-  { name: "Sasha Ferra", trait: "Todo se hace viral", img: "images/pixel/webp/sasha-pixel.webp", bonus: { fame: 12, contacts: 4 } },
+  { name: "Wonda Nara", trait: "Negocio y escándalo", img: "images/pixel/webp/wanda-pixel.webp", bonus: { fame: 15, rep: 5 } },
+  { name: "La China Suáres", trait: "Química explosiva", img: "images/pixel/webp/china-pixel.webp", bonus: { chem: 12, fame: 13 } },
+  { name: "Sasha Ferra", trait: "Todo se hace viral", img: "images/pixel/webp/sasha-pixel.webp", bonus: { fame: 10, contacts: 4 } },
   { name: "Bri Marcas", trait: "Acceso VIP", img: "images/pixel/webp/bri-pixel.webp", bonus: { contacts: 12, rep: 3 } },
-  { name: "Jaz Peraltaa", trait: "Carisma impredecible", img: "images/pixel/webp/jaz-pixel.webp", bonus: { chem: 8, rep: 7 } },
-  { name: "Clari Cremaschi", trait: "Las marcas la bancan", img: "images/pixel/webp/clari-pixel.webp", bonus: { rep: 10, fame: 4 } }
+  { name: "Jaz Paralta", trait: "Carisma impredecible", img: "images/pixel/webp/jaz-pixel.webp", bonus: { chem: 8, rep: 7 } },
+  { name: "Clari Crimaschi", trait: "Las marcas la bancan", img: "images/pixel/webp/clari-pixel.webp", bonus: { rep: 10, fame: 4 } }
 ];
 
 const tiers = [
@@ -20,7 +20,7 @@ const tiers = [
 const eventTypes = [
   {
     id: "E1",
-    title: "Primera salida",
+    title: "Van a un bar",
     img: "images/pixel/webp/event-bar.webp",
     text: "{player} te invita a tomar algo después del partido.",
     stage: 0,
@@ -34,7 +34,7 @@ const eventTypes = [
   },
   {
     id: "E2",
-    title: "Después del boliche",
+    title: "Salida del boliche",
     img: "images/pixel/webp/event-boliche.webp",
     text: "Salís del boliche con {player}. Afuera hay fotógrafos.",
     stage: 0,
@@ -92,9 +92,9 @@ const eventTypes = [
   {
     id: "E6",
     title: "Salida en barco",
-    img: "images/pixel/webp/event-bar.webp",
+    img: "images/pixel/webp/event-yatch.webp",
     text: "{player} te invita a dar una vuelta en su lancha.",
-    stage: 0,
+    stage: 1,
     minProgress: 0,
     maxProgress: 40,
     actions: [
@@ -106,7 +106,7 @@ const eventTypes = [
   {
     id: "E7",
     title: "Ir a su casa a escondidas",
-    img: "images/pixel/webp/event-boliche.webp",
+    img: "images/pixel/webp/event-hotel-backdoor.webp",
     text: "{player} te pide que vayas a su country sin que nadie se entere.",
     stage: 1,
     minProgress: 41,
@@ -120,7 +120,7 @@ const eventTypes = [
   {
     id: "E8",
     title: "Rumor de infidelidad",
-    img: "images/pixel/webp/event-restaurant.webp",
+    img: "images/pixel/webp/event-infidelidad.webp",
     text: "En los programas de chimentos dicen que {player} anda con otra persona.",
     stage: 1,
     minProgress: 41,
@@ -134,7 +134,7 @@ const eventTypes = [
   {
     id: "E9",
     title: "Infidelidad confirmada",
-    img: "images/pixel/webp/event-restaurant.webp",
+    img: "images/pixel/webp/event-infidelidad.webp",
     text: "Filtran chats y fotos comprometedoras de {player} con otra persona.",
     stage: 2,
     minProgress: 76,
@@ -149,7 +149,7 @@ const eventTypes = [
   {
     id: "E10",
     title: "Mudanza exprés",
-    img: "images/pixel/webp/event-viaje.webp",
+    img: "images/pixel/webp/event-mudanza.webp",
     text: "{player} te propone irte a vivir con él/ella a su mansión.",
     stage: 2,
     minProgress: 76,
@@ -164,7 +164,7 @@ const eventTypes = [
   {
     id: "E11",
     title: "Transferencia a Rusia",
-    img: "images/pixel/webp/event-viaje.webp",
+    img: "images/pixel/webp/event-rusia.webp",
     text: "A {player} le ofrecen un pase millonario a un club de Rusia.",
     stage: 2,
     minProgress: 76,
@@ -179,7 +179,7 @@ const eventTypes = [
   {
     id: "E12",
     title: "Matrimonio",
-    img: "images/pixel/webp/event-exclusividad.webp",
+    img: "images/pixel/webp/event-wedding.webp",
     text: "{player} te pidió que se case con él/ella. Vestido blanco, cura, todo.",
     stage: 2,
     minProgress: 76,
@@ -194,7 +194,7 @@ const eventTypes = [
   {
     id: "E13",
     title: "Tener hijos",
-    img: "images/pixel/webp/event-viaje.webp",
+    img: "images/pixel/webp/event-pregnant.webp",
     text: "{player} quiere hablar de formar una familia. No es una pregunta casual.",
     stage: 2,
     minProgress: 76,
@@ -208,17 +208,199 @@ const eventTypes = [
   },
   {
     id: "E14",
-    title: "Embarazo no deseado",
-    img: "images/pixel/webp/event-restaurant.webp",
+    title: "Embarazo no buscado",
+    img: "images/pixel/webp/event-pregnant.webp",
     text: "El test dio positivo. No estaba en los planes. {player} reacciona como puede.",
-    stage: 2,
-    minProgress: 76,
-    maxProgress: 100,
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
     failBreaks: true,
     actions: [
       ["Afrontarlo juntos", 0.55, "{player} te da la mano y juntos enfrentan la noticia con madurez.", "El miedo puede más y empiezan a echarse culpas.", { chem: 20, rep: 15, relProgress: 15 }, { chem: -15, rep: -10, relProgress: -20 }],
       ["Ocultarlo y seguir", 0.45, "Lo mantienen en secreto y el rumor las convierte en reinas del misterio.", "Los filtran todo y el escándalo mediático destruye la confianza.", { fame: 25, rumors: 2, relProgress: 8 }, { rep: -18, chem: -12, rumors: 4, relProgress: -20 }],
-      ["Hablar con Guillote para manejarlo", 0.60, "Guillote negocia un acuerdo de confidencialidad y salen fortalecidas.", "Guillote se va de boca en un programa y el quilombo es total.", { rep: 12, contacts: 10, relProgress: 10 }, { rep: -15, rumors: 3, relProgress: -15 }]
+      ["Hablar con Guillote para manejarlo", 0.60, "Guillote negocia un acuerdo de confidencialidad y salen fortalecidos.", "Guillote se va de boca en un programa y el quilombo es total.", { rep: 12, contacts: 10, relProgress: 10 }, { rep: -15, rumors: 3, relProgress: -15 }]
+    ]
+  },
+  {
+    id: "E15",
+    title: "El asado del plantel",
+    img: "images/pixel/webp/event-asado.webp",
+    text: "{player} te invita a un asado informal al mediodía con compañeros del equipo en una quinta.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Llevar el postre y charlar con todos", 0.70, "Te ganás la simpatía del grupo y {player} valora tu buena onda.", "Hacés un comentario desafortunado sobre el último partido y se corta el clima.", { rep: 14, contacts: 12, chem: 12, relProgress: 15 }, { rep: -6, relProgress: -6 }],
+      ["Copar los mates y quedarte a solas con él", 0.65, "Pasan la tarde entre risas, anécdotas íntimas y mucha química.", "Se pone a jugar al truco con los pibes y te deja colgada toda la tarde.", { chem: 18, rep: 10, relProgress: 18 }, { chem: -8, relProgress: -8 }],
+      ["Caer con dos amigas influencers", 0.48, "El asado se vuelve fiesta viral y sos el centro de atención de todos.", "Una de tus amigas sube historias indiscretas y el DT llama para putear.", { fame: 20, contacts: 14, chem: 10, relProgress: 12 }, { rep: -10, rumors: 2, relProgress: -12 }]
+    ]
+  },
+  {
+    id: "E16",
+    title: "Invitación al palco VIP",
+    img: "images/pixel/webp/event-estadio.webp",
+    text: "{player} te deja dos accesos exclusivos en el palco del estadio para verlo jugar el clásico.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Ir con look sobrio y perfil bajo", 0.72, "La prensa no te quema y {player} te agradece la discreción al salir.", "Te aburrís en el palco y las cámaras captan tus gestos de disgusto.", { rep: 16, chem: 14, relProgress: 16 }, { chem: -5, relProgress: -6 }],
+      ["Gritar los goles con outfit de marca", 0.54, "La transmisión oficial te enfoca varias veces y explotan tus redes sociales.", "Te enfocan justo bostezando en una jugada clave: meme nacional instantáneo.", { fame: 22, chem: 12, rumors: 1, relProgress: 14 }, { rep: -8, relProgress: -8 }],
+      ["Hacer sociales con dirigentes y sponsors", 0.62, "Pegás contactos de primer nivel corporativo para futuros contratos.", "{player} siente que fuiste a hacer negocios y no a verlo a él en la cancha.", { contacts: 18, rep: 8, relProgress: 10 }, { chem: -10, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E17",
+    title: "Fueguito a las 3 AM",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "{player} te reacciona con tres fueguitos a una historia en bikini en la madrugada.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Clavarle el visto hasta la tarde", 0.68, "Hacerte desear funciona: te manda un mensaje buscando charla en serio.", "Piensa que no hay interés mutuo y se va a chamuyar a otra por DM.", { rep: 14, chem: 16, relProgress: 15 }, { chem: -8, relProgress: -8 }],
+      ["Responderle con una selfie al instante", 0.50, "El ida y vuelta nocturno enciende la química al máximo.", "Te responde con un sticker genérico y te deja pagando toda la noche.", { chem: 22, fame: 10, relProgress: 18 }, { chem: -8, rep: -6, relProgress: -10 }],
+      ["Subir captura tapándole el nombre", 0.52, "El misterio explota en redes y todos intentan adivinar quién es el jugador.", "Se reconoce su foto de perfil pixelada y se enoja por ventilar el chat privado.", { fame: 18, rumors: 1, chem: 10, relProgress: 12 }, { rep: -10, rumors: 2, relProgress: -12 }]
+    ]
+  },
+  {
+    id: "E18",
+    title: "Aparición en el stream",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "{player} está prendiendo directo en Twitch con amigos y te insinúa que te sumes a la llamada.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Sumarte con carisma y chistes", 0.60, "El chat enloquece con el shippeo en vivo y sumás miles de seguidores.", "Hacés un comentario desafortunado y te clipéan en TikTok para la burla.", { fame: 22, chem: 14, relProgress: 16 }, { rep: -10, rumors: 2, relProgress: -10 }],
+      ["Pasar por atrás 'sin querer' bien producida", 0.65, "El chat lo nota al instante; misterio, glamour y elegancia total.", "Tropezás con los cables y volteás la luz del setup en plena transmisión.", { fame: 16, rep: 14, relProgress: 12 }, { rep: -6, chem: -6, relProgress: -8 }],
+      ["Rechazar el stream y pedir llamada privada", 0.70, "Corta el stream temprano para hablar con vos a solas toda la noche.", "Prefiere seguir jugando con la comunidad y se olvida de escribirte.", { chem: 18, rep: 12, relProgress: 16 }, { chem: -8, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E19",
+    title: "Cita incógnita en Puerto Madero",
+    img: "images/pixel/webp/event-restaurant.webp",
+    text: "{player} te propone una merienda tranquila en una terraza privada para conocerse lejos de la noche.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Charla íntima sobre proyectos de vida", 0.75, "Conectan desde un lugar genuino y la química entre los dos vuela.", "La conversación se vuelve un interrogatorio denso y aburrido.", { chem: 16, rep: 16, relProgress: 18 }, { chem: -6, relProgress: -6 }],
+      ["Foto estética con el reloj de él asomando", 0.55, "En redes reconocen su reloj de lujo y se dispara tu cotización mediática.", "{player} se da cuenta del encuadre forzado y te pide que bajes la foto.", { fame: 20, rumors: 1, chem: 12, relProgress: 14 }, { rep: -10, chem: -8, relProgress: -10 }],
+      ["Llevarle un detalle personalizado", 0.62, "El gesto lo descoloca para bien y queda completamente fascinado.", "El regalo le parece exagerado e invasivo para una primera salida.", { chem: 18, contacts: 10, relProgress: 16 }, { rep: -6, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E20",
+    title: "El after clandestino",
+    img: "images/pixel/webp/event-boliche.webp",
+    text: "Cierra el boliche y {player} te dice de seguirla en un piso exclusivo con DJ privado en Palermo.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Bailar pegados hasta las 9 AM", 0.60, "La química explota en la pista y terminan desayunando juntos al sol.", "El cansancio acumulado les juega en contra y terminan discutiendo.", { chem: 22, fame: 10, relProgress: 18 }, { chem: -8, relProgress: -8 }],
+      ["Irte a dormir temprano marcando distancia", 0.70, "Marcás territorio y estatus; te busca desesperado al día siguiente.", "Se queda de joda con su grupo de amigos y se olvida de tu existencia.", { rep: 16, chem: 14, relProgress: 15 }, { chem: -6, relProgress: -6 }],
+      ["Copar la música y manejar la fiesta", 0.50, "Sos el alma del after y pegás la mejor onda con todo su círculo íntimo.", "Se arma bardo con los vecinos, cae la policía y salís filmada en Crónica.", { contacts: 16, fame: 16, chem: 12, relProgress: 14 }, { rep: -14, rumors: 3, relProgress: -14 }]
+    ]
+  },
+  {
+    id: "E21",
+    title: "Escapada secreta a Miami",
+    img: "images/pixel/webp/event-shopping.webp",
+    text: "{player} te saca pasajes en primera clase para pasar 4 días a puro sol en un hotel 5 estrellas en South Beach.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Bikini diminuta y parador VIP", 0.58, "Los paparazzis internacionales te sacan fotos soñadas; tapa de revista.", "Te persiguen hasta la carpa y {player} se enoja por el asedio mediático.", { fame: 25, chem: 18, rumors: 1, relProgress: 18 }, { rep: -10, chem: -8, relProgress: -10 }],
+      ["Quedarse encerrados en la suite presidencial", 0.75, "Desconexión total, mimos y romance al 100% frente al mar.", "Se la pasa jugando a la Play con amigos a distancia y te aburrís.", { chem: 22, rep: 16, relProgress: 20 }, { chem: -8, relProgress: -8 }],
+      ["Cenar con celebridades en el parador", 0.65, "Pegás vínculos comerciales y contactos de primer nivel en Miami.", "{player} se siente ignorado en la mesa y se pone celoso de los invitados.", { contacts: 20, fame: 12, relProgress: 14 }, { chem: -10, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E22",
+    title: "La 4x4 con moño de regalo",
+    img: "images/pixel/webp/event-suv.webp",
+    text: "{player} cae a tu cumpleaños con una camioneta importada de lujo estacionada en la puerta con un moño gigante.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Aceptar emocionada y subir video", 0.60, "El video rompe récords de likes y el gesto confirma que va en serio.", "En redes te tildan de interesada y te llenan de comentarios negativos.", { fame: 26, chem: 18, relProgress: 18 }, { rep: -12, rumors: 2, relProgress: -8 }],
+      ["Exigir que los papeles salgan a tu nombre", 0.55, "Visión empresarial impecable: {player} respeta tu carácter firme.", "Lo toma como una actitud fría y calculadora; se tensa todo.", { rep: 20, contacts: 14, relProgress: 16 }, { chem: -12, relProgress: -12 }],
+      ["Agradecer pero pedir algo más íntimo", 0.70, "Valora tu sencillez y madurez; se enamora todavía más de vos.", "Siente que rechazaste su gran sorpresa y se ofende.", { rep: 18, chem: 16, relProgress: 16 }, { chem: -8, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E23",
+    title: "Tatuaje de la discordia",
+    img: "images/pixel/webp/event-tatoo.webp",
+    text: "En una noche apasionada, {player} te propone ir a un estudio top a tatuarse algo juntos en la piel.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Tatuarse sus iniciales en el cuello", 0.50, "La locura de amor los une con una pasión desmedida.", "El tatuador filtra la foto y la prensa se burla del diseño.", { chem: 26, fame: 16, relProgress: 20 }, { rep: -10, rumors: 2, relProgress: -10 }],
+      ["Proponer un símbolo minimalista", 0.72, "El detalle queda fino, cómplice y sin quemarse públicamente.", "Le parece poco jugado y duda de tu compromiso sentimental.", { rep: 18, chem: 16, relProgress: 16 }, { chem: -6, relProgress: -6 }],
+      ["Hacerte la dormida para zafar del turno", 0.65, "Evitás una marca permanente y al otro día se le pasa la idea.", "Descubre que te escapaste a propósito y te acusa de no jugártela.", { rep: 14, relProgress: 6 }, { chem: -10, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E24",
+    title: "Infiltrada en la concentración",
+    img: "images/pixel/webp/event-hotel-backdoor.webp",
+    text: "{player} te pide que entres a escondidas a su habitación de hotel la noche previa al partido.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Entrar con gorra y camperón del club", 0.48, "La adrenalina prohibida enciende el romance como nunca.", "El cuerpo técnico te descubre en el pasillo: escándalo en el club.", { chem: 24, fame: 12, relProgress: 18 }, { rep: -16, rumors: 3, relProgress: -15 }],
+      ["Negarte para cuidar su rendimiento", 0.75, "Al otro día la rompe en la cancha y te dedica el gol del triunfo.", "Se frustra, juega mal y te echa la culpa indirectamente.", { rep: 18, chem: 16, relProgress: 16 }, { chem: -8, relProgress: -8 }],
+      ["Pedirle a Guillote que gestione el pase", 0.62, "Guillote arregla con el conserje y entrás como una reina por cocina.", "Guillote pide canje con el hotel y se entera toda la prensa.", { contacts: 16, chem: 16, relProgress: 15 }, { rep: -8, rumors: 2, relProgress: -10 }]
+    ]
+  },
+  {
+    id: "E25",
+    title: "Móvil sorpresa de la tele",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Salís de la peluquería y te acorralan cronistas de chimentos en vivo con cámara prendida preguntando por {player}.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Tirar sonrisitas y frases enigmáticas", 0.68, "Manejás los tiempos de la tele a la perfección; rating por las nubes.", "Se te escapa un dato de más y desatás una polémica innecesaria.", { fame: 24, rep: 14, chem: 12, relProgress: 16 }, { rep: -8, rumors: 2, relProgress: -8 }],
+      ["Desmentir todo: 'Somos solo amigos'", 0.60, "Cuidás la privacidad del vínculo con clase y prudencia absoluta.", "{player} siente que te avergonzás de él y se distancia dolido.", { rep: 18, chem: 10, relProgress: 14 }, { chem: -10, relProgress: -10 }],
+      ["Apurar el paso tapándote con la cartera", 0.55, "Look de diva inalcanzable; la foto es tendencia en Twitter.", "Tropezás en el cordón y quedás como meme del año en redes.", { fame: 18, rep: 10, relProgress: 10 }, { rep: -12, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E26",
+    title: "Ataque furioso de la ex",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "La ex de {player} sube indirectas venenosas a redes diciendo que te metiste en el medio de su relación.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Subir foto desayunando juntos", 0.55, "Mojada de oreja con estilo; {player} te banca públicamente.", "Se arma una guerra mediática interminable de chats cruzados.", { fame: 22, chem: 18, relProgress: 16 }, { rep: -12, rumors: 3, relProgress: -12 }],
+      ["Meter bozal legal con tus abogados", 0.75, "Demostrás poder, categoría y la silenciás al instante.", "La cautelar se filtra y la gente se pone del lado de la ex.", { rep: 20, contacts: 16, relProgress: 15 }, { rep: -8, rumors: 1, relProgress: -6 }],
+      ["Llamar a {player} para que ponga límites", 0.65, "{player} saca un comunicado aclarando todo y protegiéndote.", "{player} esquiva el conflicto y te pide que no te metas.", { chem: 18, rep: 16, relProgress: 18 }, { chem: -10, relProgress: -10 }]
+    ]
+  },
+  {
+    id: "E27",
+    title: "Tarde de shopping de lujo",
+    img: "images/pixel/webp/event-shopping.webp",
+    text: "{player} te acompaña a un shopping exclusivo y te da su tarjeta sin límite para renovar el guardarropa.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Llenar el baúl con marcas importadas", 0.60, "Salís cargada de bolsas de diseño y {player} se enorgullece de verte espléndida.", "En la caja salta un rebote de la tarjeta y el papelón queda grabado por curiosos.", { fame: 24, chem: 18, relProgress: 18 }, { rep: -10, rumors: 2, relProgress: -8 }],
+      ["Elegir un solo look sofisticado", 0.75, "Tu buen gusto y moderación lo deslumbran; quedás como una dama refinada.", "Le parece que fuiste demasiado tímida y que no aprovechaste su regalo.", { rep: 20, chem: 16, relProgress: 16 }, { chem: -8, relProgress: -6 }],
+      ["Comprarle un regalo de autor a él", 0.68, "El gesto recíproco lo enamora por completo; destaca que no sos como las demás.", "La prenda elegida no le gusta nada y el momento se vuelve incómodo.", { chem: 20, contacts: 12, relProgress: 18 }, { rep: -6, relProgress: -8 }]
     ]
   }
 ];
