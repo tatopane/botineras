@@ -559,11 +559,24 @@ function shareWhatsApp() {
     `❤️ Noviazgos: ${g.couples}\n\n` +
     `Probá tu carrera de botinera: ${shareUrl}`;
 
+  const finalTotalScore = typeof score === "function" ? score(g) : ((g.fame || 0) + (g.rep || 0) + (g.contacts || 0) + (g.chem || 0) - (g.rumors || 0) * 5);
+  const finalTierScore = typeof tierScore === "function" ? tierScore(g) : ((g.fame || 0) + (g.rep || 0) + (g.contacts || 0) - (g.rumors || 0) * 5);
+
   if (typeof trackEvent === "function") {
     trackEvent("click_share_whatsapp", {
       final_title: finalTitle,
       final_tier: tierName,
+      final_tier_index: g.tier,
       character_name: g.name,
+      total_score: finalTotalScore,
+      tier_score: finalTierScore,
+      fame: g.fame ?? 0,
+      rep: g.rep ?? 0,
+      contacts: g.contacts ?? 0,
+      chem: g.chem ?? 0,
+      rumors: g.rumors ?? 0,
+      couples: g.couples ?? 0,
+      total_relations: g.relations ? g.relations.length : 0,
       final_age: g.age,
       utm_source: "whatsapp"
     });

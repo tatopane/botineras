@@ -50,7 +50,7 @@ function useSeededRandom(seed) {
 }
 
 // ─── Simulación ─────────────────────────────────────────────────────
-function simulateGame(seed) {
+function simulateGame(seed, acceptRate = 0.95) {
   useSeededRandom(seed);
 
   const char = chars[Math.floor(Math.random() * chars.length)];
@@ -106,26 +106,21 @@ function simulateGame(seed) {
         crisisFailures++;
         eventCountPerRel.push(eventsInCurrentRel);
         eventsInCurrentRel = 0;
+        startNewRelation(g);
+        g.event = pickEvent(g);
       }
       g.turn++;
       g.turnCount++;
       if (g.turn >= 24) break;
-      if (result !== 'success') {
-        startNewRelation(g);
-        g.event = pickEvent(g);
-        continue;
-      }
+      continue;
     }
 
-    // ── Breakup → nueva relación ──
+    // ── Breakup previa → inicializar nueva relación para el turno actual ──
     if (g.relStatus === 'broken') {
       eventCountPerRel.push(eventsInCurrentRel);
       eventsInCurrentRel = 0;
       startNewRelation(g);
       g.event = pickEvent(g);
-      g.turn++;
-      g.turnCount++;
-      continue;
     }
 
     // ── Resolver evento ──
@@ -135,21 +130,17 @@ function simulateGame(seed) {
     totalEvents++;
     eventsInCurrentRel++;
 
-    if (result.crisis) continue;    // la crisis se maneja arriba
-    if (result.broke) {            // breakup ya setea relStatus
-      g.turn++;
-      g.turnCount++;
-      continue;
-    }
-
     g.turn++;
     g.turnCount++;
     if (g.turn >= 24) break;
 
+    if (result.crisis) continue;    // la crisis se resolverá al inicio del próximo turno
+    if (result.broke) continue;     // la nueva relación se iniciará al comienzo del próximo turno
+
     // ── Upgrade (oportunidad de ascenso) ──
     const upgrade = checkUpgrade(g);
     if (upgrade.ready) {
-      if (Math.random() < 0.5) {
+      if (Math.random() < acceptRate) {
         upgradeTaken++;
         g.tier = upgrade.nextTier;
         eventCountPerRel.push(eventsInCurrentRel);
@@ -170,15 +161,7 @@ function simulateGame(seed) {
       const ok = Math.random() < opt.rate;
       const eff = ok ? opt.reward : opt.fail;
       applyEffects(g, eff);
-      if (checkBreakup(g)) {
-        eventCountPerRel.push(eventsInCurrentRel);
-        eventsInCurrentRel = 0;
-        g.turn++;
-        g.turnCount++;
-        startNewRelation(g);
-        g.event = pickEvent(g);
-        continue;
-      }
+      checkBreakup(g);
     } else {
       g.boosterJustDone = false;
     }
@@ -209,10 +192,10 @@ function simulateGame(seed) {
   };
 }
 
-function runSimulations(n = 1000) {
+function runSimulations(n = 1000, acceptRate = 0.95) {
   const stats = [];
   for (let i = 0; i < n; i++) {
-    stats.push(simulateGame(i));
+    stats.push(simulateGame(i, acceptRate));
   }
   return stats;
 }
@@ -297,10 +280,9 @@ function printReport(stats) {
 
 // ─── CLI ────────────────────────────────────────────────────────────
 const n = parseInt(process.argv[2]) || 500;
-const extra = process.argv.slice(3);
-const verbose = extra.includes('-v') || extra.includes('--verbose');
+const acceptRate = process.argv[3] && !isNaN(parseFloat(process.argv[3])) ? parseFloat(process.argv[3]) : 0.95;
 
-console.log(`Simulando ${n} partidas usando engine.js...`);
+console.log(`Simulando ${n} partidas usando engine.js (tasa de aceptación de ascensos: ${(acceptRate * 100).toFixed(0)}%)...`);
 console.log(`(incluye bonuses por stats en la tasa de éxito de eventos)\n`);
-const stats = runSimulations(n);
+const stats = runSimulations(n, acceptRate);
 printReport(stats);

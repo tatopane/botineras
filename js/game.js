@@ -317,16 +317,25 @@ function finish() {
       `⭐ Fama: ${g.fame} · 🧠 Reputación: ${g.rep} · 🤝 Contactos: ${g.contacts}<br>` +
       `🔥 Química: ${g.chem} · 💬 Rumores: ${g.rumors} · ❤️ Noviazgos: ${g.couples}`;
   }
+
+  const finalTotalScore = typeof score === "function" ? score(g) : ((g.fame || 0) + (g.rep || 0) + (g.contacts || 0) + (g.chem || 0) - (g.rumors || 0) * 5);
+  const finalTierScore = typeof tierScore === "function" ? tierScore(g) : ((g.fame || 0) + (g.rep || 0) + (g.contacts || 0) - (g.rumors || 0) * 5);
+
   if (typeof trackEvent === "function") {
     trackEvent("game_finish", {
+      character_name: g.name,
       final_title: finalTitle,
       final_tier: tiers[g.tier].name,
-      total_couples: g.couples,
-      total_fame: g.fame,
-      total_rep: g.rep,
-      total_contacts: g.contacts,
-      total_chem: g.chem,
-      total_rumors: g.rumors,
+      final_tier_index: g.tier,
+      total_score: finalTotalScore,
+      tier_score: finalTierScore,
+      fame: g.fame ?? 0,
+      rep: g.rep ?? 0,
+      contacts: g.contacts ?? 0,
+      chem: g.chem ?? 0,
+      rumors: g.rumors ?? 0,
+      couples: g.couples ?? 0,
+      total_relations: g.relations ? g.relations.length : 0,
       final_age: g.age
     });
   }
