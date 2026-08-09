@@ -308,7 +308,7 @@ const eventTypes = [
   {
     id: "E21",
     title: "Escapada secreta a Miami",
-    img: "images/pixel/webp/event-shopping.webp",
+    img: "images/pixel/webp/event-viaje.webp",
     text: "{player} te saca pasajes en primera clase para pasar 4 días a puro sol en un hotel 5 estrellas en South Beach.",
     stage: 1,
     minProgress: 41,
