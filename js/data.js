@@ -456,7 +456,9 @@ const boosters = [
       reward: { chem: 25, fame: 18, relProgress: 15 },
       fail: { rep: -20, rumors: 5, relProgress: -10 },
       msgSuccess: "La experiencia te conecta y te llena de energía positiva.",
-      msgFail: "El viaje te sienta mal y salís desorientada en las noticias."
+      msgFail: "El viaje te sienta mal y salís desorientada en las noticias.",
+      ctxSuccess: "Guillote comenta: «Esa conexión espiritual te va a salir más cara que un posoperatorio.»",
+      ctxFail: "Crónica titula: «Botinera alucina y confunde un eucalipto con su ex.»"
     },
     optionB: {
       text: "No ir",
@@ -464,7 +466,9 @@ const boosters = [
       reward: { rep: 5, relProgress: 2 },
       fail: { rep: -20, rumors: 5, relProgress: -10 },
       msgSuccess: "Decidís quedarte en casa descansando tranquila.",
-      msgFail: "Tu amiga se ofende y filtra que la dejaste plantada."
+      msgFail: "Tu amiga se ofende y filtra que la dejaste plantada.",
+      ctxSuccess: "Guillote asiente: «A veces no hacer nada también es una decisión estratégica.»",
+      ctxFail: "La amiga vende el chat a LAM y te bautizan «La plantadora serial.»"
     }
   },
   {
@@ -477,7 +481,9 @@ const boosters = [
       reward: { fame: 20, relProgress: 5 },
       fail: { rep: -15, relProgress: -10 },
       msgSuccess: "El cambio queda impecable y todos halagan tu nuevo look.",
-      msgFail: "El posoperatorio se complica y te saca de circulación."
+      msgFail: "El posoperatorio se complica y te saca de circulación.",
+      ctxSuccess: "Los cirujanos te ponen de ejemplo… y las rivales de agenda.",
+      ctxFail: "Los memes te comparan con un globo inflable en pleno rebote."
     },
     optionB: {
       text: "No hacerse nada",
@@ -485,7 +491,9 @@ const boosters = [
       reward: { rep: 8, relProgress: 2 },
       fail: { rep: -15, relProgress: -10 },
       msgSuccess: "Apostás a tu belleza natural y la gente lo valora.",
-      msgFail: "El cirujano despechado habla de tus consultas en la tele."
+      msgFail: "El cirujano despechado habla de tus consultas en la tele.",
+      ctxSuccess: "Guillote: «Lo natural siempre gana… o al menos no se desinfla.»",
+      ctxFail: "El cirujano filtró audio: «Vino, preguntó, no pagó, se fue.»"
     }
   },
   {
@@ -498,7 +506,9 @@ const boosters = [
       reward: { rep: 10, chem: 5, relProgress: 8 },
       fail: { fame: -10, relProgress: -5 },
       msgSuccess: "Tu piel luce radiante y deslumbrás en la próxima cena.",
-      msgFail: "Te da una leve alergia que te hace suspender planes."
+      msgFail: "Te da una leve alergia que te hace suspender planes.",
+      ctxSuccess: "Tu skincare routine ya es tendencia en TikTok.",
+      ctxFail: "Parecés un tomate cherry en la cena con {player}."
     },
     optionB: {
       text: "Rechazar la propuesta",
@@ -506,7 +516,9 @@ const boosters = [
       reward: { rep: 3, relProgress: 1 },
       fail: { fame: -10, relProgress: -5 },
       msgSuccess: "Agradecés con educación y mantenés tu agenda libre.",
-      msgFail: "La marca dice que sos poco accesible para eventos."
+      msgFail: "La marca dice que sos poco accesible para eventos.",
+      ctxSuccess: "Guillote: «La exclusividad también es una marca registrada.»",
+      ctxFail: "La marca te pone en la lista negra de influencers difíciles."
     }
   },
   {
@@ -519,7 +531,9 @@ const boosters = [
       reward: { rep: 10, contacts: 8, relProgress: 5 },
       fail: { chem: -5, relProgress: -3 },
       msgSuccess: "Tu pronunciación deslumbra en entrevistas internacionales.",
-      msgFail: "Los horarios del curso le quitan tiempo a tus citas con {player}."
+      msgFail: "Los horarios del curso le quitan tiempo a tus citas con {player}.",
+      ctxSuccess: "Guillote: «Ahora podés pelearte con {player} en dos idiomas.»",
+      ctxFail: "{player} se queja: «Preferiría que aprendas a cocinar, no a declamar.»"
     },
     optionB: {
       text: "No anotarse",
@@ -527,7 +541,9 @@ const boosters = [
       reward: { fame: 4, relProgress: 1 },
       fail: { chem: -5, relProgress: -3 },
       msgSuccess: "Seguís manejándote con tu simpatía y carisma natural.",
-      msgFail: "Cometés un error de traducción en una conferencia."
+      msgFail: "Cometés un error de traducción en una conferencia.",
+      ctxSuccess: "Guillote: «El carisma tapa cualquier error de pronunciación.»",
+      ctxFail: "El blooper se vuelve viral y te convierten en meme internacional."
     }
   },
   {
@@ -540,7 +556,9 @@ const boosters = [
       reward: { fame: 40, contacts: 15, relProgress: 3 },
       fail: { rep: -40, relProgress: -15 },
       msgSuccess: "La campaña es un boom viral y facturás en dólares.",
-      msgFail: "La moneda cae a cero y te denuncian en redes por estafa."
+      msgFail: "La moneda cae a cero y te denuncian en redes por estafa.",
+      ctxSuccess: "Guillote: «Comprate algo lindo antes de que el fisco pregunte de dónde salió.»",
+      ctxFail: "El token se llama «BotiCoin» y ya es un chiste nacional en los programas de chimentos."
     },
     optionB: {
       text: "No promocionar",
@@ -548,7 +566,9 @@ const boosters = [
       reward: { rep: 15, relProgress: 2 },
       fail: { rep: -40, relProgress: -15 },
       msgSuccess: "Evitás el riesgo y tu credibilidad queda intacta.",
-      msgFail: "Filtran chats diciendo que pedías cifras exorbitantes."
+      msgFail: "Filtran chats diciendo que pedías cifras exorbitantes.",
+      ctxSuccess: "Guillote: «La reputación no se negocia ni en pesos ni en crypto.»",
+      ctxFail: "Filtran un audio: «Quería 50 mil dólares, no un canje en criptomonedas.»"
     }
   },
   {
@@ -561,7 +581,9 @@ const boosters = [
       reward: { fame: 30, relProgress: 3 },
       fail: { rep: -25, relProgress: -8 },
       msgSuccess: "Tus números vuelan y atraés nuevos sponsors de inmediato.",
-      msgFail: "Cuentas bot te dejan comentarios sospechosos y te descubren."
+      msgFail: "Cuentas bot te dejan comentarios sospechosos y te descubren.",
+      ctxSuccess: "Guillote: «Comprados o no, los números mandan en esta industria.»",
+      ctxFail: "Los bots te escriben en coreano y nadie entiende nada."
     },
     optionB: {
       text: "Crecer orgánico",
@@ -569,7 +591,9 @@ const boosters = [
       reward: { rep: 10, relProgress: 2 },
       fail: { rep: -25, relProgress: -8 },
       msgSuccess: "Tu comunidad real te apoya con engagement genuino.",
-      msgFail: "Tus métricas se estancan temporalmente frente a tus rivales."
+      msgFail: "Tus métricas se estancan temporalmente frente a tus rivales.",
+      ctxSuccess: "Guillote: «El engagement real no se compra, se conquista con carisma.»",
+      ctxFail: "Tu competencia te pasa por todos los indicadores mientras vos tomas mate."
     }
   },
   {
@@ -582,7 +606,9 @@ const boosters = [
       reward: { chem: 8, relProgress: 5 },
       fail: { rep: -5, relProgress: -3 },
       msgSuccess: "Las fotos de la campaña son elegantes y suman prestigio.",
-      msgFail: "La crema mancha la ropa de {player} y se arma discusión."
+      msgFail: "La crema mancha la ropa de {player} y se arma discusión.",
+      ctxSuccess: "Guillote: «Esa crema te va a abrir más puertas que un título de propiedad.»",
+      ctxFail: "{player} se manchó el traje nuevo y te hizo dormir en el sillón."
     },
     optionB: {
       text: "Declinar con respeto",
@@ -590,7 +616,9 @@ const boosters = [
       reward: { rep: 5, relProgress: 1 },
       fail: { rep: -5, relProgress: -3 },
       msgSuccess: "Elegís exclusividad y cuidás tus colaboraciones.",
-      msgFail: "La marca contrata a tu rival directa con gran éxito."
+      msgFail: "La marca contrata a tu rival directa con gran éxito.",
+      ctxSuccess: "Guillote: «Saber decir que no también es glamour, no lo hace cualquiera.»",
+      ctxFail: "Tu rival factura en dólares mientras vos mirás la promo desde el living."
     }
   },
   {
@@ -603,7 +631,9 @@ const boosters = [
       reward: { fame: 16, contacts: 10, relProgress: 3 },
       fail: { rep: -15, relProgress: -5 },
       msgSuccess: "Tu respuesta es tan filosa que todos te aplauden en redes.",
-      msgFail: "Quedás metida en un barro mediático poco elegante."
+      msgFail: "Quedás metida en un barro mediático poco elegante.",
+      ctxSuccess: "Guillote: «Esa respuesta fue más filosa que un cuchillo de cocina. Te felicito.»",
+      ctxFail: "El programa te invita todas las semanas… para reírse de vos en vivo."
     },
     optionB: {
       text: "Ignorar por completo",
@@ -611,7 +641,9 @@ const boosters = [
       reward: { rep: 10, relProgress: 2 },
       fail: { rep: -15, relProgress: -5 },
       msgSuccess: "El silencio marca categoría y quedás como una dama.",
-      msgFail: "Dicen que te achicaste y no tenías respuesta."
+      msgFail: "Dicen que te achicaste y no tenías respuesta.",
+      ctxSuccess: "Guillote: «El silencio bien usado vale más que mil insultos mal dados.»",
+      ctxFail: "Tu rival saca un tema musical y ponen velas en las redes por vos."
     }
   }
 ];

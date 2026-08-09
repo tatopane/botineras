@@ -103,10 +103,10 @@ function renderScene() {
   if (sceneImg) sceneImg.src = g.event.img;
 
   const titleEl = document.getElementById("title");
-  if (titleEl) titleEl.textContent = g.event.title;
+  if (titleEl) titleEl.textContent = g.event.title.replaceAll("{player}", g.player || "tu pareja");
 
   const storyEl = document.getElementById("story");
-  if (storyEl) storyEl.textContent = g.event.text.replaceAll("{player}", g.player);
+  if (storyEl) storyEl.textContent = g.event.text.replaceAll("{player}", g.player || "tu pareja");
 
   const mentorEl = document.getElementById("mentor");
   if (mentorEl) {
@@ -148,7 +148,7 @@ function renderChoices() {
   choicesEl.classList.remove("hidden");
   choicesEl.innerHTML = g.event.actions.map((a, i) => `
     <button class="choice" onclick="resolve(${i})">
-      <strong>${a[0]}</strong>
+      <strong>${a[0].replaceAll("{player}", g.player || "tu pareja")}</strong>
       <span>Puede avanzar la relación o hacerla retroceder.</span>
     </button>
   `).join("");
@@ -427,7 +427,7 @@ function renderUpgrade() {
 
   const storyEl = document.getElementById("story");
   if (storyEl) {
-    storyEl.textContent = `Conociste a ${newPlayer}, figura de la categoría ${tierName}. Tu actual relación se terminó... ¿te cambiás a una nueva conquista de ${tierName}?`;
+    storyEl.textContent = `Apareció una oportunidad con ${newPlayer}, figura de la categoría ${tierName}. ¿Dejás a ${g.player || "tu pareja"} para subir a ${tierName}?`;
   }
 
   const mentorEl = document.getElementById("mentor");
@@ -441,7 +441,7 @@ function renderUpgrade() {
         <span>Dejás tu relación actual y ascendés a ${tierName}.</span>
       </button>
       <button class="choice secondary" onclick="rejectUpgrade()" style="background:#353847">
-        <strong>❌ Rechazar — Seguir con ${g.player}</strong>
+        <strong>❌ Rechazar — Seguir con ${g.player || "tu pareja"}</strong>
         <span>Preferís mantener tu relación actual.</span>
       </button>
     `;

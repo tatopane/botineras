@@ -20,7 +20,7 @@ function updateTier(g) {
     }
   }
   if (calcTier > g.maxTier) g.maxTier = calcTier;
-  g.tier = g.maxTier;
+  if (g.tier === undefined) g.tier = 0;
 }
 
 function getRelStage(g) {
@@ -90,7 +90,7 @@ function resolveEvent(g, actionIndex) {
     - Math.min(0.1, (g.rumors || 0) * 0.02);
   const ok = Math.random() < rate;
   const eff = ok ? a[4] : a[5];
-  const msg = (ok ? a[2] : a[3]).replaceAll("{player}", g.player);
+  const msg = (ok ? a[2] : a[3]).replaceAll("{player}", g.player || "tu pareja");
 
   applyEffects(g, eff);
 
@@ -161,8 +161,8 @@ function startNewRelation(g) {
  * Returns { ready, nextTier, newPlayer } or { ready: false }.
  */
 function checkUpgrade(g) {
-  if (g.eventsInRelation < 4) return { ready: false };
-  if ((g.eventsInRelation - 4) % 3 !== 0) return { ready: false };
+  if (!g.eventsInRelation || g.eventsInRelation <= 3) return { ready: false };
+  if ((g.eventsInRelation - 4) % 2 !== 0) return { ready: false };
   if (g.tier >= tiers.length - 1) return { ready: false };
   const nextTier = tiers[g.tier + 1];
   if (!nextTier || tierScore(g) < nextTier.need) return { ready: false };

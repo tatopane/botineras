@@ -63,6 +63,8 @@ function triggerBooster(boosterId, choice) {
   const eff = ok ? opt.reward : (opt.fail || {});
   applyEffects(g, eff);
   const msg = (ok ? opt.msgSuccess : opt.msgFail).replaceAll("{player}", g.player || "tu pareja");
+  const ctx = (ok ? opt.ctxSuccess : opt.ctxFail)?.replaceAll("{player}", g.player || "tu pareja");
+  const fullMsg = ctx ? `${msg}<br><br><em>${ctx}</em>` : msg;
 
   if (typeof trackEvent === "function") {
     trackEvent("resolve_booster", { booster_id: boosterId, choice, outcome: ok ? "success" : "failure", player: g.player });
@@ -73,11 +75,11 @@ function triggerBooster(boosterId, choice) {
     upRel("Terminó mal");
     g.usedEvents = [];
     if (typeof renderBreakup === "function") {
-      renderBreakup(`💔 ${msg}`);
+      renderBreakup(`💔 ${fullMsg}`);
     }
   } else {
     if (typeof renderResult === "function") {
-      renderResult(ok, msg);
+      renderResult(ok, fullMsg);
     }
   }
   if (typeof upd === "function") upd();
@@ -280,17 +282,14 @@ function continueGame() {
     return;
   }
 
-  // Cada 2 eventos desde el 4to en adelante, oportunidad de subir de categoría
-  if (g.eventsInRelation >= 4 && (g.eventsInRelation - 4) % 3 === 0 && g.tier < tiers.length - 1) {
-    const nextTier = tiers[g.tier + 1];
-    if (nextTier && tierScore(g) >= nextTier.need) {
-      const newPlayer = nextTier.players[Math.floor(Math.random() * nextTier.players.length)];
-      g.upgradeTarget = { player: newPlayer, tierIndex: g.tier + 1, tierName: nextTier.name };
-      if (typeof renderUpgrade === "function") {
-        renderUpgrade();
-      }
-      return;
+  // Oportunidad de subir de categoría (>3 eventos en relación, cada 2 eventos si tierScore alcanza el siguiente tier)
+  const up = checkUpgrade(g);
+  if (up && up.ready) {
+    g.upgradeTarget = { player: up.newPlayer, tierIndex: up.nextTier, tierName: up.tierName };
+    if (typeof renderUpgrade === "function") {
+      renderUpgrade();
     }
+    return;
   }
 
   if (g.turnCount % 5 === 0 && !g.boosterJustDone) {
@@ -341,6 +340,7 @@ function confirmUpgrade() {
   // Asignar nuevo jugador del tier superior
   g.player = target.player;
   g.tier = target.tierIndex;
+  if (g.tier > (g.maxTier || 0)) g.maxTier = g.tier;
   if (!g.usedPlayers) g.usedPlayers = [];
   if (!g.usedPlayers.includes(g.player)) g.usedPlayers.push(g.player);
   g.relProgress = 25;
@@ -349,6 +349,9 @@ function confirmUpgrade() {
   g.usedEvents = [];
   g.eventsInRelation = 0;
   g.upgradeTarget = null;
+  if (typeof trackEvent === "function") {
+    trackEvent("confirm_upgrade", { new_tier: tiers[g.tier].name, new_player: g.player });
+  }
   // Mostrar intro de nueva relación
   if (typeof hideUpgrade === "function") hideUpgrade();
   if (typeof renderNewRelation === "function") renderNewRelation();
@@ -359,10 +362,20 @@ function rejectUpgrade() {
   // Rechazar la oportunidad, seguir con la relación actual
   g.upgradeTarget = null;
   if (typeof hideUpgrade === "function") hideUpgrade();
-  // Resetear contador para que no aparezca de nuevo hasta dentro de 2 eventos más
-  g.eventsInRelation = 1;
+  if (typeof trackEvent === "function") {
+    trackEvent("reject_upgrade", { tier: tiers[g.tier].name, player: g.player });
+  }
+  if (g.turnCount % 5 === 0 && !g.boosterJustDone) {
+    g.boosterJustDone = true;
+    const b = boosters[Math.floor(Math.random() * boosters.length)];
+    g.currentBooster = b;
+    if (typeof renderBooster === "function") {
+      renderBooster(b);
+    }
+    return;
+  }
   g.boosterJustDone = false;
-  if (typeof renderBooster === "function") renderBooster(boosters[Math.floor(Math.random() * boosters.length)]);
+  next();
 }
 
 function end() {
