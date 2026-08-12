@@ -402,6 +402,384 @@ const eventTypes = [
       ["Elegir un solo look sofisticado", 0.75, "Tu buen gusto y moderación lo deslumbran; quedás como una dama refinada.", "Le parece que fuiste demasiado tímida y que no aprovechaste su regalo.", { rep: 20, chem: 16, relProgress: 16 }, { chem: -8, relProgress: -6 }],
       ["Comprarle un regalo de autor a él", 0.68, "El gesto recíproco lo enamora por completo; destaca que no sos como las demás.", "La prenda elegida no le gusta nada y el momento se vuelve incómodo.", { chem: 20, contacts: 12, relProgress: 18 }, { rep: -6, relProgress: -8 }]
     ]
+  },
+  {
+    id: "E28",
+    title: "Ángel pregunta en vivo",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Estás en tu casa y suena el teléfono: es LAM. Ángel te pregunta en vivo qué onda con {player}.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["«Somos amigos, nada más»", 0.65, "Creíble y elegante. Nadie puede probar nada.", "Suena tan falso que hasta Guillote se quedó callado.", { rep: 16, chem: 14, relProgress: 12 }, { rep: -6, rumors: 1, relProgress: -6 }],
+      ["«Preguntáselo a él» con sonrisa", 0.55, "Lo dejás expuesto pero quedás canchera. El público te ama.", "{player} se calienta porque lo tiraste al bombo.", { fame: 22, chem: 10, relProgress: 14 }, { chem: -10, relProgress: -8 }],
+      ["Sonrisa enigmática y silencio", 0.70, "El misterio te favorece. {player} te manda un corazón.", "El silencio se interpreta como confirmación. Explotan los rumores.", { chem: 18, rep: 14, relProgress: 16 }, { rumors: 2, relProgress: -4 }]
+    ]
+  },
+  {
+    id: "E29",
+    title: "Captura filtrada (¿sos vos?)",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Ángel muestra una captura de chat en pantalla y dice que es tuya hablando pestes de otra botinera.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Confirmar que es real y bancarla", 0.45, "Te convertís en villana favorita del público. Rating asegurado.", "Te caen todos los sponsors y {player} tiene que salir a bancarte.", { fame: 28, contacts: 12, rep: -8, relProgress: 4 }, { rep: -18, chem: -10, rumors: 4, relProgress: -12 }],
+      ["Decir que es trucha", 0.60, "La negativa firme siembra dudas. Salís medio limpia.", "Peritos digitales demuestran que es real. Papelón.", { rep: 16, chem: 10, relProgress: 10 }, { rep: -12, rumors: 3, relProgress: -10 }],
+      ["Mostrar el chat completo sin censura", 0.55, "La transparencia total desarma cualquier ataque.", "El chat completo es peor de lo que mostraron.", { rep: 14, fame: 18, relProgress: 12 }, { fame: -8, chem: -8, rumors: 2, relProgress: -14 }]
+    ]
+  },
+  {
+    id: "E30",
+    title: "«ROMPIÓ EL SILENCIO»",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Te sientan en el piso y el cartel de abajo dice «ROMPIÓ EL SILENCIO» en gigante. Arrancó.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Tirar toda la verdad sin filtro", 0.55, "El país se paraliza. Todos hablan de tu confesión.", "Decís algo que no debías y el quilombo es fenomenal.", { fame: 30, rep: 12, rumors: 2, relProgress: 14 }, { rep: -12, chem: -12, rumors: 4, relProgress: -15 }],
+      ["Hablar en acertijos y poesía", 0.65, "Quedás intelectual y misteriosa. La gente especula por semanas.", "Nadie entiende nada y el programa te corta antes del final.", { rep: 18, chem: 14, relProgress: 12 }, { fame: -6, relProgress: -4 }],
+      ["Arrepentirte y cancelar en el piso", 0.70, "Te levantás y te vas. Te aplaude hasta el camarógrafo.", "El programa te pone como «la que se rajó» toda la semana.", { rep: 20, chem: 8, relProgress: 8 }, { fame: -10, rumors: 2, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E31",
+    title: "Rival en el camarín",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Llegás al piso y te avisan: la producción también invitó a otra botinera. La que te odia.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Saludar profesional y seguir", 0.65, "Te ganás al público con tu clase. Ella queda como la loca.", "Te sonríe en cámara pero filtra datos tuyos en la pausa.", { rep: 18, contacts: 10, chem: 8, relProgress: 12 }, { rep: -6, rumors: 2, relProgress: -6 }],
+      ["Ignorarla olímpicamente", 0.50, "Las cámaras te aman. Nace el primer meme de la temporada.", "Quedás como arrogante y las redes se dividen.", { fame: 22, rep: 6, relProgress: 8 }, { rep: -10, rumors: 1, relProgress: -8 }],
+      ["Pedir que la saquen o te vas", 0.40, "Te convertís en la diva del momento. Rating asegurado.", "Te toman la palabra y te vas. No salís en el programa.", { fame: 20, rep: -8, contacts: 8, relProgress: 4 }, { rep: -14, fame: -8, rumors: 3, relProgress: -12 }]
+    ]
+  },
+  {
+    id: "E32",
+    title: "Ezeiza: bienvenida de multitudes",
+    img: "images/pixel/webp/event-rusia.webp",
+    text: "Llegás de Europa y hay tres móviles de programas esperándote en la puerta de Ezeiza.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Hablar con los tres dándoles su cuota", 0.60, "Todos contentos. Salís en los tres programas a la vez.", "Se pelean por quién te tuvo primero y terminan ninguneándote.", { fame: 28, contacts: 16, rep: 10, relProgress: 8 }, { rep: -6, rumors: 2, relProgress: -4 }],
+      ["Salir esquivando con la valija en la cara", 0.70, "Misterio total. El video se vuelve viral.", "Pisan el vestido y te caés en la puerta con todo grabado.", { rep: 18, chem: 10, relProgress: 12 }, { rep: -8, relProgress: -6 }],
+      ["Hablar solo con el programa de mayor rating", 0.50, "Primicia exclusiva. Te felicitan hasta los que dejaste afuera.", "Los otros dos programas te ponen como diva malagradecida.", { fame: 24, contacts: 14, rep: 6, relProgress: 6 }, { rep: -10, fame: -6, rumors: 2, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E33",
+    title: "Foto borrosa con final abierto",
+    img: "images/pixel/webp/event-hotel-backdoor.webp",
+    text: "Gossipeame publica una foto borrosa con tu misma cartera entrando a un hotel céntrico.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Negar todo: «No soy yo»", 0.65, "Tu palabra contra una foto borrosa. Salís ganando.", "Analizan la foto y confirman que sí sos. Ups.", { rep: 16, chem: 10, relProgress: 12 }, { rep: -10, rumors: 3, relProgress: -10 }],
+      ["Decir que era una amiga y te prestó la cartera", 0.55, "La excusa es ABSURDA pero la gente se la compra.", "La amiga sale a desmentirte. Quedás como mentirosa serial.", { fame: 14, rumors: 1, relProgress: 8 }, { rep: -12, rumors: 3, relProgress: -10 }],
+      ["Silencio total y dejar que especulen", 0.60, "La duda favorece a la fama. Nadie sabe qué pasó.", "El rumor crece tanto que {player} empieza a preguntar.", { fame: 18, rep: 8, relProgress: 10 }, { rumors: 2, chem: -6, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E34",
+    title: "Like accidental (y vintage)",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Estás stalkeando a {player} y sin querer le das like a una foto de 2018. En tanga.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Decir que fue sin querer y bancarte el meme", 0.70, "Le causa gracia y arrancan a hablar. Mejor imposible.", "El meme te persigue por días y hasta tu abuela te lo manda.", { rep: 14, chem: 18, relProgress: 16 }, { rep: -4, relProgress: -4 }],
+      ["Borrarlo y rezar que no lo haya visto", 0.55, "Nunca lo menciona. O no lo vio, o es un caballero.", "Lo vio y guardó captura. Te lo muestra en la cena. Morís.", { chem: 10, relProgress: 10 }, { chem: -8, relProgress: -8 }],
+      ["Subir historia bardeándote sola", 0.60, "«Quién me manda a stalkear a las 2 AM». El público te ama.", "Le parece poco maduro y se lo toma a mal.", { fame: 18, chem: 12, relProgress: 12 }, { chem: -6, rep: -4, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E35",
+    title: "Amiga filtradora (no es tu amiga)",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Tu 'mejor amiga' sube una historia y se ve el chat con {player} en la captura. Imperdón.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Decir que el chat es viejo y ya fue", 0.60, "Creíble a medias, pero te la bancás con estilo.", "Investigan la fecha del chat y es de anoche. Entero.", { rep: 14, chem: 10, relProgress: 12 }, { rep: -10, rumors: 2, relProgress: -10 }],
+      ["Bancarte el papelón con humor", 0.55, "Subís un tweet: «Nunca confíes en tus amigas». Te aplauden.", "A {player} no le causa gracia que ventilen la intimidad.", { fame: 18, chem: 8, relProgress: 10 }, { chem: -8, relProgress: -8 }],
+      ["Echarle la culpa a la amiga y cortar relación", 0.45, "La cruzás del mapa. Tus otras amigas aplauden la decisión.", "La amiga filtró capturas del chat donde le contabas todo.", { rep: 12, contacts: 8, relProgress: 8 }, { rumors: 3, rep: -10, chem: -6, relProgress: -12 }]
+    ]
+  },
+  {
+    id: "E36",
+    title: "El espejo no perdona",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Subís una foto y en el reflejo del espejo se ve claramente a {player} en boxer.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Borrarla y subir una versión crop", 0.65, "Rápida, limpia. El daño colateral es mínimo.", "Alguien ya sacó captura. Está en Twitter en cinco minutos.", { rep: 16, chem: 10, relProgress: 14 }, { fame: 14, rumors: 2, relProgress: -8 }],
+      ["Dejarla y capitalizar el quilombo", 0.50, "El escándalo te da visibilidad internacional.", "La mamá de {player} te llama preocupada.", { fame: 28, contacts: 12, relProgress: 8 }, { rep: -10, rumors: 3, relProgress: -10 }],
+      ["Photoshop exprés: poné una planta de fondo", 0.55, "El photoshop es TAN malo que se vuelve meme bueno.", "Los peritos de Internet te destruyen en comentarios.", { fame: 14, rep: 8, relProgress: 10 }, { rep: -8, rumors: 1, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E37",
+    title: "La mamá de {player} te sigue",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Notificación: la mamá de {player} te empezó a seguir. La dimensión del nerviosismo es incalculable.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Seguirla de vuelta como inversión estratégica", 0.75, "Te comenta una foto con un corazón. Ya estás adentro.", "Le gustan todas tus fotos. TODAS. Hasta las de 2016.", { chem: 18, rep: 14, relProgress: 18 }, { rep: -2, relProgress: -2 }],
+      ["Ignorar y fingir demencia", 0.55, "Ella tampoco dice nada. Silencio diplomático.", "{player} pregunta: «¿Por qué no seguís a mi vieja?»", { rep: 10, relProgress: 8 }, { chem: -6, relProgress: -6 }],
+      ["Seguir a toda la familia junta", 0.40, "El gesto es tan grande que te invitan al próximo cumpleaños.", "Quedás como demasiado intensa. {player} se asusta.", { contacts: 12, relProgress: 14 }, { chem: -10, rep: -6, relProgress: -10 }]
+    ]
+  },
+  {
+    id: "E38",
+    title: "Alarma: la mamá dejó de seguirte",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "La mamá de {player} te dejó de seguir. Los medios ya lo titularon: «La suegra desaprueba».",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Preguntarle a {player} qué pasó", 0.70, "Hablan claro. Era sin querer. Vuelve a seguirte.", "Se pone nervioso y te dice que mejor no hablen del tema.", { chem: 16, rep: 14, relProgress: 16 }, { chem: -6, relProgress: -6 }],
+      ["Publicar algo mostrando que estás bien", 0.55, "Una foto radiante. La gente dice «ella no necesita suegra».", "La mamá lo interpreta como provocación y pide explicaciones.", { fame: 16, rep: 10, relProgress: 8 }, { rep: -8, chem: -6, relProgress: -6 }],
+      ["Solicitarle de nuevo como si nada", 0.45, "Acepta. Nunca pasó nada. Misterio resuelto.", "La rechaza. Ahora es tema nacional.", { chem: 8, rep: 6, relProgress: 10 }, { rep: -6, rumors: 2, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E39",
+    title: "Primera nota en GENTE",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "GENTE te dedica una nota. El título dice: «La mujer que conquistó al fútbol argentino». Sonreí.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Dar la nota completa con foto", 0.65, "La revista vuela de los kioscos. Te empiezan a llamar de todos lados.", "Sacaron una frase de contexto y te llueven críticas.", { fame: 28, rep: 14, contacts: 12, relProgress: 14 }, { rep: -8, rumors: 2, relProgress: -6 }],
+      ["Dar la nota con {player} al lado", 0.55, "La tapa en pareja es un suceso. Te triplican los seguidores.", "Los fans de {player} te acusan de usarlo para la fama.", { fame: 34, chem: 16, relProgress: 16 }, { rep: -10, rumors: 3, relProgress: -8 }],
+      ["Declinar la nota con elegancia", 0.60, "«No es mi momento». La revista te respeta. El misterio crece.", "Pasan la nota con otra botinera y se vuelve tu competencia.", { rep: 18, chem: 8, relProgress: 10 }, { fame: -8, contacts: -4, relProgress: -4 }]
+    ]
+  },
+  {
+    id: "E40",
+    title: "Tapa en pareja: cifra irrisoria",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "CARAS te ofrece portada con {player}. El número tiene más ceros que un código de barras.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Aceptar y repartir ganancias", 0.60, "Portada icónica. Todos hablan de la foto.", "La foto es tan producida que nadie les cree que son pareja real.", { fame: 30, contacts: 14, relProgress: 14, rep: 8 }, { rep: -6, rumors: 2, relProgress: -6 }],
+      ["Decir que sí solo si {player} quiere", 0.65, "La complicidad los muestra como equipo. {player} se suma feliz.", "{player} dice que no. La revista te ofrece el doble para hacerla solo.", { chem: 18, rep: 16, relProgress: 16 }, { chem: -6, relProgress: -6 }],
+      ["Rechazar por principios", 0.55, "La dignidad ante todo. «Hay cosas que el dinero no compra».", "La revista le ofrece la tapa a tu rival. Ella acepta.", { rep: 20, chem: 10, relProgress: 10 }, { fame: -10, contacts: -6, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E41",
+    title: "Frase que nunca dijiste (tapa)",
+    img: "images/pixel/webp/event-mobile.webp",
+    text: "Comprás la revista y en tapa dice: «{player} es el amor de mi vida». Nunca lo dijiste.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Desmentir en redes educadamente", 0.60, "Las revistas mienten, vos decís la verdad. Salís ganando.", "El periodista filtra el audio trucado y te contradice.", { rep: 18, chem: 12, relProgress: 14 }, { rep: -10, rumors: 2, relProgress: -8 }],
+      ["Abrazar el personaje y seguirles la corriente", 0.55, "Bancás la mentira y te convertís en meme querido.", "{player} se sorprende y te pregunta si es verdad lo que leíste.", { fame: 20, chem: 10, relProgress: 12 }, { chem: -8, rep: -6, relProgress: -6 }],
+      ["Llamar a Guillote para manejo de crisis", 0.65, "Guillote negocia una contra-tapa con la verdad a medias.", "Guillote empeora todo: «Ella dijo, pero no exactamente.»", { contacts: 14, rep: 12, relProgress: 10 }, { rumors: 2, rep: -6, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E42",
+    title: "Ex a tres mesas (incómodo)",
+    img: "images/pixel/webp/event-boliche.webp",
+    text: "Estás en un after canchero y tu ex está a tres mesas con otra botinera. La mira, te mira, es un loop.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Actuar como si no existiera", 0.70, "Tu indiferencia es letal. {player} nota que tenés clase.", "El ex se acerca a saludarte. Ahora no podés esquivarlo.", { chem: 18, rep: 14, relProgress: 16 }, { rep: -6, chem: -4, relProgress: -6 }],
+      ["Saludar con toda la elegancia del mundo", 0.60, "Un beso en el cachete y seguís de largo. {player} fascinado.", "El saludo se estira y {player} empieza a preguntar.", { rep: 16, chem: 12, relProgress: 14 }, { chem: -8, relProgress: -8 }],
+      ["Hacerte la que no lo viste y morir por dentro", 0.55, "Nadie nota nada. Excepto que se te cayó el vaso.", "La otra botinera te saluda desde la mesa. Te querés ir.", { rep: 10, chem: 8, relProgress: 10 }, { rumors: 1, rep: -4, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E43",
+    title: "El patovica te reconoce (¿de qué?)",
+    img: "images/pixel/webp/event-boliche.webp",
+    text: "El patovica te mira, sonríe, te reconoce… pero no sabe si sos famosa, la ex de alguien, o la amiga de la prima de un jugador.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Decirle «Soy la novia de {player}»", 0.60, "Te deja pasar con escolta VIP. Te sentís una reina.", "{player} aparece justo cuando lo decís. Sabés lo que pensó.", { fame: 16, chem: 14, relProgress: 16 }, { chem: -6, relProgress: -4 }],
+      ["Sonreír misteriosamente y no decir nada", 0.65, "Quedás como una diva inalcanzable. El patovica te adora.", "No te deja pasar porque «no estás en la lista». Bajón.", { rep: 16, chem: 10, relProgress: 14 }, { relProgress: -6 }],
+      ["«Soy periodista, dejame pasar»", 0.45, "Te cree. Pasás. Bonus: conseguís un contacto nuevo.", "Pide credencial. No tenés. Papelón mayúsculo.", { contacts: 14, fame: 8, relProgress: 8 }, { rep: -8, rumors: 1, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E44",
+    title: "Selfie con evidencia (el vestido en el piso)",
+    img: "images/pixel/webp/event-boliche.webp",
+    text: "Te sacás una selfie en el baño y en el espejo de fondo se ve claramente tu vestido en el piso.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Subirla igual y bancarte los comentarios", 0.55, "Los comments explotan. Viral en dos horas. La fama es la fama.", "Hasta tu tía te pregunta si estás bien. No, tía.", { fame: 24, chem: 12, relProgress: 12 }, { rep: -8, rumors: 2, relProgress: -6 }],
+      ["Recortar bien la foto antes de subir", 0.70, "Perfecta. Nadie nota nada. Ganaste.", "Olvidaste sacar el modo espejo. Se ve todo igual.", { rep: 16, chem: 14, relProgress: 16 }, { fame: 10, rumors: 1, relProgress: -4 }],
+      ["Borrarla y rezar", 0.60, "Te salvaste. Nadie la vio. O sí.", "Alguien ya la capturó. Está en WhatsApp.", { rep: 12, chem: 8, relProgress: 10 }, { fame: 8, rumors: 3, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E45",
+    title: "Amanecer en Costanera",
+    img: "images/pixel/webp/event-boliche.webp",
+    text: "Son las 7 AM. Estás en Costanera con {player}. 2% de batería. 47 mensajes. No sabés cómo llegaste.",
+    stage: 0,
+    minProgress: 0,
+    maxProgress: 40,
+    actions: [
+      ["Ir a desayunar con {player} al lugar más croto", 0.65, "La mejor cita improvisada. Se rien de todo. Nace algo lindo.", "El lugar es TAN croto que {player} se arrepiente y se va.", { chem: 20, rep: 12, relProgress: 18 }, { chem: -6, relProgress: -6 }],
+      ["Tomar un uber y bancarse el meme", 0.60, "Te vas con dignidad. El meme del finde te persigue.", "{player} aparece en la story de otra. Ahora el meme es otro.", { rep: 14, chem: 10, relProgress: 12 }, { chem: -8, relProgress: -8 }],
+      ["Subir historia: «Buenos días, Buenos Aires»", 0.55, "Misterio y glamour matutino. La gente especula todo el día.", "Se ve {player} de fondo en la historia. Quemaste todo.", { fame: 18, chem: 10, relProgress: 14 }, { rumors: 2, rep: -4, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E46",
+    title: "José Ignacio: primera foto juntos",
+    img: "images/pixel/webp/event-miami.webp",
+    text: "Estás en José Ignacio con {player} y un paparazzi saca la primera foto clara de los dos.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Posar juntos y regalar la foto", 0.60, "La foto es hermosa. Portada asegurada. El romance es oficial.", "La foto es horrible. {player} sale con los ojos cerrados.", { fame: 24, chem: 20, relProgress: 18 }, { rep: -6, chem: -4, relProgress: -8 }],
+      ["Correr al fotógrafo estilo misión imposible", 0.45, "La persecución se vuelve cómica y el video es más viral que la foto.", "Te caés en la arena. La foto existe y es peor.", { fame: 22, chem: 14, relProgress: 14 }, { rep: -8, rumors: 2, relProgress: -10 }],
+      ["Ignorarlo y seguir caminando como si nada", 0.65, "La foto es robada pero sale espectacular. Los dos naturales.", "La foto es robada y sales con cara de orto. Horrible.", { rep: 16, chem: 16, relProgress: 16 }, { fame: -4, rumors: 1, relProgress: -4 }]
+    ]
+  },
+  {
+    id: "E47",
+    title: "Atardecer con mano comprometedora",
+    img: "images/pixel/webp/event-miami.webp",
+    text: "Una foto del atardecer en Punta sale en redes. En el borde se ve una mano que es CLARAMENTE de {player}.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Confirmar que es él/ella", 0.55, "Lo confirmás vos. El control de la narrativa es tuyo.", "{player} se calienta porque blanqueaste sin preguntar.", { fame: 22, chem: 16, relProgress: 16 }, { chem: -8, relProgress: -6 }],
+      ["«Es mi amiga, pará un poco»", 0.50, "Mentira piadosa. Algunos te creen.", "La mano tiene un anillo que le regalaste a {player}. Te delató.", { rep: 12, chem: 8, relProgress: 10 }, { rep: -10, rumors: 3, relProgress: -10 }],
+      ["Vender la foto completa a CARAS", 0.60, "Negocio redondo. La foto completa es una obra de arte.", "CARAS publica la foto pero también la que sigue. Uy.", { fame: 28, contacts: 14, relProgress: 10 }, { rep: -8, rumors: 2, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E48",
+    title: "Gol, mirada y cámaras",
+    img: "images/pixel/webp/event-estadio.webp",
+    text: "{player} hace un gol y mira DIRECTAMENTE a tu palco. Las cámaras te encuadran al instante. No hay escape.",
+    stage: 1,
+    minProgress: 41,
+    maxProgress: 75,
+    actions: [
+      ["Aplaudir con sonrisa de enamorada", 0.70, "El video del momento da la vuelta al mundo. Son la pareja del año.", "Aplaudís pero se te ve incómoda. Los memes no perdonan.", { fame: 26, chem: 22, relProgress: 20 }, { rep: -4, rumors: 1, relProgress: -4 }],
+      ["Fingir que estás en el teléfono", 0.50, "Te hacés la canchera. Nadie te cree.", "Justo sonó el despertador. Papelón nacional.", { rep: 12, chem: 8, relProgress: 10 }, { chem: -10, rep: -6, relProgress: -8 }],
+      ["Grabar todo y subirlo a tu story", 0.55, "El contenido es oro. Explotan las reproducciones.", "Te enfocan a vos grabando y se convierte en meta-meme.", { fame: 22, contacts: 10, relProgress: 14 }, { rep: -6, chem: -4, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E49",
+    title: "Campeón: al campo",
+    img: "images/pixel/webp/event-estadio.webp",
+    text: "{player} salió campeón. Te invitan al campo. Es la primera foto oficial de los dos. El país mira.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Bajar al campo emocionada", 0.65, "La foto da la vuelta al mundo. La pareja del momento.", "Llorás tanto que te corrés el rímel y la foto es un desastre.", { fame: 30, chem: 22, rep: 14, relProgress: 20 }, { rep: -6, rumors: 2, relProgress: -6 }],
+      ["Mirar desde el palco con estilo", 0.55, "Misteriosa y elegante. {player} te dedica el título desde abajo.", "Te quedás sola en el palco y las cámaras te muestran bostezando.", { rep: 18, chem: 14, relProgress: 14 }, { fame: -6, chem: -4, relProgress: -6 }],
+      ["Pedirle a Guillote que maneje la logística de prensa", 0.60, "Guillote organiza la entrada triunfal. Las fotos salen perfectas.", "Guillote se cree parte de la familia y sale en todas las fotos.", { contacts: 16, fame: 14, relProgress: 12 }, { rumors: 1, rep: -4, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E50",
+    title: "Convocatoria a la Selección",
+    img: "images/pixel/webp/event-estadio.webp",
+    text: "{player} fue convocado a la Selección por primera vez. Todo explota: prensa, familia, redes.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Publicar historia de orgullo", 0.65, "Tu historia se vuelve viral. Te llueven felicitaciones.", "Los haters dicen que te estás subiendo al carro.", { fame: 26, chem: 20, rep: 12, relProgress: 18 }, { rep: -6, rumors: 2, relProgress: -4 }],
+      ["Celebrar en privado sin redes", 0.70, "La discreción enamora. {player} valora que no ventiles todo.", "No publicás nada y la gente dice que no te importa.", { chem: 22, rep: 18, relProgress: 16 }, { fame: -8, relProgress: -2 }],
+      ["Hacer un vivo reaccionando a la noticia", 0.55, "El vivo rompe récords. La espontaneidad es lo que vende.", "Se te escapa un dato que no debías decir.{player} se calienta.", { fame: 28, contacts: 12, relProgress: 12 }, { chem: -8, rep: -6, rumors: 2, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E51",
+    title: "París con Guillote (casualidad?)",
+    img: "images/pixel/webp/event-restaurant.webp",
+    text: "Estás cenando en París con {player} y aparece Guillote con un baguette bajo el brazo. «¡Qué casualidad!»",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Dejarlo que se sume a la cena", 0.55, "Guillote conoce a medio París. La velada es épica.", "Se pone a negociar con el sommelier y te olvidás de tu cita.", { contacts: 20, fame: 14, chem: 8, relProgress: 10 }, { chem: -8, relProgress: -6 }],
+      ["Decirle que no, que esta vez es privado", 0.65, "Guillote entiende. Se va. La cena es un sueño.", "Guillote se ofende y después filtra que la relación «está en crisis».", { chem: 20, rep: 14, relProgress: 16 }, { rumors: 2, rep: -6, relProgress: -6 }],
+      ["Pedirle recomendaciones de París", 0.60, "Guillote conoce los mejores spots discretos. Cena perfecta.", "Guillote te manda a un restaurante donde está toda la prensa francesa.", { contacts: 16, fame: 10, relProgress: 12 }, { rumors: 2, relProgress: -4 }]
+    ]
+  },
+  {
+    id: "E52",
+    title: "Champions: te identificaron",
+    img: "images/pixel/webp/event-estadio.webp",
+    text: "Estás en la tribuna de la final de Champions. Twitter argentino te identifica en 45 segundos.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Saludar a la cámara como una reina", 0.65, "Tu saludo es lo más visto de la semana. Fama internacional.", "Saludás en el momento exacto en que {player} erra un penal.", { fame: 34, contacts: 16, relProgress: 16 }, { rep: -8, chem: -6, relProgress: -8 }],
+      ["Taparte la cara y esquivar", 0.55, "Misterio internacional. ¿Quién es esa argentina misteriosa?", "Te tropiezas y te caés. El video es global en minutos.", { rep: 16, chem: 14, relProgress: 14 }, { rep: -6, rumors: 2, relProgress: -6 }],
+      ["Transmitir en vivo desde la tribuna", 0.50, "El vivo desde la Champions es histórico.", "Te cortan la transmisión por derechos de TV. Te la pierde todo el mundo.", { fame: 30, contacts: 12, relProgress: 12 }, { rep: -6, chem: -4, relProgress: -8 }]
+    ]
+  },
+  {
+    id: "E53",
+    title: "Susana: «Pasá, querida»",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Te llama el programa de Susana. Quiere entrevistarte con {player}. Esto no es un simulacro.",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Aceptar emocionada y preparar el look", 0.60, "La entrevista es histórica. Te convertís en la favorita de la tele.", "Susana pregunta justo lo que no querías responder. Te trabás.", { fame: 35, rep: 14, contacts: 14, relProgress: 14 }, { rep: -8, rumors: 2, relProgress: -6 }],
+      ["Pedir condiciones y cachet", 0.55, "Te ganás el respeto de la producción. Te pagan bien.", "Piden tanto que te sacan del aire. Te reemplaza tu rival.", { contacts: 18, fame: 14, rep: 10, relProgress: 8 }, { fame: -10, rep: -6, rumors: 2, relProgress: -8 }],
+      ["Decir que no estás lista todavía", 0.65, "Susana respeta tu decisión. Dice que te espera.", "Pasa el momento y nunca vuelven a llamarte.", { rep: 20, chem: 12, relProgress: 10 }, { fame: -12, relProgress: -6 }]
+    ]
+  },
+  {
+    id: "E54",
+    title: "Mirtha: «¿Y vos, querida?»",
+    img: "images/pixel/webp/event-papparazi.webp",
+    text: "Estás en el programa de Mirtha. Te mira con sonrisa de costado y suelta: «Y vos, querida, ¿de qué vivís?»",
+    stage: 2,
+    minProgress: 76,
+    maxProgress: 100,
+    actions: [
+      ["Responder con laburo propio y orgullo", 0.70, "La respuesta es perfecta. Mirtha asiente. Te aplaude el país.", "Decís un laburo trucho y Mirtha te sigue preguntando hasta que confieses.", { rep: 24, fame: 22, relProgress: 16 }, { rep: -12, rumors: 2, relProgress: -8 }],
+      ["«De vivir la vida, Mirtha»", 0.55, "La respuesta canchera se vuelve frase del año.", "Mirtha no se la cree y te mira fijo por cinco segundos eternos.", { fame: 26, chem: 10, relProgress: 12 }, { rep: -8, rumors: 1, relProgress: -6 }],
+      ["Tirar un chiste y cambiar de tema rápido", 0.60, "Te salís con la tuya. Mirtha se ríe y pasa a otra cosa.", "El chiste no sale bien. Silencio incómodo. Querés fundirte.", { fame: 18, rep: 14, contacts: 10, relProgress: 14 }, { chem: -6, rep: -6, relProgress: -6 }]
+    ]
   }
 ];
 
