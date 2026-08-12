@@ -10,7 +10,7 @@ const chars = [
 
 const tiers = [
   { name: "Barrio", need: 0, players: ["El 9 de Lugano", "El arquero streamer", "La figura del futsal", "El entrenador de Dock Sud"] },
-  { name: "Ascenso", need: 60, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 9 de Ferro", "Caruso Lombardo"] },
+  { name: "Ascenso", need: 60, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 9 de Ferro", "Caruso Lombardo", "Ogro Forbiani"] },
   { name: "Primera", need: 110, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade", "Marcos Cuña", "Kevin Lomanoco", "Nacho Fernindez", "Santiago Asca"] },
   { name: "Latam", need: 190, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales", "Nico Otomandi", "Ángel di Mery", "Thiago Silvi", "Halk", "Felipe Mele", "Franco Armano", "Ángel Correo", "Thiago Almade"] },
   { name: "Europa", need: 250, players: ["Valentín Barca", "Gio Simone", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines", "Marco Seneso", "Nico Domingo", "Juan Mussa", "Guido Rodrígue"] },
