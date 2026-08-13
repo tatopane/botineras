@@ -491,7 +491,7 @@ const eventTypes = [
     id: "E34",
     title: "Like accidental (y vintage)",
     img: "images/pixel/webp/event-mobile.webp",
-    text: "Estás stalkeando a {player} y sin querer le das like a una foto de 2018. En tanga.",
+    text: "Estás stalkeando a {player} y sin querer le das like a una foto de 2018. En zunga.",
     stage: 0,
     minProgress: 0,
     maxProgress: 40,
