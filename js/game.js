@@ -389,7 +389,7 @@ function rejectUpgrade() {
 
 function end() {
   g = {
-    name: g.name || "Wonda Nara",
+    name: g.name || "Wonda Naro",
     img: g.img || chars[0].img,
     age: 26,
     tier: 5,

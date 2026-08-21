@@ -33,12 +33,12 @@
 ## 🎮 Mecánicas del juego
 
 ### Personajes
-- **Wonda Nara** — Negocio y escándalo (fame+8, rep+4)
-- **La China Suáres** — Química explosiva (chem+12, fame+5)
-- **Sasha Ferra** — Todo se hace viral (fame+12, contacts+4)
-- **Bri Marcas** — Acceso VIP (contacts+12, rep+3)
-- **Jaz Peraltaa** — Carisma impredecible (chem+8, rep+7)
-- **Clari Cremaschi** — Las marcas la bancan (rep+10, fame+4)
+- **Wonda Naro** — Negocio y escándalo (fame+8, rep+4)
+- **Chaina Saures** — Química explosiva (chem+12, fame+5)
+- **Sosha Ferra** — Todo se hace viral (fame+12, contacts+4)
+- **Brie Marcas** — Acceso VIP (contacts+12, rep+3)
+- **Jaz Parelta** — Carisma impredecible (chem+8, rep+7)
+- **Clari Crimischi** — Las marcas la bancan (rep+10, fame+4)
 
 ### Stats
 - ⭐ **Fama** — visibilidad pública

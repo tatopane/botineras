@@ -1,11 +1,11 @@
 // Botineras — Data
 const chars = [
-  { name: "Wonda Nara", trait: "Master en vivo, doctora en quilombo", img: "images/pixel/webp/wanda-pixel.webp", bonus: { fame: 15, rep: 5 } },
-  { name: "La China Suáres", trait: "Química que derrite pingüinos", img: "images/pixel/webp/china-pixel.webp", bonus: { chem: 12, fame: 13 } },
-  { name: "Sasha Ferra", trait: "Se prende una cosa y se arde Twitter", img: "images/pixel/webp/sasha-pixel.webp", bonus: { fame: 10, contacts: 4 } },
-  { name: "Bri Marcas", trait: "Acceso VIP hasta al baño del Monumental", img: "images/pixel/webp/bri-pixel.webp", bonus: { contacts: 12, rep: 3 } },
-  { name: "Jaz Paralta", trait: "Carisma impredecible (ella incluida)", img: "images/pixel/webp/jaz-pixel.webp", bonus: { chem: 8, rep: 7 } },
-  { name: "Clari Crimaschi", trait: "Las marcas la bancan, los bancos la esquivan", img: "images/pixel/webp/clari-pixel.webp", bonus: { rep: 10, fame: 4 } }
+  { name: "Wonda Naro", trait: "Master en vivo, doctora en quilombo", img: "images/pixel/webp/wonda-naro-pixel.webp", bonus: { fame: 15, rep: 5 } },
+  { name: "Chaina Saures", trait: "Química que derrite pingüinos", img: "images/pixel/webp/chaina-saures-pixel.webp", bonus: { chem: 12, fame: 13 } },
+  { name: "Sosha Ferra", trait: "Se prende una cosa y se arde Twitter", img: "images/pixel/webp/sosha-ferra-pixel.webp", bonus: { fame: 10, contacts: 4 } },
+  { name: "Brie Marcas", trait: "Acceso VIP hasta al baño del Monumental", img: "images/pixel/webp/brie-marcas-pixel.webp", bonus: { contacts: 12, rep: 3 } },
+  { name: "Jaz Parelta", trait: "Carisma impredecible (ella incluida)", img: "images/pixel/webp/jaz-parelta-pixel.webp", bonus: { chem: 8, rep: 7 } },
+  { name: "Clari Crimischi", trait: "Las marcas la bancan, los bancos la esquivan", img: "images/pixel/webp/clari-crimischi-pixel.webp", bonus: { rep: 10, fame: 4 } }
 ];
 
 const tiers = [
