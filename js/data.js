@@ -11,10 +11,10 @@ const chars = [
 const tiers = [
   { name: "Barrio", need: 0, players: ["El 9 de Lugano", "El arquero streamer", "La figura del futsal", "El entrenador de Dock Sud"] },
   { name: "Ascenso", need: 60, players: ["El goleador de Chacarita", "La promesa de Atlanta", "El lateral de Temperley", "El 9 de Ferro", "Caruso Lombardo", "Ogro Forbiani"] },
-  { name: "Primera", need: 110, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade", "Marcos Cuña", "Kevin Lomanoco", "Nacho Fernindez", "Santiago Asca"] },
-  { name: "Latam", need: 190, players: ["La figura de Flamengo", "Ronaldinho", "Rodrigo DiPaúl", "Sergio Canales", "Nico Otomandi", "Ángel di Mery", "Thiago Silvi", "Halk", "Felipe Mele", "Franco Armano", "Ángel Correo", "Thiago Almade"] },
-  { name: "Europa", need: 250, players: ["Valentín Barca", "Gio Simone", "Rafael Leãu", "Dani Olme", "Nico Willian", "Lautaro Martines", "Marco Seneso", "Nico Domingo", "Juan Mussa", "Guido Rodrígue"] },
-  { name: "Champions", need: 330, players: ["Erling Håland", "Kylian M'Bapé", "Lamine Yamall", "Rodri", "Julián Álvares", "Harry Kane", "Vinícius Júniorr", "Jude Bellinghan"] }
+  { name: "Primera", need: 110, players: ["Valentin Carbon", "Jose Sasa", "Juanfer Quintino", "Milton Delgade", "Marcos Cuña", "Kevin Lomanoco", "Nacho Fernindaz", "Santiago Asco"] },
+  { name: "Latam", need: 190, players: ["La figura de Flamengo", "Ronaldanho", "Rodrigo DiPaúl", "Sergio Canoles", "Nico Otomandi", "Ángel di Mery", "Thiago Silvi", "Halk", "Felipe Mele", "Franco Armano", "Ángel Correo", "Thiago Almade"] },
+  { name: "Europa", need: 250, players: ["Valentín Barca", "Gio Simona", "Rafael Leon", "Dani Olme", "Nico Wallian", "Lautoro Martanes", "Marco Sineso", "Nico Damingo", "Juan Mussa", "Wido Rodragues"] },
+  { name: "Champions", need: 330, players: ["Erling Hålond", "Kylian Mempapé", "Lamine Yamoll", "Roudri", "Yulian Alvaro", "Jarro Ken", "Ficticius Jr", "Yud Bellygan"] }
 ];
 
 const eventTypes = [

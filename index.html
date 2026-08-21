@@ -1,32 +1,36 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Botineras — Carrera de Romances</title>
-<meta name="description" content="Jugá a Botineras, la novela interactiva de farándula futbolera. Elegí personaje, tomá decisiones, acumulá fama y escalá de Barrio a Champions. Parodia ficticia.">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
-<link rel="shortcut icon" href="images/favicon-32x32.png">
-<!-- Open Graph -->
-<meta property="og:title" content="Botineras — Carrera de Romances">
-<meta property="og:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
-<meta property="og:image" content="https://botineras.com.ar/images/og-image.webp">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:url" content="https://botineras.com.ar">
-<meta property="og:type" content="website">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Botineras — Carrera de Romances">
-<meta name="twitter:description" content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
-<meta name="twitter:image" content="https://botineras.com.ar/images/og-image.webp">
-<!-- Schema.org -->
-<script type="application/ld+json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Botineras — Carrera de Romances</title>
+  <meta name="description"
+    content="Jugá a Botineras, la novela interactiva de farándula futbolera. Elegí personaje, tomá decisiones, acumulá fama y escalá de Barrio a Champions. Parodia ficticia.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
+  <link rel="shortcut icon" href="images/favicon-32x32.png">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Botineras — Carrera de Romances">
+  <meta property="og:description"
+    content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
+  <meta property="og:image" content="https://botineras.com.ar/images/og-image.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://botineras.com.ar">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Botineras — Carrera de Romances">
+  <meta name="twitter:description"
+    content="Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo. Jugá gratis.">
+  <meta name="twitter:image" content="https://botineras.com.ar/images/og-image.webp">
+  <!-- Schema.org -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -57,303 +61,1105 @@
   }
 }
 </script>
-<style>
-:root{--pink:#ff3f9f;--gold:#ffd166;--green:#23c97c;--red:#ef4c5d;--card:#171925}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#31102d,#0a0b11 30%);color:#fff;font-family:Arial,sans-serif}
-.wrap{max-width:1080px;margin:auto;padding:18px}.hero{text-align:center}.hero h1{font-size:clamp(42px,8vw,76px);color:var(--pink);margin:5px}
-.card{background:var(--card);border:1px solid #ffffff18;border-radius:20px;overflow:hidden;margin:14px 0;box-shadow:0 16px 50px #0008}
-.pad{padding:20px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.person{background:#10121a;border:2px solid transparent;border-radius:16px;overflow:hidden;cursor:pointer}.person.sel{border-color:var(--pink)}
-.person img{width:100%;height:230px;object-fit:cover;object-position:top;background:#2d2f3b}.info{padding:12px}.info h3{margin:0}.trait{font-size:13px;color:#bbb;margin-top:5px}
-button{border:0;border-radius:12px;padding:13px 17px;background:var(--pink);color:white;font-weight:800;font-size:16px;cursor:pointer}
-button.secondary{background:#353847}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:10px}
-.stat{background:#0f1119;border-radius:12px;text-align:center;padding:9px;font-size:12px;color:#bbb}.stat b{display:block;color:white;font-size:20px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.rank{color:var(--gold);font-weight:bold;letter-spacing:1.5px}
-.progress{height:14px;background:#0e1017;border-radius:999px;overflow:hidden;margin-top:12px}
-.progress div{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width 0.3s ease}
-.sticky-progress{height:5px;margin-top:3px;margin-bottom:1px;border-radius:999px}
-.scene{height:270px;position:relative;overflow:hidden;border-radius:18px 18px 0 0}
-.scene img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.88)}
-.scene:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,rgba(15,17,25,0.45) 68%,rgba(15,17,25,0.92) 100%)}
-.sceneText{position:absolute;left:18px;right:18px;bottom:14px;z-index:2}
-.sceneText h2{font-size:clamp(22px,4vw,32px);margin:0 0 4px;text-shadow:0 2px 10px rgba(0,0,0,0.85)}
-.sceneText p{font-size:16px;line-height:1.4;margin:0;color:#f0f0f0;text-shadow:0 1px 6px rgba(0,0,0,0.9)}
-.event-body{min-height:252px;position:relative;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
-.choices{display:grid;gap:10px;padding:18px;min-height:252px;box-sizing:border-box;align-content:center}
-.choice{text-align:left;background:#2a2d3a;padding:13px 17px;border-radius:12px;border:1px solid #ffffff18;transition:transform 0.15s ease,border-color 0.15s ease;cursor:pointer}
-.choice:hover{border-color:var(--pink);transform:translateY(-1px)}
-.choice strong{display:block;color:var(--gold);margin-bottom:4px;font-size:16px}
-.choice span{font-size:13px;color:#bbb;line-height:1.35;display:block}
-.result{margin:18px;padding:20px;border-radius:18px;text-align:center;font-size:18px;min-height:216px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;animation:fadeIn 0.2s ease}
-.result .big{font-size:48px;line-height:1}
-.result b{font-size:20px}
-.result p{margin:4px 0 10px;font-size:15px;line-height:1.4;max-width:560px}
-.result button{padding:12px 28px;font-size:15px}
-.ok{background:#0c4b30;border:2px solid var(--green)}.bad{background:#4c1118;border:2px solid var(--red)}
-.big{font-size:58px}.relation{display:flex;gap:10px;overflow:auto;padding-bottom:7px}.rel{min-width:210px;background:#10121a;border:1px solid #ffffff18;border-radius:14px;overflow:hidden}
-.rel .face{height:135px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#1c8d55,#0b3a23)}.rel div:last-child{padding:10px}
-.rel b{color:var(--gold)}.mentor{margin:14px 18px 0;background:#2c1a08;border:1px solid #ffd16666;border-radius:14px;padding:13px;color:#ffe6a0}
-.log{max-height:250px;overflow:auto;background:#0d0f16;border-radius:12px;padding:10px}.log p{margin:0;padding:8px;border-bottom:1px solid #ffffff10}
-.green{color:#62e6a2}.red{color:#ff828e}.note{font-size:12px;color:#aaa;text-align:center;line-height:1.4}
-/* Booster active: reemplaza el borde de la card de escena */
-.booster-active{border-color:var(--gold)!important;box-shadow:0 0 30px rgba(255,209,102,0.25),0 16px 50px #0008!important;transition:all 0.3s ease}
-.booster-active .scene:after{background:linear-gradient(to bottom,transparent 20%,rgba(255,209,102,0.08) 50%,rgba(15,17,25,0.95) 100%)!important}
-.booster-badge{display:block;font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;padding:3px 10px;border:1px solid var(--gold);border-radius:999px;text-align:center}
-.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
-.guide-box{background:#10121a;border:1px solid #ffffff18;border-radius:14px;padding:16px}
-.guide-box h3{color:var(--gold);margin-top:0;margin-bottom:10px;font-size:18px}
-.guide-box p,.guide-box ul,.guide-box ol{font-size:14px;line-height:1.55;color:#ddd;margin:6px 0}
-.guide-box ul,.guide-box ol{padding-left:20px}
-.guide-box li{margin-bottom:6px}
-.sticky-header{position:fixed;top:0;left:0;right:0;z-index:1000;pointer-events:none;opacity:0;transform:translateY(-100%);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),opacity 0.25s ease;background:rgba(23,25,37,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,63,159,0.35);box-shadow:0 10px 30px rgba(0,0,0,0.8)}
-.sticky-header.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.sticky-wrap{padding:8px 18px;max-width:1080px;margin:auto;display:flex;flex-direction:column;gap:5px}
-.sticky-top-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px}
-.sticky-rank{color:var(--gold);font-weight:bold;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-.sticky-age{color:#fff;font-size:13px;font-weight:600}
-.compact-stats{display:flex;justify-content:space-around;align-items:center;gap:6px}
-.c-stat{background:rgba(15,17,25,0.7);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:5px 12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:15px;color:#fff;flex:1}
-.stat.clickable{cursor:pointer;transition:transform 0.15s ease,border-color 0.15s ease,box-shadow 0.15s ease;border:1px solid transparent}
-.stat.clickable:hover,.stat.clickable:active{transform:scale(1.04);border-color:var(--pink);box-shadow:0 4px 15px rgba(255,63,159,0.25)}
-.stat-tooltip{background:#10121a;border:1px solid var(--pink);border-radius:12px;padding:12px 16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(255,63,159,0.2);animation:fadeIn 0.2s ease}
-.stat-tooltip-title{font-weight:bold;color:var(--gold);font-size:15px;display:block;margin-bottom:3px}
-.stat-tooltip-text{font-size:13px;color:#ddd;margin:0;line-height:1.4}
-.stat-tooltip-close{background:none;border:none;color:#aaa;font-size:16px;padding:4px 8px;cursor:pointer;border-radius:6px}
-.stat-tooltip-close:hover{color:#fff;background:#353847}
-.action-btn-wrap{margin:10px 18px 0;display:flex;justify-content:flex-end}
-.action-btn-wrap button{background:linear-gradient(135deg,#7b2cbf,#ff3f9f);font-size:14px;padding:9px 16px;box-shadow:0 4px 15px rgba(255,63,159,0.3)}
-.actions-panel-modal{margin:14px 18px;background:#10121a;border:1px solid var(--pink);border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,0.8);animation:fadeIn 0.25s ease}
-.actions-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.actions-panel-header h3{margin:0;color:var(--gold);font-size:18px}
-.actions-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
-.action-card{background:#181b28;border:1px solid #ffffff15;border-radius:12px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
-.action-card.disabled{opacity:0.5;filter:grayscale(0.6)}
-.action-card-header{display:flex;justify-content:space-between;align-items:center;gap:6px}
-.action-card-header strong{font-size:14px;color:#fff}
-.action-rate{font-size:12px;color:var(--gold);font-weight:bold}
-.action-desc{font-size:12px;color:#bbb;margin:0;line-height:1.35}
-.action-exec-btn{padding:8px 12px;font-size:13px;border-radius:8px;margin-top:4px}
-.booster-card{margin:18px;padding:22px;border-radius:18px;background:linear-gradient(135deg,#1f132e,#111422);border:2px solid var(--gold);box-shadow:0 8px 30px rgba(255,209,102,0.2);animation:fadeIn 0.3s ease}
-.booster-badge{font-size:11px;font-weight:bold;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;text-align:center}
-.booster-card h2{margin:0 0 8px;font-size:24px;color:#fff}
-.booster-desc{font-size:15px;line-height:1.5;color:#e0e0e0;margin-bottom:16px}
-.booster-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.booster-btn{text-align:left;background:#2a2d3a;padding:14px;border-radius:12px;border:1px solid #ffffff20;transition:all 0.15s ease}
-.booster-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
-.booster-btn strong{display:block;color:var(--gold);margin-bottom:4px;font-size:15px}
-.booster-btn span{font-size:12px;color:#aaa}
-.breakup-card{margin:18px;padding:24px;border-radius:18px;background:#380e15;border:2px solid var(--red);text-align:center;animation:fadeIn 0.3s ease}
-.breakup-card h2{color:#fff;margin:6px 0}
-.breakup-card p{color:#f5b5bd;font-size:16px;line-height:1.4}
-@media(max-width:700px){
-  .booster-choices{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(3,1fr)}
-  .scene{height:190px}
-  .sceneText{left:12px;right:12px;bottom:10px}
-  .sceneText h2{font-size:20px;margin-bottom:3px}
-  .sceneText p{font-size:14px;line-height:1.3}
-  .event-body{min-height:210px}
-  .choices{padding:12px;gap:8px;min-height:210px}
-  .choice{padding:10px 14px}
-  .choice strong{font-size:14px;margin-bottom:2px}
-  .choice span{font-size:12px}
-  .result{margin:12px;padding:16px;min-height:186px;font-size:16px;gap:6px}
-  .result .big{font-size:38px}
-  .result b{font-size:17px}
-  .result p{font-size:13px;margin:2px 0 8px}
-  .result button{padding:10px 22px;font-size:14px}
-  .person img{height:190px}
-  .sticky-wrap{padding:5px 8px;gap:4px}
-  .sticky-rank{font-size:11px;letter-spacing:0.5px}
-  .sticky-age{font-size:11px}
-  .c-stat{padding:3px 4px;gap:2px;font-size:11px}
-  .c-stat b{font-size:12px}
-  .sticky-progress{height:4px;margin-top:2px}
-}
-.footer-version {
-  text-align: center;
-  padding: 16px 0 24px;
-  font-size: 12px;
-  color: #555;
-  letter-spacing: 1px;
-  font-family: monospace;
-}
-</style>
+  <style>
+    :root {
+      --pink: #ff3f9f;
+      --gold: #ffd166;
+      --green: #23c97c;
+      --red: #ef4c5d;
+      --card: #171925
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #31102d, #0a0b11 30%);
+      color: #fff;
+      font-family: Arial, sans-serif
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: auto;
+      padding: 18px
+    }
+
+    .hero {
+      text-align: center
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      color: var(--pink);
+      margin: 5px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid #ffffff18;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 14px 0;
+      box-shadow: 0 16px 50px #0008
+    }
+
+    .pad {
+      padding: 20px
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px
+    }
+
+    .person {
+      background: #10121a;
+      border: 2px solid transparent;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer
+    }
+
+    .person.sel {
+      border-color: var(--pink)
+    }
+
+    .person img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      object-position: top;
+      background: #2d2f3b
+    }
+
+    .info {
+      padding: 12px
+    }
+
+    .info h3 {
+      margin: 0
+    }
+
+    .trait {
+      font-size: 13px;
+      color: #bbb;
+      margin-top: 5px
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 17px;
+      background: var(--pink);
+      color: white;
+      font-weight: 800;
+      font-size: 16px;
+      cursor: pointer
+    }
+
+    button.secondary {
+      background: #353847
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      margin-top: 10px
+    }
+
+    .stat {
+      background: #0f1119;
+      border-radius: 12px;
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+      color: #bbb
+    }
+
+    .stat b {
+      display: block;
+      color: white;
+      font-size: 20px
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .rank {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 1.5px
+    }
+
+    .progress {
+      height: 14px;
+      background: #0e1017;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px
+    }
+
+    .progress div {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      transition: width 0.3s ease
+    }
+
+    .sticky-progress {
+      height: 5px;
+      margin-top: 3px;
+      margin-bottom: 1px;
+      border-radius: 999px
+    }
+
+    .scene {
+      height: 270px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px 18px 0 0
+    }
+
+    .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.88)
+    }
+
+    .scene:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 35%, rgba(15, 17, 25, 0.45) 68%, rgba(15, 17, 25, 0.92) 100%)
+    }
+
+    .sceneText {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 14px;
+      z-index: 2
+    }
+
+    .sceneText h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      margin: 0 0 4px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85)
+    }
+
+    .sceneText p {
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 0;
+      color: #f0f0f0;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9)
+    }
+
+    .event-body {
+      min-height: 252px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      min-height: 252px;
+      box-sizing: border-box;
+      align-content: center
+    }
+
+    .choice {
+      text-align: left;
+      background: #2a2d3a;
+      padding: 13px 17px;
+      border-radius: 12px;
+      border: 1px solid #ffffff18;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      cursor: pointer
+    }
+
+    .choice:hover {
+      border-color: var(--pink);
+      transform: translateY(-1px)
+    }
+
+    .choice strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 4px;
+      font-size: 16px
+    }
+
+    .choice span {
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.35;
+      display: block
+    }
+
+    .result {
+      margin: 18px;
+      padding: 20px;
+      border-radius: 18px;
+      text-align: center;
+      font-size: 18px;
+      min-height: 216px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      animation: fadeIn 0.2s ease
+    }
+
+    .result .big {
+      font-size: 48px;
+      line-height: 1
+    }
+
+    .result b {
+      font-size: 20px
+    }
+
+    .result p {
+      margin: 4px 0 10px;
+      font-size: 15px;
+      line-height: 1.4;
+      max-width: 560px
+    }
+
+    .result button {
+      padding: 12px 28px;
+      font-size: 15px
+    }
+
+    .ok {
+      background: #0c4b30;
+      border: 2px solid var(--green)
+    }
+
+    .bad {
+      background: #4c1118;
+      border: 2px solid var(--red)
+    }
+
+    .big {
+      font-size: 58px
+    }
+
+    .relation {
+      display: flex;
+      gap: 10px;
+      overflow: auto;
+      padding-bottom: 7px
+    }
+
+    .rel {
+      min-width: 210px;
+      background: #10121a;
+      border: 1px solid #ffffff18;
+      border-radius: 14px;
+      overflow: hidden
+    }
+
+    .rel .face {
+      height: 135px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 58px;
+      background: linear-gradient(135deg, #1c8d55, #0b3a23)
+    }
+
+    .rel div:last-child {
+      padding: 10px
+    }
+
+    .rel b {
+      color: var(--gold)
+    }
+
+    .mentor {
+      margin: 14px 18px 0;
+      background: #2c1a08;
+      border: 1px solid #ffd16666;
+      border-radius: 14px;
+      padding: 13px;
+      color: #ffe6a0
+    }
+
+    .log {
+      max-height: 250px;
+      overflow: auto;
+      background: #0d0f16;
+      border-radius: 12px;
+      padding: 10px
+    }
+
+    .log p {
+      margin: 0;
+      padding: 8px;
+      border-bottom: 1px solid #ffffff10
+    }
+
+    .green {
+      color: #62e6a2
+    }
+
+    .red {
+      color: #ff828e
+    }
+
+    .note {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      line-height: 1.4
+    }
+
+    /* Booster active: reemplaza el borde de la card de escena */
+    .booster-active {
+      border-color: var(--gold) !important;
+      box-shadow: 0 0 30px rgba(255, 209, 102, 0.25), 0 16px 50px #0008 !important;
+      transition: all 0.3s ease
+    }
+
+    .booster-active .scene:after {
+      background: linear-gradient(to bottom, transparent 20%, rgba(255, 209, 102, 0.08) 50%, rgba(15, 17, 25, 0.95) 100%) !important
+    }
+
+    .booster-badge {
+      display: block;
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      padding: 3px 10px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      text-align: center
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px
+    }
+
+    .guide-box {
+      background: #10121a;
+      border: 1px solid #ffffff18;
+      border-radius: 14px;
+      padding: 16px
+    }
+
+    .guide-box h3 {
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px
+    }
+
+    .guide-box p,
+    .guide-box ul,
+    .guide-box ol {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #ddd;
+      margin: 6px 0
+    }
+
+    .guide-box ul,
+    .guide-box ol {
+      padding-left: 20px
+    }
+
+    .guide-box li {
+      margin-bottom: 6px
+    }
+
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      background: rgba(23, 25, 37, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 63, 159, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8)
+    }
+
+    .sticky-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto
+    }
+
+    .sticky-wrap {
+      padding: 8px 18px;
+      max-width: 1080px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5px
+    }
+
+    .sticky-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2px
+    }
+
+    .sticky-rank {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase
+    }
+
+    .sticky-age {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600
+    }
+
+    .compact-stats {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 6px
+    }
+
+    .c-stat {
+      background: rgba(15, 17, 25, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 5px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 15px;
+      color: #fff;
+      flex: 1
+    }
+
+    .stat.clickable {
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      border: 1px solid transparent
+    }
+
+    .stat.clickable:hover,
+    .stat.clickable:active {
+      transform: scale(1.04);
+      border-color: var(--pink);
+      box-shadow: 0 4px 15px rgba(255, 63, 159, 0.25)
+    }
+
+    .stat-tooltip {
+      background: #10121a;
+      border: 1px solid var(--pink);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(255, 63, 159, 0.2);
+      animation: fadeIn 0.2s ease
+    }
+
+    .stat-tooltip-title {
+      font-weight: bold;
+      color: var(--gold);
+      font-size: 15px;
+      display: block;
+      margin-bottom: 3px
+    }
+
+    .stat-tooltip-text {
+      font-size: 13px;
+      color: #ddd;
+      margin: 0;
+      line-height: 1.4
+    }
+
+    .stat-tooltip-close {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 16px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 6px
+    }
+
+    .stat-tooltip-close:hover {
+      color: #fff;
+      background: #353847
+    }
+
+    .action-btn-wrap {
+      margin: 10px 18px 0;
+      display: flex;
+      justify-content: flex-end
+    }
+
+    .action-btn-wrap button {
+      background: linear-gradient(135deg, #7b2cbf, #ff3f9f);
+      font-size: 14px;
+      padding: 9px 16px;
+      box-shadow: 0 4px 15px rgba(255, 63, 159, 0.3)
+    }
+
+    .actions-panel-modal {
+      margin: 14px 18px;
+      background: #10121a;
+      border: 1px solid var(--pink);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+      animation: fadeIn 0.25s ease
+    }
+
+    .actions-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px
+    }
+
+    .actions-panel-header h3 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 18px
+    }
+
+    .actions-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 10px
+    }
+
+    .action-card {
+      background: #181b28;
+      border: 1px solid #ffffff15;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .action-card.disabled {
+      opacity: 0.5;
+      filter: grayscale(0.6)
+    }
+
+    .action-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px
+    }
+
+    .action-card-header strong {
+      font-size: 14px;
+      color: #fff
+    }
+
+    .action-rate {
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: bold
+    }
+
+    .action-desc {
+      font-size: 12px;
+      color: #bbb;
+      margin: 0;
+      line-height: 1.35
+    }
+
+    .action-exec-btn {
+      padding: 8px 12px;
+      font-size: 13px;
+      border-radius: 8px;
+      margin-top: 4px
+    }
+
+    .booster-card {
+      margin: 18px;
+      padding: 22px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1f132e, #111422);
+      border: 2px solid var(--gold);
+      box-shadow: 0 8px 30px rgba(255, 209, 102, 0.2);
+      animation: fadeIn 0.3s ease
+    }
+
+    .booster-badge {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+      text-align: center
+    }
+
+    .booster-card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: #fff
+    }
+
+    .booster-desc {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #e0e0e0;
+      margin-bottom: 16px
+    }
+
+    .booster-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .booster-btn {
+      text-align: left;
+      background: #2a2d3a;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #ffffff20;
+      transition: all 0.15s ease
+    }
+
+    .booster-btn:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px)
+    }
+
+    .booster-btn strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 4px;
+      font-size: 15px
+    }
+
+    .booster-btn span {
+      font-size: 12px;
+      color: #aaa
+    }
+
+    .breakup-card {
+      margin: 18px;
+      padding: 24px;
+      border-radius: 18px;
+      background: #380e15;
+      border: 2px solid var(--red);
+      text-align: center;
+      animation: fadeIn 0.3s ease
+    }
+
+    .breakup-card h2 {
+      color: #fff;
+      margin: 6px 0
+    }
+
+    .breakup-card p {
+      color: #f5b5bd;
+      font-size: 16px;
+      line-height: 1.4
+    }
+
+    @media(max-width:700px) {
+      .booster-choices {
+        grid-template-columns: 1fr
+      }
+
+      .stats {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .scene {
+        height: 190px
+      }
+
+      .sceneText {
+        left: 12px;
+        right: 12px;
+        bottom: 10px
+      }
+
+      .sceneText h2 {
+        font-size: 20px;
+        margin-bottom: 3px
+      }
+
+      .sceneText p {
+        font-size: 14px;
+        line-height: 1.3
+      }
+
+      .event-body {
+        min-height: 210px
+      }
+
+      .choices {
+        padding: 12px;
+        gap: 8px;
+        min-height: 210px
+      }
+
+      .choice {
+        padding: 10px 14px
+      }
+
+      .choice strong {
+        font-size: 14px;
+        margin-bottom: 2px
+      }
+
+      .choice span {
+        font-size: 12px
+      }
+
+      .result {
+        margin: 12px;
+        padding: 16px;
+        min-height: 186px;
+        font-size: 16px;
+        gap: 6px
+      }
+
+      .result .big {
+        font-size: 38px
+      }
+
+      .result b {
+        font-size: 17px
+      }
+
+      .result p {
+        font-size: 13px;
+        margin: 2px 0 8px
+      }
+
+      .result button {
+        padding: 10px 22px;
+        font-size: 14px
+      }
+
+      .person img {
+        height: 190px
+      }
+
+      .sticky-wrap {
+        padding: 5px 8px;
+        gap: 4px
+      }
+
+      .sticky-rank {
+        font-size: 11px;
+        letter-spacing: 0.5px
+      }
+
+      .sticky-age {
+        font-size: 11px
+      }
+
+      .c-stat {
+        padding: 3px 4px;
+        gap: 2px;
+        font-size: 11px
+      }
+
+      .c-stat b {
+        font-size: 12px
+      }
+
+      .sticky-progress {
+        height: 4px;
+        margin-top: 2px
+      }
+    }
+
+    .footer-version {
+      text-align: center;
+      padding: 16px 0 24px;
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 1px;
+      font-family: monospace;
+    }
+  </style>
+
 <body>
-<script src="js/analytics.js"></script>
-<script src="js/posthog.js"></script>
-<div id="stickyHeader" class="sticky-header">
-  <div class="wrap sticky-wrap">
-    <div class="sticky-top-row">
-      <div id="c_rank" class="sticky-rank"></div>
-      <div id="c_age" class="sticky-age"></div>
-    </div>
-    <div class="compact-stats">
-      <div class="c-stat"><span>⭐</span><b id="c_fame"></b></div>
-      <div class="c-stat"><span>🧠</span><b id="c_rep"></b></div>
-      <div class="c-stat"><span>🤝</span><b id="c_contacts"></b></div>
-      <div class="c-stat"><span>🔥</span><b id="c_chem"></b></div>
-      <div class="c-stat"><span>💬</span><b id="c_rumors"></b></div>
-      <div class="c-stat"><span>❤️</span><b id="c_couples"></b></div>
-    </div>
-    <div class="progress sticky-progress"><div id="c_bar"></div></div>
-  </div>
-</div>
-<div class="wrap">
-<div class="hero">
-  <h1>👠 BOTINERAS</h1>
-  <p>Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo.</p>
-  <button class="secondary" style="margin-top:8px;font-size:14px;padding:8px 16px;" onclick="toggleGuide()">📖 ¿Cómo jugar?</button>
-  <button id="resetBtn" class="secondary hidden" style="margin-top:8px;font-size:14px;padding:8px 16px;background:#ef4c5d" onclick="location.reload()">🔄 Reiniciar</button>
-</div>
-
-<section id="guide" class="card pad hidden">
-  <div class="top">
-    <h2>📖 Guía de Juego: ¿Cómo Jugar?</h2>
-    <button class="secondary" onclick="toggleGuide()">← Volver</button>
-  </div>
-  <p style="color:#bbb;line-height:1.5">Bienvenida a <strong>Botineras</strong>, la novela interactiva de la farándula futbolera argentina. Tu misión es forjar la carrera mediática y sentimental más distinguida, conquistando los corazones de las máximas figuras del fútbol mundial.</p>
-  
-  <div class="guide-grid">
-    <div class="guide-box">
-      <h3>👑 El Objetivo</h3>
-      <p>A lo largo de <strong>24 turnos</strong> (8 años de trayectoria, de los 18 a los 26 años), tomarás decisiones en distintas salidas, eventos y situaciones del espectáculo. Tu meta es equilibrar tu perfil mediático, cuidar tu reputación, mantener viva la química con tus parejas, ascender de categoría y sumar la mayor cantidad de <strong>Noviazgos</strong> confirmados.</p>
-    </div>
-
-    <div class="guide-box">
-      <h3>🎭 Personajes y Talentos</h3>
-      <p>Cada personaje posee virtudes únicas que impulsan tu inicio de carrera:</p>
-      <ul>
-        <li><strong>Wonda Naro:</strong> Visión de negocios, escándalo mediático y gran presencia de prensa.</li>
-        <li><strong>Chaina Saures:</strong> Química romántica explosiva y atracción inmediata.</li>
-        <li><strong>Sosha Ferra:</strong> Viralidad y alcance masivo en redes sociales.</li>
-        <li><strong>Brie Marcas:</strong> Acceso exclusivo a sectores VIP y contactos clave.</li>
-        <li><strong>Jaz Parelta:</strong> Carisma impredecible y gran encanto natural.</li>
-        <li><strong>Clari Crimischi:</strong> Respaldo de marcas comerciales y alta reputación.</li>
-      </ul>
-    </div>
-
-    <div class="guide-box">
-      <h3>📊 Atributos Clave</h3>
-      <ul>
-        <li>⭐ <strong>Fama:</strong> Alcance mediático, notoriedad pública y presencia en portales y redes.</li>
-        <li>🧠 <strong>Reputación:</strong> Prestigio, credibilidad e imagen. Mejora tus probabilidades de éxito en cada decisión.</li>
-        <li>🤝 <strong>Contactos:</strong> Tu red de influencias y accesos VIP en la farándula.</li>
-        <li>🔥 <strong>Química:</strong> Conexión y pasión con tu pareja actual. Vital para evitar crisis y rupturas.</li>
-        <li>💬 <strong>Rumores:</strong> <em>¡Cuidado!</em> Los chismes y escándalos dañan tu perfil y aumentan el riesgo de rechazo.</li>
-        <li>❤️ <strong>Noviazgos:</strong> Relaciones formalizadas que consagran tu legado sentimental.</li>
-      </ul>
-    </div>
-
-    <div class="guide-box">
-      <h3>⚽ Categorías y Ascensos</h3>
-      <p>A medida que tu perfil y estatus crecen, accederás a futbolistas de mayor jerarquía internacional:</p>
-      <p style="text-align:center;color:var(--gold);font-weight:bold;margin:10px 0">Barrio → Ascenso → Primera → Latam → Europa → Champions</p>
-      <p><strong>Oportunidades de Ascenso (⬆️):</strong> Cuando te consolides y tu nivel mediático se destaque, podrán tentarte pretendientes de una división superior. Vos decidís si dar el salto a una nueva liga o priorizar a tu pareja actual.</p>
-    </div>
-
-    <div class="guide-box">
-      <h3>💖 Etapas del Romance</h3>
-      <p>Cada relación avanza progresivamente según la conexión y el tiempo compartido:</p>
-      <ul>
-        <li><strong>Primeras Salidas:</strong> Salidas discretas, miradas y primeros trascendidos.</li>
-        <li><strong>Romance Confirmado:</strong> Viajes, apariciones públicas y fotos filtradas.</li>
-        <li><strong>Formalización:</strong> Al proponer o aceptar exclusividad, ¡sumás un <strong>Noviazgo</strong> consagrado a tu historial!</li>
-      </ul>
-    </div>
-
-    <div class="guide-box">
-      <h3>💥 Crisis, Rupturas y Nuevas Parejas</h3>
-      <ul>
-        <li><strong>Crisis de Pareja (💥):</strong> Si la química decae fuertemente con el tiempo, entrarán en zona de riesgo: deberás elegir entre una charla a fondo para salvar el amor o terminar la relación.</li>
-        <li><strong>Rupturas (💔):</strong> Si una jugada sale muy mal o la pasión se apaga, la relación terminará y te presentarán a un nuevo pretendiente en tu categoría para volver a empezar.</li>
-      </ul>
-    </div>
-
-    <div class="guide-box">
-      <h3>⚡ Acciones Especiales y Eventos</h3>
-      <ul>
-        <li><strong>Acciones Especiales (⚡):</strong> Conforme avances en tu carrera, podrás ejecutar jugadas audaces de alto impacto (infidelidades secretas, polémicas mediáticas, escándalos o cortar por decisión propia) para ganar notoriedad asumiendo altos riesgos.</li>
-        <li><strong>Eventos Especiales (✨):</strong> Periódicamente surgirán propuestas imprevistas de la farándula (cirugías, canjes de lujo, experiencias espirituales, contratos o cruces con rivales) donde elegirás entre dos caminos.</li>
-      </ul>
-    </div>
-
-    <div class="guide-box">
-      <h3>🎲 Consejos y Estrategia</h3>
-      <ul>
-        <li>Equilibrá tus respuestas según lo que busques: perfil bajo para cuidar la reputación o exposición para disparar la fama.</li>
-        <li>Prestá atención a los consejos de tu mentor <strong>Guillote Coppolo</strong> en cada salida.</li>
-        <li>Podés tocar cualquier estadística en pantalla durante el juego para consultar su significado.</li>
-      </ul>
+  <script src="js/analytics.js"></script>
+  <script src="js/posthog.js"></script>
+  <div id="stickyHeader" class="sticky-header">
+    <div class="wrap sticky-wrap">
+      <div class="sticky-top-row">
+        <div id="c_rank" class="sticky-rank"></div>
+        <div id="c_age" class="sticky-age"></div>
+      </div>
+      <div class="compact-stats">
+        <div class="c-stat"><span>⭐</span><b id="c_fame"></b></div>
+        <div class="c-stat"><span>🧠</span><b id="c_rep"></b></div>
+        <div class="c-stat"><span>🤝</span><b id="c_contacts"></b></div>
+        <div class="c-stat"><span>🔥</span><b id="c_chem"></b></div>
+        <div class="c-stat"><span>💬</span><b id="c_rumors"></b></div>
+        <div class="c-stat"><span>❤️</span><b id="c_couples"></b></div>
+      </div>
+      <div class="progress sticky-progress">
+        <div id="c_bar"></div>
+      </div>
     </div>
   </div>
-</section>
+  <div class="wrap">
+    <div class="hero">
+      <h1>👠 BOTINERAS</h1>
+      <p>Elegí bien: una salida puede terminar en rumor, romance, noviazgo… o bloqueo.</p>
+      <button class="secondary" style="margin-top:8px;font-size:14px;padding:8px 16px;" onclick="toggleGuide()">📖 ¿Cómo
+        jugar?</button>
+      <button id="resetBtn" class="secondary hidden"
+        style="margin-top:8px;font-size:14px;padding:8px 16px;background:#ef4c5d" onclick="location.reload()">🔄
+        Reiniciar</button>
+    </div>
 
-<section id="setup" class="card">
-<div class="pad">
-<h2>Elegí personaje</h2>
-<div id="people" class="grid"></div>
-</div>
-<p class="note">Parodia ficticia. Los romances y situaciones del juego no describen hechos reales, y los personajes mencionados no referencian a ninguna persona de la vida real.</p>
-</section>
+    <section id="guide" class="card pad hidden">
+      <div class="top">
+        <h2>📖 Guía de Juego: ¿Cómo Jugar?</h2>
+        <button class="secondary" onclick="toggleGuide()">← Volver</button>
+      </div>
+      <p style="color:#bbb;line-height:1.5">Bienvenida a <strong>Botineras</strong>, la novela interactiva de la
+        farándula futbolera argentina. Tu misión es forjar la carrera mediática y sentimental más distinguida,
+        conquistando los corazones de las máximas figuras del fútbol mundial.</p>
 
-<section id="game" class="hidden">
-<div class="card pad" id="statsCard">
-<div class="top"><div><div id="rank" class="rank"></div><h3 id="age" style="margin:4px 0"></h3></div></div>
-<div class="stats">
-<div class="stat clickable" onclick="showStatInfo('fame')" title="Tocá para ver qué significa">⭐ Fama<b id="fame"></b></div>
-<div class="stat clickable" onclick="showStatInfo('rep')" title="Tocá para ver qué significa">🧠 Reputación<b id="rep"></b></div>
-<div class="stat clickable" onclick="showStatInfo('contacts')" title="Tocá para ver qué significa">🤝 Contactos<b id="contacts"></b></div>
-<div class="stat clickable" onclick="showStatInfo('chem')" title="Tocá para ver qué significa">🔥 Química<b id="chem"></b></div>
-<div class="stat clickable" onclick="showStatInfo('rumors')" title="Tocá para ver qué significa">💬 Rumores<b id="rumors"></b></div>
-<div class="stat clickable" onclick="showStatInfo('couples')" title="Tocá para ver qué significa">❤️ Noviazgos<b id="couples"></b></div>
-</div>
-<div id="statTooltip" class="stat-tooltip hidden">
-  <div>
-    <span id="statTooltipTitle" class="stat-tooltip-title"></span>
-    <p id="statTooltipText" class="stat-tooltip-text"></p>
+      <div class="guide-grid">
+        <div class="guide-box">
+          <h3>👑 El Objetivo</h3>
+          <p>A lo largo de <strong>24 turnos</strong> (8 años de trayectoria, de los 18 a los 26 años), tomarás
+            decisiones en distintas salidas, eventos y situaciones del espectáculo. Tu meta es equilibrar tu perfil
+            mediático, cuidar tu reputación, mantener viva la química con tus parejas, ascender de categoría y sumar la
+            mayor cantidad de <strong>Noviazgos</strong> confirmados.</p>
+        </div>
+
+        <div class="guide-box">
+          <h3>🎭 Personajes y Talentos</h3>
+          <p>Cada personaje posee virtudes únicas que impulsan tu inicio de carrera:</p>
+          <ul>
+            <li><strong>Wonda Naro:</strong> Visión de negocios, escándalo mediático y gran presencia de prensa.</li>
+            <li><strong>Chaina Saures:</strong> Química romántica explosiva y atracción inmediata.</li>
+            <li><strong>Sosha Ferra:</strong> Viralidad y alcance masivo en redes sociales.</li>
+            <li><strong>Brie Marcas:</strong> Acceso exclusivo a sectores VIP y contactos clave.</li>
+            <li><strong>Jaz Parelta:</strong> Carisma impredecible y gran encanto natural.</li>
+            <li><strong>Clari Crimischi:</strong> Respaldo de marcas comerciales y alta reputación.</li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>📊 Atributos Clave</h3>
+          <ul>
+            <li>⭐ <strong>Fama:</strong> Alcance mediático, notoriedad pública y presencia en portales y redes.</li>
+            <li>🧠 <strong>Reputación:</strong> Prestigio, credibilidad e imagen. Mejora tus probabilidades de éxito en
+              cada decisión.</li>
+            <li>🤝 <strong>Contactos:</strong> Tu red de influencias y accesos VIP en la farándula.</li>
+            <li>🔥 <strong>Química:</strong> Conexión y pasión con tu pareja actual. Vital para evitar crisis y
+              rupturas.</li>
+            <li>💬 <strong>Rumores:</strong> <em>¡Cuidado!</em> Los chismes y escándalos dañan tu perfil y aumentan el
+              riesgo de rechazo.</li>
+            <li>❤️ <strong>Noviazgos:</strong> Relaciones formalizadas que consagran tu legado sentimental.</li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>⚽ Categorías y Ascensos</h3>
+          <p>A medida que tu perfil y estatus crecen, accederás a futbolistas de mayor jerarquía internacional:</p>
+          <p style="text-align:center;color:var(--gold);font-weight:bold;margin:10px 0">Barrio → Ascenso → Primera →
+            Latam → Europa → Champions</p>
+          <p><strong>Oportunidades de Ascenso (⬆️):</strong> Cuando te consolides y tu nivel mediático se destaque,
+            podrán tentarte pretendientes de una división superior. Vos decidís si dar el salto a una nueva liga o
+            priorizar a tu pareja actual.</p>
+        </div>
+
+        <div class="guide-box">
+          <h3>💖 Etapas del Romance</h3>
+          <p>Cada relación avanza progresivamente según la conexión y el tiempo compartido:</p>
+          <ul>
+            <li><strong>Primeras Salidas:</strong> Salidas discretas, miradas y primeros trascendidos.</li>
+            <li><strong>Romance Confirmado:</strong> Viajes, apariciones públicas y fotos filtradas.</li>
+            <li><strong>Formalización:</strong> Al proponer o aceptar exclusividad, ¡sumás un <strong>Noviazgo</strong>
+              consagrado a tu historial!</li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>💥 Crisis, Rupturas y Nuevas Parejas</h3>
+          <ul>
+            <li><strong>Crisis de Pareja (💥):</strong> Si la química decae fuertemente con el tiempo, entrarán en zona
+              de riesgo: deberás elegir entre una charla a fondo para salvar el amor o terminar la relación.</li>
+            <li><strong>Rupturas (💔):</strong> Si una jugada sale muy mal o la pasión se apaga, la relación terminará y
+              te presentarán a un nuevo pretendiente en tu categoría para volver a empezar.</li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>⚡ Acciones Especiales y Eventos</h3>
+          <ul>
+            <li><strong>Acciones Especiales (⚡):</strong> Conforme avances en tu carrera, podrás ejecutar jugadas
+              audaces de alto impacto (infidelidades secretas, polémicas mediáticas, escándalos o cortar por decisión
+              propia) para ganar notoriedad asumiendo altos riesgos.</li>
+            <li><strong>Eventos Especiales (✨):</strong> Periódicamente surgirán propuestas imprevistas de la farándula
+              (cirugías, canjes de lujo, experiencias espirituales, contratos o cruces con rivales) donde elegirás entre
+              dos caminos.</li>
+          </ul>
+        </div>
+
+        <div class="guide-box">
+          <h3>🎲 Consejos y Estrategia</h3>
+          <ul>
+            <li>Equilibrá tus respuestas según lo que busques: perfil bajo para cuidar la reputación o exposición para
+              disparar la fama.</li>
+            <li>Prestá atención a los consejos de tu mentor <strong>Guillote Coppolo</strong> en cada salida.</li>
+            <li>Podés tocar cualquier estadística en pantalla durante el juego para consultar su significado.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="setup" class="card">
+      <div class="pad">
+        <h2>Elegí personaje</h2>
+        <div id="people" class="grid"></div>
+      </div>
+      <p class="note">Parodia ficticia. Los romances y situaciones del juego no describen hechos reales, y los
+        personajes mencionados no referencian a ninguna persona de la vida real.</p>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="card pad" id="statsCard">
+        <div class="top">
+          <div>
+            <div id="rank" class="rank"></div>
+            <h3 id="age" style="margin:4px 0"></h3>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat clickable" onclick="showStatInfo('fame')" title="Tocá para ver qué significa">⭐ Fama<b
+              id="fame"></b></div>
+          <div class="stat clickable" onclick="showStatInfo('rep')" title="Tocá para ver qué significa">🧠 Reputación<b
+              id="rep"></b></div>
+          <div class="stat clickable" onclick="showStatInfo('contacts')" title="Tocá para ver qué significa">🤝
+            Contactos<b id="contacts"></b></div>
+          <div class="stat clickable" onclick="showStatInfo('chem')" title="Tocá para ver qué significa">🔥 Química<b
+              id="chem"></b></div>
+          <div class="stat clickable" onclick="showStatInfo('rumors')" title="Tocá para ver qué significa">💬 Rumores<b
+              id="rumors"></b></div>
+          <div class="stat clickable" onclick="showStatInfo('couples')" title="Tocá para ver qué significa">❤️
+            Noviazgos<b id="couples"></b></div>
+        </div>
+        <div id="statTooltip" class="stat-tooltip hidden">
+          <div>
+            <span id="statTooltipTitle" class="stat-tooltip-title"></span>
+            <p id="statTooltipText" class="stat-tooltip-text"></p>
+          </div>
+          <button class="stat-tooltip-close" onclick="hideStatInfo()" title="Cerrar">✕</button>
+        </div>
+        <div class="progress">
+          <div id="bar"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="scene"><img id="scene" alt="Escena del evento" loading="lazy"
+            onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><rect fill=%22%23171925%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22200%22 text-anchor=%22middle%22 fill=%22%23ff3f9f%22 font-size=%2260%22 font-family=%22sans-serif%22>👠</text><text x=%22400%22 y=%22250%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2220%22 font-family=%22sans-serif%22>Escena no disponible</text></svg>'">
+          <div class="sceneText">
+            <h2 id="title"></h2>
+            <p id="story"></p>
+          </div>
+        </div>
+        <div id="mentor"></div>
+        <div id="actionBtn" class="action-btn-wrap hidden">
+          <button onclick="showActionsPanel()">⚡ Acción especial</button>
+        </div>
+        <div id="actionsPanel" class="actions-panel-modal hidden"></div>
+        <div id="booster" class="hidden"></div>
+        <div id="breakupBanner" class="hidden"></div>
+        <div class="event-body">
+          <div id="choices" class="choices"></div>
+          <div id="result" class="hidden"></div>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h3>❤️ Historial sentimental</h3>
+        <div id="relations" class="relation"><span style="color:#999">Todavía nada confirmado.</span></div>
+      </div>
+      <div class="card pad">
+        <h3>📜 Historial</h3>
+        <div id="log" class="log"></div>
+      </div>
+    </section>
+
+    <section id="final" class="card pad hidden" style="text-align:center">
+      <h1 id="finalTitle"></h1>
+      <p id="finalText" style="font-size:18px;line-height:1.6;margin:16px 0"></p>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button onclick="shareWhatsApp()" style="background:#25d366;color:#fff;font-weight:bold;">🟢 Compartir en
+          WhatsApp</button>
+        <button class="secondary" onclick="location.reload()">Jugar otra vez</button>
+      </div>
+    </section>
   </div>
-  <button class="stat-tooltip-close" onclick="hideStatInfo()" title="Cerrar">✕</button>
-</div>
-<div class="progress"><div id="bar"></div></div>
-</div>
 
-<div class="card">
-<div class="scene"><img id="scene" alt="Escena del evento" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22360%22><rect fill=%22%23171925%22 width=%22800%22 height=%22360%22/><text x=%22400%22 y=%22200%22 text-anchor=%22middle%22 fill=%22%23ff3f9f%22 font-size=%2260%22 font-family=%22sans-serif%22>👠</text><text x=%22400%22 y=%22250%22 text-anchor=%22middle%22 fill=%22%23bbb%22 font-size=%2220%22 font-family=%22sans-serif%22>Escena no disponible</text></svg>'"><div class="sceneText"><h2 id="title"></h2><p id="story"></p></div></div>
-<div id="mentor"></div>
-<div id="actionBtn" class="action-btn-wrap hidden">
-  <button onclick="showActionsPanel()">⚡ Acción especial</button>
-</div>
-<div id="actionsPanel" class="actions-panel-modal hidden"></div>
-<div id="booster" class="hidden"></div>
-<div id="breakupBanner" class="hidden"></div>
-<div class="event-body">
-  <div id="choices" class="choices"></div>
-  <div id="result" class="hidden"></div>
-</div>
-</div>
+  <footer class="footer-version">
+    v1.2.4
+  </footer>
 
-<div class="card pad"><h3>❤️ Historial sentimental</h3><div id="relations" class="relation"><span style="color:#999">Todavía nada confirmado.</span></div></div>
-<div class="card pad"><h3>📜 Historial</h3><div id="log" class="log"></div></div>
-</section>
-
-<section id="final" class="card pad hidden" style="text-align:center">
-<h1 id="finalTitle"></h1>
-<p id="finalText" style="font-size:18px;line-height:1.6;margin:16px 0"></p>
-<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
-  <button onclick="shareWhatsApp()" style="background:#25d366;color:#fff;font-weight:bold;">🟢 Compartir en WhatsApp</button>
-  <button class="secondary" onclick="location.reload()">Jugar otra vez</button>
-</div>
-</section>
-</div>
-
-<footer class="footer-version">
-  v1.2.3
-</footer>
-
-<script src="js/data.js"></script>
-<script src="js/engine.js"></script>
-<script src="js/game.js"></script>
-<script src="js/ui.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
 </body>
+
 </html>
